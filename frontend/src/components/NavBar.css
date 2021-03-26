@@ -1,0 +1,15 @@
+.Navibar {
+  min-height: 60px;
+  display: flex;
+  background-color: black;
+  opacity: 0.7;
+}
+
+.EimskyBrand {
+  font-size: 25px;
+}
+
+.NavLinks {
+  font-size: 15px;
+  margin: auto;
+}
