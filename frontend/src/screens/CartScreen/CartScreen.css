@@ -1,0 +1,17 @@
+.totalQtyPrice {
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+}
+
+.toCheckoutbtn {
+  height: 50px !important;
+  background-color: black !important;
+}
+
+.toCheckoutbtn:hover {
+  height: 50px !important;
+  background-color: rgb(255, 255, 255) !important;
+  color: black !important;
+  border-color: black !important;
+  font-size: 30px !important;
+}

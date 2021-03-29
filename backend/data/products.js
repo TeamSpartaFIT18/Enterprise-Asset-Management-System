@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Macbook Pro 2020',
     image: '/images/macbookPro.jpg',
     description: 'Macbook pro',
@@ -12,7 +11,6 @@ const products = [
     numReviews: 3,
   },
   {
-    _id: '2',
     name: 'Epson Scanner',
     image: '/images/scanner.jpg',
     description: 'Epson Perfection V39 Scanner for sacanning purposes',
@@ -24,7 +22,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Photocopy Machine',
     image: '/images/photocopyMachine.png',
     description: 'Multi purpose Xerox prhotocopy machine',
@@ -36,7 +33,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Rinsec FingerPrint Scanner',
     image: '/images/FingerprintScanner.jpg',
     description: 'Rinsec TM500B Fingerprint scanner',
@@ -48,7 +44,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Asus Vivobook Pro',
     image: '/images/vivobookPro.jpg',
     description: 'Asus vivobook Pro M580VD',
@@ -60,7 +55,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'BenQ Projector',
     image: '/images/projector.jpg',
     description: 'High resolution MS531 BenQ projector',
@@ -72,7 +66,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '7',
     name: 'Apple iMac Pro',
     image: '/images/imacPro.jpeg',
     description: 'Apple iMac Pro. Specialist for Designing',
@@ -84,7 +77,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '8',
     name: 'Laser Printer',
     image: '/images/laserPrinter.png',
     description: 'Epson laser printer for clear printing',
