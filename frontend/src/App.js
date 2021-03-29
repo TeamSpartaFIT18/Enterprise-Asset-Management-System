@@ -8,6 +8,7 @@ import ProductScreen from './screens/ProductScreen'
 import OneProductScreen from './screens/OneProductScreen/OneProductScreen'
 import CartScreen from './screens/CartScreen/CartScreen'
 import LoginScreen from './screens/LoginScreen/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen/RegisterScreen'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Container>
           <Route path='/products' component={ProductScreen} />
           <Route path='/signin' component={LoginScreen} />
+          <Route path='/register' component={RegisterScreen} />
           <Route path='/product/:id' component={OneProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/' component={HomeScreen} exact />
