@@ -1,0 +1,19 @@
+.signinNav {
+  color: black !important;
+}
+
+.shippingNav {
+  color: black !important;
+}
+
+.paymentNav {
+  color: black !important;
+}
+
+.placeOrderNav {
+  color: black !important;
+}
+
+.checkoutNav {
+  background-color: gray;
+}
