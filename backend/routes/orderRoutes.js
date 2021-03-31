@@ -1,7 +1,7 @@
 import express from 'express'
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
-const router = express.Router()
+//const router = express.Router()
 
 
 // @desc    Create new order
