@@ -1,9 +1,20 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { logout } from '../actions/userActions'
 import './NavBar.css'
 
 const NavBar = () => {
+	const dispatch = useDispatch()
+
+	const userLogin = useSelector(state => state.userLogin)
+	const { userInfo } = userLogin
+
+	const logoutHandler = () => {
+		dispatch(logout())
+	}
+
 	return (
 		<header className='nav1'>
 			<Navbar
@@ -21,26 +32,40 @@ const NavBar = () => {
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='ml-auto'>
 							<LinkContainer to='/products'>
-								<Nav.Link>
-									<p className='NavLinks'>
-										<i className='fas fa-shopping-basket'></i> Products
-									</p>
+								<Nav.Link className='NavLinks'>
+									<i className='fas fa-shopping-basket'></i> Products
 								</Nav.Link>
 							</LinkContainer>
 							<LinkContainer to='/cart'>
-								<Nav.Link href='#cart'>
-									<p className='NavLinks'>
-										<i className='fas fa-shopping-cart'></i> Cart
-									</p>
+								<Nav.Link className='NavLinks'>
+									<i className='fas fa-shopping-cart'></i> Cart
 								</Nav.Link>
 							</LinkContainer>
-							<LinkContainer to='/signin'>
-								<Nav.Link href='#sign-in'>
-									<p className='NavLinks'>
+							{userInfo ? (
+								<NavDropdown
+									title={userInfo.name}
+									id='username'
+									className='NavLinks'
+								>
+									<LinkContainer to='/profile'>
+										<NavDropdown.Item className='NavLinks'>
+											Profile
+										</NavDropdown.Item>
+									</LinkContainer>
+									<NavDropdown.Item
+										onClick={logoutHandler}
+										className='NavLinks'
+									>
+										Logout
+									</NavDropdown.Item>
+								</NavDropdown>
+							) : (
+								<LinkContainer to='/login'>
+									<Nav.Link href='#sign-in' className='NavLinks'>
 										<i className='fas fa-user'></i> Sign in
-									</p>
-								</Nav.Link>
-							</LinkContainer>
+									</Nav.Link>
+								</LinkContainer>
+							)}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
