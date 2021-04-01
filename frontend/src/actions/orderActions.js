@@ -15,6 +15,9 @@ import {
   ORDER_LIST_MY_REQUEST,
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
+  ORDER_LIST_REQUEST,
+  ORDER_LIST_SUCCESS,
+  ORDER_LIST_FAIL,
 } from '../types/orderTypes'
 import { logout } from './userActions'
 
@@ -129,7 +132,45 @@ export const payOrder = (orderId, paymentResult) => async (
   }
 }
 
-//update payment details
+//update delivery details
+export const deliverOrder = (order) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_DELIVER_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.put(
+      `/api/orders/${order._id}/deliver`,
+      {},
+      config
+    )
+
+    dispatch({
+      type: ORDER_DELIVER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ORDER_DELIVER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//list users orders
 export const listMyOrders = (orderId, paymentResult) => async (
   dispatch,
   getState
@@ -166,11 +207,14 @@ export const listMyOrders = (orderId, paymentResult) => async (
   }
 }
 
-//update order delivery details
-export const deliverOrder = (order) => async (dispatch, getState) => {
+//list orders
+export const listOrders = (orderId, paymentResult) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({
-      type: ORDER_DELIVER_REQUEST,
+      type: ORDER_LIST_REQUEST,
     })
 
     const {
@@ -183,27 +227,19 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(
-      `/api/orders/${order._id}/deliver`,
-      {},
-      config
-    )
+    const { data } = await axios.get(`/api/orders`, config)
 
     dispatch({
-      type: ORDER_DELIVER_SUCCESS,
+      type: ORDER_LIST_SUCCESS,
       payload: data,
     })
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message
-    if (message === 'Not authorized, token failed') {
-      dispatch(logout())
-    }
     dispatch({
-      type: ORDER_DELIVER_FAIL,
-      payload: message,
+      type: ORDER_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     })
   }
 }
