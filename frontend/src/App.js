@@ -14,16 +14,10 @@ import ShippingScreen from './screens/ShippingScreen/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen/OrderScreen'
-import UserListScreen from './screens/UserListScreen/UserListScreen'
-import UserEditScreen from './screens/UserEditScreen/UserEditScreen'
-import ProductListScreen from './screens/ProductListScreen/ProductListScreen'
-import ProductEditScreen from './screens/ProductEditScreen/ProductEditScreen'
-import OrderListScreen from './screens/OrderListScreen/OrderListScreen'
-import AdminDashboard from './screens/AdminDashboard/AdminDashboard'
 import EmployeeDashboard from './screens/EmployeeDashboard/EmployeeDashboard'
 //Private Routing
-import AdminRoute from './components/Routing/AdminRoute'
 import EmployeeRoute from './components/Routing/EmployeeRoute'
+import AdminLayout from './Layouts/AdminLayout'
 
 const App = () => {
   return (
@@ -31,31 +25,13 @@ const App = () => {
       <NavBar />
       <main className='py-3'>
         <Container>
-          <AdminRoute
-            exact
-            path='/dashboard-admin'
-            component={AdminDashboard}
-          />
           <EmployeeRoute
             exact
             path='/dashboard-employee'
             component={EmployeeDashboard}
           />
+          <Route path='/dashboard-admin' component={AdminLayout} />
           <Route path='/order/:id' component={OrderScreen} />
-          <Route
-            path='/admin/productslist'
-            component={ProductListScreen}
-            exact
-          />
-          <Route
-            path='/admin/productslist/:pageNumber'
-            component={ProductListScreen}
-            exact
-          />
-          <Route path='/admin/orderslist' component={OrderListScreen} />
-          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
-          <Route path='/admin/userslist' component={UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route path='/products' component={ProductScreen} exact />
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />

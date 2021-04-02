@@ -1,0 +1,25 @@
+.closeSide {
+  margin-left: 210px;
+  margin-top: 10px;
+  font-size: 30px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.closeSide :hover {
+  color: red;
+}
+
+.openSide {
+  margin-left: 35px;
+  font-size: 25px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.openSide :hover {
+  color: red;
+}
