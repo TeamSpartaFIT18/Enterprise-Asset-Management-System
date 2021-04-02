@@ -11,6 +11,7 @@ import '../Screens.css'
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
@@ -30,7 +31,7 @@ const UserEditScreen = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET })
-      history.push('/admin/userslist')
+      history.push('/admin/userlist')
     } else {
       if (!user.name || user._id !== userId) {
         dispatch(getUserDetails(userId))
@@ -49,8 +50,8 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <div className='userEditScreen'>
-      <Link to='/admin/userslist' className='btn btn-light my3'>
-        Go back to users list
+      <Link to='/admin/userlist' className='btn btn-light my-3'>
+        Go Back
       </Link>
       <FormContainer>
         <h1>Edit User</h1>
@@ -85,8 +86,8 @@ const UserEditScreen = ({ match, history }) => {
             <Form.Group controlId='isadmin'>
               <Form.Check
                 type='checkbox'
-                label='Is admin?'
-                value={isAdmin}
+                label='Is Admin'
+                checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
               ></Form.Check>
             </Form.Group>

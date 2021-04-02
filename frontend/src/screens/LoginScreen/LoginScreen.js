@@ -20,8 +20,12 @@ const LoginScreen = ({ location, history }) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if (userInfo) {
-      history.push(redirect)
+    if (userInfo && userInfo.isEmployee) {
+      history.push('/dashboard-employee')
+    } else if (userInfo && userInfo.isAdmin) {
+      history.push('/dashboard-admin')
+    } else if (userInfo && userInfo.isClient) {
+      history.push('/')
     }
   }, [history, userInfo, redirect])
 

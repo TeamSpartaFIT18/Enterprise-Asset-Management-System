@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isClient: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
