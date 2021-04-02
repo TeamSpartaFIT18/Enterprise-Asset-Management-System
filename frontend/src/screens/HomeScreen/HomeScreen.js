@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
+import Meta from '../../components/Meta'
 
 const HomeScreen = () => {
-  return (
-    <div>
-      <h1>HomeScreen</h1>
-    </div>
-  );
-};
+	return (
+		<div>
+			<Meta />
+			<h1>HomeScreen</h1>
+		</div>
+	)
+}
 
-export default HomeScreen;
+export default HomeScreen
