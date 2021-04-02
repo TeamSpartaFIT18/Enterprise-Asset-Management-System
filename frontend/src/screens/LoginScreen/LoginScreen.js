@@ -19,16 +19,22 @@ const LoginScreen = ({ location, history }) => {
   const { loading, error, userInfo } = userLogin
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirectAdmin = location.search
+    ? location.search.split('=')[1]
+    : '/dashboard-admin'
+  const redirectEmployee = location.search
+    ? location.search.split('=')[1]
+    : '/dashboard-employee'
 
   useEffect(() => {
-    if (userInfo && userInfo.isEmployee) {
-      history.push('/dashboard-employee')
-    } else if (userInfo && userInfo.isAdmin) {
-      history.push('/dashboard-admin')
+    if (userInfo && userInfo.isAdmin) {
+      history.push(redirectAdmin)
     } else if (userInfo && userInfo.isClient) {
-      history.push('/')
+      history.push(redirect)
+    } else if (userInfo && userInfo.isEmployee) {
+      history.push(redirectEmployee)
     }
-  }, [history, userInfo, redirect])
+  }, [history, userInfo, redirect, redirectAdmin, redirectEmployee])
 
   const submitHandler = (e) => {
     e.preventDefault()
