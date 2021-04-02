@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/userActions'
 import '../Screens.css'
@@ -37,7 +38,8 @@ const RegisterScreen = ({ location, history }) => {
   }
 
   return (
-    <FormContainer>
+    <FormContainer className='registerScreen'>
+      <Meta title='EAMS | Register' />
       <h1 className='registerScreen'>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
@@ -52,7 +54,7 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        >>>>>>> 6637b2b768025dd9fe43f418fad48f5be954d800
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
@@ -62,7 +64,6 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -72,7 +73,6 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
@@ -82,7 +82,6 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Button type='submit' variant='primary'>
           Sign Up
         </Button>
