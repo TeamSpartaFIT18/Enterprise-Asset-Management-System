@@ -6,6 +6,7 @@ import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import '../Screens.css'
 import {
   getOrderDetails,
   payOrder,
@@ -45,7 +46,7 @@ const OrderScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/signin')
     }
 
     const addPayPalScript = async () => {
@@ -83,12 +84,14 @@ const OrderScreen = ({ match, history }) => {
   }
 
   return loading ? (
-    <Loader />
+    <Loader className='orderScreenLoader' />
   ) : error ? (
-    <Message variant='danger'>{error}</Message>
+    <Message className='orderScreenMessage' variant='danger'>
+      {error}
+    </Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1 className='orderScreenH1'>Order {order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>

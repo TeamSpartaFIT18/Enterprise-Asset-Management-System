@@ -11,7 +11,7 @@ import {
   createProduct,
 } from '../../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../../types/productTypes'
-
+import '../Screens.css'
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
 
@@ -42,7 +42,7 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: PRODUCT_CREATE_RESET })
 
     if (!userInfo || !userInfo.isAdmin) {
-      history.push('/login')
+      history.push('/signin')
     }
 
     if (successCreate) {
@@ -71,7 +71,7 @@ const ProductListScreen = ({ history, match }) => {
   }
 
   return (
-    <>
+    <div className='productListScreen'>
       <Row className='align-items-center'>
         <Col>
           <h1>Products</h1>
@@ -132,7 +132,7 @@ const ProductListScreen = ({ history, match }) => {
           <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
-    </>
+    </div>
   )
 }
 

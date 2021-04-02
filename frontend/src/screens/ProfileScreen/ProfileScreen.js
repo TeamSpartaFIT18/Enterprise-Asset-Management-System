@@ -7,6 +7,7 @@ import Loader from '../../components/Loader'
 import { getUserDetails, updateUserProfile } from '../../actions/userActions'
 import { listMyOrders } from '../../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../../types/userTypes'
+import '../Screens.css'
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -31,7 +32,7 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/signin')
     } else {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
@@ -54,7 +55,7 @@ const ProfileScreen = ({ location, history }) => {
   }
 
   return (
-    <Row>
+    <Row className='profileScreen'>
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}

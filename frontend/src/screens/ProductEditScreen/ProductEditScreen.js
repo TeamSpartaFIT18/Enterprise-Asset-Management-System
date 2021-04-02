@@ -8,7 +8,7 @@ import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
 import { listProductDetails, updateProduct } from '../../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../../types/productTypes'
-
+import '../Screens.css'
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
 
@@ -92,7 +92,7 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <div className='productEditScreen'>
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
@@ -189,7 +189,7 @@ const ProductEditScreen = ({ match, history }) => {
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 

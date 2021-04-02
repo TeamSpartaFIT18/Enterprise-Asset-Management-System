@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listOrders } from '../../actions/orderActions'
+import '../Screens.css'
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo])
 
   return (
-    <>
+    <div className='orderListScreen'>
       <h1>Orders</h1>
       {loading ? (
         <Loader />
@@ -75,7 +76,7 @@ const OrderListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   )
 }
 

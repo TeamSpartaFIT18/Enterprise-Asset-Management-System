@@ -23,6 +23,7 @@ const NavBar = () => {
         className='Navibar'
         bg='black'
         variant='dark'
+        fixed='top'
         expand='md'
         collapseOnSelect
       >

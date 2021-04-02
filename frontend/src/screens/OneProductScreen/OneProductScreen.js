@@ -5,6 +5,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../../components/Rating/Rating'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import '../Screens.css'
 import {
   listProductDetails,
   createProductReview,
@@ -50,7 +51,7 @@ const OneProductScreen = ({ history, match }) => {
   }
 
   return (
-    <>
+    <div className='oneProductScreen'>
       <Link className='btn btn-secondary my-3' to='/products'>
         Go to products
       </Link>
@@ -197,7 +198,7 @@ const OneProductScreen = ({ history, match }) => {
           </Row>
         </>
       )}
-    </>
+    </div>
   )
 }
 

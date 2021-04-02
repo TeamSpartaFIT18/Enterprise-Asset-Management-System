@@ -7,6 +7,7 @@ import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
 import { getUserDetails, updateUser } from '../../actions/userActions'
 import { USER_UPDATE_RESET } from '../../types/userTypes'
+import '../Screens.css'
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
@@ -47,7 +48,7 @@ const UserEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <div className='userEditScreen'>
       <Link to='/admin/userslist' className='btn btn-light my3'>
         Go back to users list
       </Link>
@@ -96,7 +97,7 @@ const UserEditScreen = ({ match, history }) => {
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 

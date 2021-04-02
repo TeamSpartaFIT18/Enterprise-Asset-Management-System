@@ -6,7 +6,7 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/userActions'
-
+import '../Screens.css'
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -37,8 +37,8 @@ const RegisterScreen = ({ location, history }) => {
   }
 
   return (
-    <FormContainer>
-      <h1>Sign Up</h1>
+    <FormContainer className='registerScreen'>
+      <h1 className='registerScreen'>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
@@ -91,7 +91,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+          <Link to={redirect ? `/signin?redirect=${redirect}` : '/signin'}>
             Login
           </Link>
         </Col>

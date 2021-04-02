@@ -9,6 +9,7 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
+import './Screens.css'
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -25,7 +26,7 @@ const HomeScreen = ({ match }) => {
   }, [dispatch, keyword, pageNumber])
 
   return (
-    <>
+    <div className='productScreen'>
       <Meta />
       {!keyword ? (
         <ProductCarousel />
@@ -55,7 +56,7 @@ const HomeScreen = ({ match }) => {
           />
         </>
       )}
-    </>
+    </div>
   )
 }
 
