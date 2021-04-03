@@ -1,6 +1,14 @@
 import axios from 'axios'
 import { ORDER_LIST_MY_RESET } from '../types/orderTypes'
 import {
+  ADMIN_LIST_FAIL,
+  ADMIN_LIST_REQUEST,
+  ADMIN_LIST_RESET,
+  ADMIN_LIST_SUCCESS,
+  EMPLOYEE_LIST_FAIL,
+  EMPLOYEE_LIST_REQUEST,
+  EMPLOYEE_LIST_RESET,
+  EMPLOYEE_LIST_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -70,6 +78,8 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET })
+  dispatch({ type: ADMIN_LIST_RESET })
+  dispatch({ type: EMPLOYEE_LIST_RESET })
 }
 
 //register
@@ -280,6 +290,74 @@ export const updateUser = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//get all admins
+export const listAdmins = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ADMIN_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/users/admins`, config)
+
+    dispatch({
+      type: ADMIN_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ADMIN_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//get all employees
+export const listEmployees = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EMPLOYEE_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/users/employees`, config)
+
+    dispatch({
+      type: EMPLOYEE_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: EMPLOYEE_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

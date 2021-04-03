@@ -1,4 +1,12 @@
 import {
+  ADMIN_LIST_FAIL,
+  ADMIN_LIST_REQUEST,
+  ADMIN_LIST_RESET,
+  ADMIN_LIST_SUCCESS,
+  EMPLOYEE_LIST_FAIL,
+  EMPLOYEE_LIST_REQUEST,
+  EMPLOYEE_LIST_RESET,
+  EMPLOYEE_LIST_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -127,6 +135,38 @@ export const userUpdateReducer = (state = { user: {} }, action) => {
       return { loading: false, error: action.payload }
     case USER_UPDATE_RESET:
       return { user: {} }
+    default:
+      return state
+  }
+}
+
+//admin list
+export const adminListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case ADMIN_LIST_REQUEST:
+      return { loading: true }
+    case ADMIN_LIST_SUCCESS:
+      return { loading: false, users: action.payload }
+    case ADMIN_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    case ADMIN_LIST_RESET:
+      return { users: [] }
+    default:
+      return state
+  }
+}
+
+//employee list
+export const employeeListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case EMPLOYEE_LIST_REQUEST:
+      return { loading: true }
+    case EMPLOYEE_LIST_SUCCESS:
+      return { loading: false, users: action.payload }
+    case EMPLOYEE_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    case EMPLOYEE_LIST_RESET:
+      return { users: [] }
     default:
       return state
   }

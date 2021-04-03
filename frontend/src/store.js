@@ -19,6 +19,8 @@ import {
   userListReducer,
   userDeleteReducer,
   userUpdateReducer,
+  adminListReducer,
+  employeeListReducer,
 } from './reducers/userReducers'
 import {
   orderCreateReducer,
@@ -27,6 +29,7 @@ import {
   orderDeliverReducer,
   orderListMyReducer,
   orderListReducer,
+  notPaidOrderListReducer,
 } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -45,12 +48,15 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  adminList: adminListReducer,
+  employeeList: employeeListReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
+  notPaidOrderList: notPaidOrderListReducer,
 })
 
 //get Cart items from localStorage

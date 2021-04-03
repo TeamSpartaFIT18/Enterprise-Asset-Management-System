@@ -52,24 +52,22 @@ const NavBar = () => {
                 </Nav.Link>
               </LinkContainer>
               {userInfo && userInfo.isAdmin && (
-                <LinkContainer to='/dashboard-admin'>
+                <LinkContainer to='/admin/dashboard'>
                   <Nav.Link href='#sign-in'>
                     <p className='NavLinks'>
                       <i className='fas fa-user'></i> Dashboard
                     </p>
                   </Nav.Link>
                 </LinkContainer>
-                /* <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/userslist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/productslist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/orderslist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown> */
+              )}
+              {userInfo && userInfo.isEmployee && (
+                <LinkContainer to='/employee/dashboard'>
+                  <Nav.Link href='#sign-in'>
+                    <p className='NavLinks'>
+                      <i className='fas fa-user'></i> Dashboard
+                    </p>
+                  </Nav.Link>
+                </LinkContainer>
               )}
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>

@@ -5,13 +5,13 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listUsers, deleteUser } from '../../actions/userActions'
+import { listEmployees, deleteUser } from '../../actions/userActions'
 import '../Screens.css'
-const UserListScreen = ({ history }) => {
+const EmployeeListScreen = ({ history }) => {
   const dispatch = useDispatch()
 
-  const userList = useSelector((state) => state.userList)
-  const { loading, error, users } = userList
+  const employeeList = useSelector((state) => state.employeeList)
+  const { loading, error, users } = employeeList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -21,7 +21,7 @@ const UserListScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers())
+      dispatch(listEmployees())
     } else {
       history.push('/signin')
     }
@@ -92,4 +92,4 @@ const UserListScreen = ({ history }) => {
   )
 }
 
-export default UserListScreen
+export default EmployeeListScreen

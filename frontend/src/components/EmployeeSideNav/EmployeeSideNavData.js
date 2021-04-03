@@ -4,15 +4,15 @@ import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import * as RiIcons from 'react-icons/ri'
 
-export const AdminSideNavData = [
+export const EmployeeSideNavData = [
   {
     title: 'Dashboard',
-    path: '/dashboard-admin',
+    path: '/employee/dashboard',
     icon: <AiIcons.AiFillHome />,
   },
   {
-    title: 'Inventory',
-    path: '/admin/productslist',
+    title: 'Profile',
+    path: '/employee/profile',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -38,23 +38,28 @@ export const AdminSideNavData = [
     ],
   },
   {
-    title: 'Users',
-    path: '/admin/userslist',
+    title: 'Current jobs',
+    path: '/employee/jobslist',
     icon: <FaIcons.FaCartPlus />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
         title: 'Admins',
-        path: '/admin/adminslist',
+        path: '/reports/reports1',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },
       {
         title: 'Employees',
-        path: '/admin/employeelist',
+        path: '/reports/reports2',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
+      },
+      {
+        title: 'All users',
+        path: '/reports/reports3',
+        icon: <IoIcons.IoIosPaper />,
       },
     ],
   },
@@ -65,7 +70,7 @@ export const AdminSideNavData = [
     subNav: [
       {
         title: 'Not paid orders',
-        path: '/admin/orders/notpaidorders',
+        path: '/reports/reports1',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },

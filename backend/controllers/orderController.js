@@ -108,6 +108,16 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
+// Get all notPaidOrders , admin only
+// GET -> /api/orders/notpaidorders
+const getNotPaidOrders = asyncHandler(async (req, res) => {
+  const notPaidOrders = await Order.find({ isPaid: false }).populate(
+    'user',
+    'id name'
+  )
+  res.json(notPaidOrders)
+})
+
 export {
   addOrderItems,
   getOrderById,
@@ -115,4 +125,5 @@ export {
   updateOrderToDelivered,
   getMyOrders,
   getOrders,
+  getNotPaidOrders,
 }

@@ -5,13 +5,13 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listUsers, deleteUser } from '../../actions/userActions'
+import { listAdmins, deleteUser } from '../../actions/userActions'
 import '../Screens.css'
-const UserListScreen = ({ history }) => {
+const AdminListScreen = ({ history }) => {
   const dispatch = useDispatch()
 
-  const userList = useSelector((state) => state.userList)
-  const { loading, error, users } = userList
+  const adminList = useSelector((state) => state.adminList)
+  const { loading, error, users } = adminList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -21,7 +21,7 @@ const UserListScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers())
+      dispatch(listAdmins())
     } else {
       history.push('/signin')
     }
@@ -35,7 +35,7 @@ const UserListScreen = ({ history }) => {
 
   return (
     <div className='userListScreen'>
-      <Link to='/admin/userslist' className='btn btn-light my-3'>
+      <Link to='/admin/adminslist' className='btn btn-light my-3'>
         Go Back
       </Link>
       <h1>Users</h1>
@@ -92,4 +92,4 @@ const UserListScreen = ({ history }) => {
   )
 }
 
-export default UserListScreen
+export default AdminListScreen

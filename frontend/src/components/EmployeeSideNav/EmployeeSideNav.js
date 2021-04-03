@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
-import { AdminSideNavData } from './AdminSideNavData'
-import AdminSideNavSubMenuData from './AdminSideNavSubMenuData'
+import { EmployeeSideNavData } from './EmployeeSideNavData'
+import EmployeeSideNavSubMenuData from './EmployeeSideNavSubMenuData'
 import { IconContext } from 'react-icons/lib'
-import './AdminSideNav.css'
+import './EmployeeSideNav.css'
 
 const Nav = styled.div`
   background: #15171c;
@@ -60,7 +60,7 @@ const SidebarWrap = styled.div`
   width: 100%;
 `
 
-const AdminSideNav = () => {
+const EmployeeSideNav = () => {
   const [sidebar, setSidebar] = useState(true)
   const [burg, setBurg] = useState(true)
 
@@ -79,8 +79,8 @@ const AdminSideNav = () => {
             <NavIcon className='closeSide' to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
-            {AdminSideNavData.map((item, index) => {
-              return <AdminSideNavSubMenuData item={item} key={index} />
+            {EmployeeSideNavData.map((item, index) => {
+              return <EmployeeSideNavSubMenuData item={item} key={index} />
             })}
           </SidebarWrap>
         </SidebarNav>
@@ -89,4 +89,4 @@ const AdminSideNav = () => {
   )
 }
 
-export default AdminSideNav
+export default EmployeeSideNav

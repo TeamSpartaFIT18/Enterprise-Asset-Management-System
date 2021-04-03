@@ -21,10 +21,10 @@ const LoginScreen = ({ location, history }) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
   const redirectAdmin = location.search
     ? location.search.split('=')[1]
-    : '/dashboard-admin'
+    : '/admin/dashboard'
   const redirectEmployee = location.search
     ? location.search.split('=')[1]
-    : '/dashboard-employee'
+    : '/employee/dashboard'
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
