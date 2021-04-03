@@ -1,13 +1,14 @@
 import React from 'react'
 import Meta from '../../components/Meta'
+import LandingCarousel from './LandingCarousel'
 
 const HomeScreen = () => {
-	return (
-		<div>
-			<Meta />
-			<h1>HomeScreen</h1>
-		</div>
-	)
+  return (
+    <div>
+      <Meta />
+      <LandingCarousel />
+    </div>
+  )
 }
 
 export default HomeScreen
