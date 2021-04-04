@@ -31,6 +31,7 @@ import {
   orderListReducer,
   notPaidOrderListReducer,
 } from './reducers/orderReducers'
+import { employeeProfileReducer } from './reducers/profileReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -57,6 +58,8 @@ const reducer = combineReducers({
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
   notPaidOrderList: notPaidOrderListReducer,
+
+  employeeProfile: employeeProfileReducer,
 })
 
 //get Cart items from localStorage

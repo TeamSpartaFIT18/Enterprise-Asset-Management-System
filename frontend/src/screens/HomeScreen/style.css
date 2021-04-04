@@ -1,5 +1,6 @@
 .landingCar {
   min-height: 100vh;
+  margin-bottom: 0 !important;
 }
 
 .image1 {
@@ -7,6 +8,11 @@
   margin: 0;
   height: 660px !important;
   width: 1540px !important;
+}
+
+.image1 :hover {
+  cursor: pointer !important;
+  transform: scale(1.5) !important;
 }
 
 .image2 {
@@ -62,4 +68,8 @@ html {
 a {
   text-decoration: none;
   color: black;
+}
+
+.ebert :hover {
+  cursor: pointer !important;
 }
