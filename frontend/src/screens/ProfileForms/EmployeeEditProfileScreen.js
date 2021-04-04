@@ -42,6 +42,7 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
     e.preventDefault()
 
     dispatch(employeeEditProfile(status, contact, address, bio, experience))
+    window.location = '/employee/profile'
   }
 
   return (

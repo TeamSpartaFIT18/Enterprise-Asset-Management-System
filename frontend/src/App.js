@@ -21,6 +21,8 @@ import EmployeeRoute from './components/Routing/EmployeeRoute'
 import AdminLayout from './Layouts/AdminLayout'
 import EmployeeLayout from './Layouts/EmployeeLayout'
 import AdminSideNav from './components/AdminSideNav/AdminSideNav'
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen'
+import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen'
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
             <Route path='/payment' component={PaymentScreen} />
             <Route path='/placeorder' component={PlaceOrderScreen} />
             <Route path='/signin' component={LoginScreen} />
+            <Route path='/forgotpassword' component={ForgotPasswordScreen} />
+            <Route path='/resetpassword/:id' component={ResetPasswordScreen} />
             <Route path='/register' component={RegisterScreen} />
             <Route path='/profile' component={ProfileScreen} />
             <Route path='/product/:id' component={OneProductScreen} />

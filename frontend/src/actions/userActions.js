@@ -9,6 +9,15 @@ import {
   EMPLOYEE_LIST_REQUEST,
   EMPLOYEE_LIST_RESET,
   EMPLOYEE_LIST_SUCCESS,
+  FORGOT_PASSWORD_FAIL,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  RP_SUBMIT_FAIL,
+  RP_SUBMIT_REQUEST,
+  RP_SUBMIT_SUCCESS,
+  RP_USER_DETAILS_FAIL,
+  RP_USER_DETAILS_REQUEST,
+  RP_USER_DETAILS_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -358,6 +367,108 @@ export const listEmployees = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: EMPLOYEE_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//Forgotpassword
+export const passwordForgot = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: FORGOT_PASSWORD_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/users/forgot-password',
+      { email },
+      config
+    )
+
+    dispatch({
+      type: FORGOT_PASSWORD_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FORGOT_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//get user details rp
+export const rpGetUserDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: RP_USER_DETAILS_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.put(`/api/users/reset-password/${id}`, config)
+
+    dispatch({
+      type: RP_USER_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: RP_USER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//resetpassword submit
+export const passwordReset = ({ user, password }) => async (dispatch) => {
+  try {
+    dispatch({
+      type: RP_SUBMIT_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.put(
+      `/api/users/reset-password/${user._id}`,
+      password,
+      config
+    )
+
+    dispatch({
+      type: RP_SUBMIT_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: RP_SUBMIT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

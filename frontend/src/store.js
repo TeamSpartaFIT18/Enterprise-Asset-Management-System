@@ -21,6 +21,9 @@ import {
   userUpdateReducer,
   adminListReducer,
   employeeListReducer,
+  forgotPasswordReducer,
+  rpUserDetailsReducer,
+  rpSubmitReducer,
 } from './reducers/userReducers'
 import {
   orderCreateReducer,
@@ -47,8 +50,11 @@ const reducer = combineReducers({
   productTopRated: productTopRatedReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
+  forgotPassword: forgotPasswordReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
+  rpUserDetails: rpUserDetailsReducer,
+  rpSubmit: rpSubmitReducer,
   userUpdateProfile: userUpdateProfileReducer,
   userList: userListReducer,
   userDelete: userDeleteReducer,

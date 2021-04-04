@@ -7,6 +7,15 @@ import {
   EMPLOYEE_LIST_REQUEST,
   EMPLOYEE_LIST_RESET,
   EMPLOYEE_LIST_SUCCESS,
+  FORGOT_PASSWORD_FAIL,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  RP_SUBMIT_FAIL,
+  RP_SUBMIT_REQUEST,
+  RP_SUBMIT_SUCCESS,
+  RP_USER_DETAILS_FAIL,
+  RP_USER_DETAILS_REQUEST,
+  RP_USER_DETAILS_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -167,6 +176,48 @@ export const employeeListReducer = (state = { users: [] }, action) => {
       return { loading: false, error: action.payload }
     case EMPLOYEE_LIST_RESET:
       return { users: [] }
+    default:
+      return state
+  }
+}
+
+//forgot password
+export const forgotPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FORGOT_PASSWORD_REQUEST:
+      return { loading: true }
+    case FORGOT_PASSWORD_SUCCESS:
+      return { loading: false, userInfo: action.payload }
+    case FORGOT_PASSWORD_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+//user profile details when rp
+export const rpUserDetailsReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case RP_USER_DETAILS_REQUEST:
+      return { ...state, loading: true }
+    case RP_USER_DETAILS_SUCCESS:
+      return { loading: false, user: action.payload }
+    case RP_USER_DETAILS_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+//user reset password
+export const rpSubmitReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case RP_SUBMIT_REQUEST:
+      return { ...state, loading: true }
+    case RP_SUBMIT_SUCCESS:
+      return { loading: false, user: action.payload }
+    case RP_SUBMIT_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }
