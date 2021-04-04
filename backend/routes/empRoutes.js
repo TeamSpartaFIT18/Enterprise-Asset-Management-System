@@ -1,10 +1,10 @@
 import express from 'express'
 const router = express.Router()
 import {
-	getMyProfile,
-	createEmpProfile,
-	getEmpProfile,
-	addExperience,
+  getMyProfile,
+  createEmpProfile,
+  getEmpProfile,
+  addExperience,
 } from '../controllers/empController.js'
 import { protect, admin, employee } from '../middleware/authMiddleware.js'
 

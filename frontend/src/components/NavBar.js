@@ -15,6 +15,7 @@ const NavBar = () => {
 
   const logoutHandler = () => {
     dispatch(logout())
+    window.location = '/signin'
   }
 
   return (

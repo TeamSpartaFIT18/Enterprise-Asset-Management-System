@@ -15,7 +15,7 @@ const EmployeeProfileScreen = ({ history }) => {
   const { userInfo } = userLogin
 
   const employeeProfile = useSelector((state) => state.employeeProfile)
-  const { user } = employeeProfile
+  const { profile, loading, error } = employeeProfile
 
   useEffect(() => {
     if (userInfo) {
@@ -25,7 +25,6 @@ const EmployeeProfileScreen = ({ history }) => {
     }
   }, [dispatch, history, userInfo])
 
-  console.log(user)
   return (
     <>
       <div>
@@ -33,16 +32,23 @@ const EmployeeProfileScreen = ({ history }) => {
         <p className='lead'>
           <i className='fas fa-user' /> Welcome {userInfo.name}
         </p>
-        {user !== null ? (
+        {loading ? (
+          <Loader />
+        ) : profile ? (
           <>
             <div className='dash-buttons'>
-              <Link to='/edit' className='btn byn-light'>
+              <Link to='/edit-profile' className='btn byn-light'>
                 <i className='fas fa-user-circle text-primary'></i>Edit profile
               </Link>
             </div>
           </>
         ) : (
-          <>thisal</>
+          <>
+            <p>You haven't yet setup a profile, Please add some info</p>
+            <Link to='/create-profile' className='btn btn-primary my-1'>
+              Create Profile
+            </Link>
+          </>
         )}
       </div>
     </>

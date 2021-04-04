@@ -9,6 +9,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import EmployeeSideNav from '../components/EmployeeSideNav/EmployeeSideNav'
 import EmployeeDashboard from '../screens/EmployeeDashboard/EmployeeDashboard'
 import EmployeeProfileScreen from '../screens/EmployeeProfileScreen/EmployeeProfileScreen'
+import EmployeeCreateProfileScreen from '../screens/ProfileForms/EmployeeCreateProfileScreen'
+import EmployeeEditProfileScreen from '../screens/ProfileForms/EmployeeEditProfileScreen'
 
 const AdminLayout = () => {
   const history = useHistory()
@@ -29,6 +31,16 @@ const AdminLayout = () => {
               exact
               path='/employee/profile'
               component={EmployeeProfileScreen}
+            />
+            <Route
+              exact
+              path='/create-profile'
+              component={EmployeeCreateProfileScreen}
+            />
+            <Route
+              exact
+              path='/edit-profile'
+              component={EmployeeEditProfileScreen}
             />
           </Switch>
         </Col>

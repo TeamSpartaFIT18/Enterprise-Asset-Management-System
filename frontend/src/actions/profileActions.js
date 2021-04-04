@@ -1,10 +1,17 @@
 import axios from 'axios'
 import {
+  EMPLOYEE_PROFILE_CREATE_FAIL,
+  EMPLOYEE_PROFILE_CREATE_REQUEST,
+  EMPLOYEE_PROFILE_CREATE_SUCCESS,
+  EMPLOYEE_PROFILE_EDIT_FAIL,
+  EMPLOYEE_PROFILE_EDIT_REQUEST,
+  EMPLOYEE_PROFILE_EDIT_SUCCESS,
   EMPLOYEE_PROFILE_FAIL,
   EMPLOYEE_PROFILE_REQUEST,
   EMPLOYEE_PROFILE_SUCCESS,
 } from '../types/profileTypes'
 
+//get employee profile
 export const getCurrentProfile = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -31,6 +38,99 @@ export const getCurrentProfile = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//create profile employee
+export const employeeCreateProfile = (
+  status,
+  contact,
+  address,
+  bio,
+  experience
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EMPLOYEE_PROFILE_CREATE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/emp-profiles',
+      { status, contact, address, bio, experience },
+      config
+    )
+
+    dispatch({
+      type: EMPLOYEE_PROFILE_CREATE_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: EMPLOYEE_PROFILE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//edit profile
+export const employeeEditProfile = (
+  status,
+  contact,
+  address,
+  bio,
+  experience
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EMPLOYEE_PROFILE_EDIT_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/emp-profiles',
+      { status, contact, address, bio, experience },
+      config
+    )
+
+    dispatch({
+      type: EMPLOYEE_PROFILE_EDIT_SUCCESS,
+    })
+    dispatch({
+      type: EMPLOYEE_PROFILE_EDIT_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: EMPLOYEE_PROFILE_EDIT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
