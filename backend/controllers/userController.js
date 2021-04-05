@@ -146,6 +146,17 @@ const getEmployees = asyncHandler(async (req, res) => {
   res.json(employees)
 })
 
+// Get all clients , admin only
+// GET -> /api/users/clients
+const getClients = asyncHandler(async (req, res) => {
+  const clients = await User.find({
+    isClient: true,
+    isAdmin: false,
+    isEmployee: false,
+  })
+  res.json(clients)
+})
+
 // Delete a user , admin only
 // DELETE -> /api/users/:id
 const deleteUser = asyncHandler(async (req, res) => {
@@ -255,6 +266,7 @@ export {
   getUsers,
   getAdmins,
   getEmployees,
+  getClients,
   deleteUser,
   getUserById,
   updateUser,

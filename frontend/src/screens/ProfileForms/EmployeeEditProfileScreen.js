@@ -16,7 +16,6 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
   const [contact, setContact] = useState('')
   const [address, setAddress] = useState('')
   const [bio, setBio] = useState('')
-  const [experience, setExperience] = useState([])
 
   const dispatch = useDispatch()
 
@@ -34,21 +33,19 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
       setContact(profile.contact)
       setAddress(profile.address)
       setBio(profile.bio)
-      setExperience(profile.experience)
     }
   }, [dispatch, history, profile])
 
   const submitHandler = (e) => {
     e.preventDefault()
 
-    dispatch(employeeEditProfile(status, contact, address, bio, experience))
-    window.location = '/employee/profile'
+    dispatch(employeeEditProfile(status, contact, address, bio))
   }
 
   return (
     <FormContainer className='registerScreen'>
       <Meta title='EAMS | Register' />
-      <h1 className='registerScreen'>Sign Up</h1>
+      <h1 className='registerScreen'>Edit Profile</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -89,16 +86,6 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
             placeholder='Enter bio'
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='experience'>
-          <Form.Label>Enter Experience</Form.Label>
-          <Form.Control
-            type='name'
-            placeholder='Enter experience'
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

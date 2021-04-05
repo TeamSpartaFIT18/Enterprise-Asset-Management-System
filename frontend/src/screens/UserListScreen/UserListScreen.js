@@ -35,9 +35,6 @@ const UserListScreen = ({ history }) => {
 
   return (
     <div className='userListScreen'>
-      <Link to='/admin/userslist' className='btn btn-light my-3'>
-        Go Back
-      </Link>
       <h1>Users</h1>
       {loading ? (
         <Loader />

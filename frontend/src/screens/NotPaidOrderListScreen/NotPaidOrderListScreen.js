@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,6 +27,9 @@ const NotPaidOrderListScreen = ({ history }) => {
 
   return (
     <div className='NotPaidOrderListScreen'>
+      <Link to='/admin/orderslist' className='btn btn-light my-3'>
+        <button className='btnback'>Back to orders list</button>
+      </Link>
       <h1>Payment pending orders</h1>
       {loading ? (
         <Loader />
