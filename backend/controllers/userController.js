@@ -14,8 +14,9 @@ const transporter = nodemailer.createTransport(
   })
 )
 
-// Auth user and getting token , public
-// POST -> /api/users/login
+// @desc    Auth user & get token
+// @route   POST /api/users/login
+// @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body
 
@@ -37,8 +38,9 @@ const authUser = asyncHandler(async (req, res) => {
   }
 })
 
-// Register user , public
-// POST -> /api/users/
+// @desc    Register a new user
+// @route   POST /api/users/
+// @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
 
@@ -80,8 +82,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-// Get auth user's profile , pvt
-// GET -> /api/users/profile
+// @desc    Get user profile
+// @route   GET /api/users/profile
+// @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
@@ -98,8 +101,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-// Update auth user's profile , pvt
-// PUT -> /api/users/profile
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
