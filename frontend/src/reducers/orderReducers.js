@@ -23,6 +23,9 @@ import {
   NOT_PAID_ORDER_LIST_REQUEST,
   NOT_PAID_ORDER_LIST_SUCCESS,
   NOT_PAID_ORDER_LIST_FAIL,
+  NOT_DELIVERED_ORDER_LIST_REQUEST,
+  NOT_DELIVERED_ORDER_LIST_SUCCESS,
+  NOT_DELIVERED_ORDER_LIST_FAIL,
 } from '../types/orderTypes'
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -177,6 +180,32 @@ export const notPaidOrderListReducer = (state = { orders: [] }, action) => {
         orders: action.payload,
       }
     case NOT_PAID_ORDER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state
+  }
+}
+
+//not delivered order list
+export const notDeliveredOrderListReducer = (
+  state = { orders: [] },
+  action
+) => {
+  switch (action.type) {
+    case NOT_DELIVERED_ORDER_LIST_REQUEST:
+      return {
+        loading: true,
+      }
+    case NOT_DELIVERED_ORDER_LIST_SUCCESS:
+      return {
+        loading: false,
+        orders: action.payload,
+      }
+    case NOT_DELIVERED_ORDER_LIST_FAIL:
       return {
         loading: false,
         error: action.payload,

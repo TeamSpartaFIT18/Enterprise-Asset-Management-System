@@ -33,6 +33,7 @@ import {
   orderListMyReducer,
   orderListReducer,
   notPaidOrderListReducer,
+  notDeliveredOrderListReducer,
 } from './reducers/orderReducers'
 import {
   createEmployeeProfileReducer,
@@ -69,6 +70,7 @@ const reducer = combineReducers({
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
   notPaidOrderList: notPaidOrderListReducer,
+  notDeliveredOrderList: notDeliveredOrderListReducer,
 
   employeeProfile: employeeProfileReducer,
   createEmployeeProfile: createEmployeeProfileReducer,

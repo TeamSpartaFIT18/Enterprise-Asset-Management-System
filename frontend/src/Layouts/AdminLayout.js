@@ -18,6 +18,7 @@ import AdminListScreen from '../screens/AdminListScreen/AdminListScreen'
 import EmployeeListScreen from '../screens/EmployeeListScreen/EmployeeListScreen'
 import NotPaidOrderListScreen from '../screens/NotPaidOrderListScreen/NotPaidOrderListScreen'
 import OrderScreen from '../screens/OrderScreen/OrderScreen'
+import NotDeliveredOrderScreen from '../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen'
 
 const AdminLayout = () => {
   const history = useHistory()
@@ -44,6 +45,10 @@ const AdminLayout = () => {
             <Route
               path='/admin/orders/notpaidorders'
               component={NotPaidOrderListScreen}
+            />
+            <Route
+              path='/admin/orders/notDeliveredorders'
+              component={NotDeliveredOrderScreen}
             />
             <Route
               path='/admin/product/:id/edit'

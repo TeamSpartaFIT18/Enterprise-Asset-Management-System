@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listNotPaidOrders } from '../../actions/orderActions'
+import { listNotDeliveredOrders } from '../../actions/orderActions'
 import '../Screens.css'
+import '../CartScreen/CartScreen.css'
 
-const NotPaidOrderListScreen = ({ history }) => {
+const NotDeliveredOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
 
-  const notPaidOrderList = useSelector((state) => state.notPaidOrderList)
-  const { loading, error, orders } = notPaidOrderList
+  const notDeliveredOrderList = useSelector(
+    (state) => state.notDeliveredOrderList
+  )
+  const { loading, error, orders } = notDeliveredOrderList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listNotPaidOrders())
+      dispatch(listNotDeliveredOrders())
     } else {
       history.push('/signin')
     }
   }, [dispatch, history, userInfo])
-
   return (
-    <div className='NotPaidOrderListScreen'>
-      <h1>Payment pending orders</h1>
+    <div className='NotDeliveredOrderListScreen'>
+      <Link to='/admin/orderslist' className='btn btn-light my-3'>
+        Back to orders list
+      </Link>
+      <h1>Not delivered orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -80,4 +86,4 @@ const NotPaidOrderListScreen = ({ history }) => {
   )
 }
 
-export default NotPaidOrderListScreen
+export default NotDeliveredOrderScreen

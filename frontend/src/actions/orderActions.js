@@ -21,6 +21,9 @@ import {
   NOT_PAID_ORDER_LIST_REQUEST,
   NOT_PAID_ORDER_LIST_SUCCESS,
   NOT_PAID_ORDER_LIST_FAIL,
+  NOT_DELIVERED_ORDER_LIST_REQUEST,
+  NOT_DELIVERED_ORDER_LIST_SUCCESS,
+  NOT_DELIVERED_ORDER_LIST_FAIL,
 } from '../types/orderTypes'
 import { logout } from './userActions'
 
@@ -276,6 +279,40 @@ export const listNotPaidOrders = (orderId, paymentResult) => async (
   } catch (error) {
     dispatch({
       type: NOT_PAID_ORDER_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//list not delivered orders
+export const listNotDeliveredOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: NOT_DELIVERED_ORDER_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/orders/notdeliveredorders`, config)
+
+    dispatch({
+      type: NOT_DELIVERED_ORDER_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: NOT_DELIVERED_ORDER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

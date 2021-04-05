@@ -73,3 +73,24 @@ a {
 .ebert :hover {
   cursor: pointer !important;
 }
+
+.row1 #icon {
+  flex: 1% !important;
+  display: grid;
+  place-items: left;
+}
+
+.row1 #title {
+  display: grid;
+  place-items: left;
+}
+
+.Aboutus {
+  margin-top: 140px;
+  margin-bottom: 140px;
+}
+
+.Awards {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}

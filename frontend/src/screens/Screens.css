@@ -1,12 +1,19 @@
 .cartScreen {
   margin-top: 50px;
 }
-
 .loginScreen {
   margin-top: 50px;
 }
-
+.adminDashboard {
+  margin-top: 50px;
+}
 .oneProductScreen {
+  margin-top: 50px;
+}
+.NotPaidOrderListScreen {
+  margin-top: 50px;
+}
+.NotDeliveredOrderListScreen {
   margin-top: 50px;
 }
 .orderListScreen {
@@ -53,4 +60,10 @@
 }
 .empProfileScreen {
   margin-top: 70px !important;
+}
+
+.btnBack {
+  height: 50px !important;
+  background-color: black !important;
+  color: white;
 }

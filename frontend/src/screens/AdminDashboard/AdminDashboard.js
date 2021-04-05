@@ -1,11 +1,19 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
+import { useDispatch, useSelector } from 'react-redux'
+import '../Screens.css'
 
 const AdminDashboard = () => {
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   return (
-    <div>
-      <h1>thisal</h1>
+    <div className='adminDashboard'>
+      <h1>Admin Dashboard</h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Welcome {userInfo.name}
+      </p>
     </div>
   )
 }

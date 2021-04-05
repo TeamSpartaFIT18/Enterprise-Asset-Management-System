@@ -8,6 +8,8 @@
 }
 
 .toCheckoutbtn {
+  display: block;
+  color: white !important;
   height: 50px !important;
   background-color: black !important;
 }

@@ -7,13 +7,13 @@ import * as RiIcons from 'react-icons/ri'
 export const AdminSideNavData = [
   {
     title: 'Dashboard',
-    path: '/dashboard-admin',
-    icon: <AiIcons.AiFillHome />,
+    path: '/admin/dashboard',
+    icon: <RiIcons.RiDashboardFill />,
   },
   {
     title: 'Inventory',
     path: '/admin/productslist',
-    icon: <IoIcons.IoIosPaper />,
+    icon: <FaIcons.FaWarehouse />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
 
@@ -40,20 +40,20 @@ export const AdminSideNavData = [
   {
     title: 'Users',
     path: '/admin/userslist',
-    icon: <FaIcons.FaCartPlus />,
+    icon: <FaIcons.FaUsers />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
         title: 'Admins',
         path: '/admin/adminslist',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
       {
         title: 'Employees',
         path: '/admin/employeelist',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
     ],
@@ -61,30 +61,32 @@ export const AdminSideNavData = [
   {
     title: 'Orders',
     path: '/admin/orderslist',
-    icon: <IoIcons.IoMdPeople />,
+    icon: <FaIcons.FaShoppingBag />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
         title: 'Not paid orders',
         path: '/admin/orders/notpaidorders',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
       {
         title: 'Not delivered orders',
-        path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
+        path: '/admin/orders/notDeliveredorders',
+        icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
       {
         title: 'All orders',
         path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaArrowAltCircleRight />,
       },
     ],
   },
   {
     title: 'Complaints',
     path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    icon: <RiIcons.RiErrorWarningFill />,
   },
 ]
