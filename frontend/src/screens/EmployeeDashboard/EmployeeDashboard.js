@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { useDispatch, useSelector } from 'react-redux'
+import '../Screens.css'
+
 const EmployeeDashboard = () => {
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   return (
-    <div>
-      <h1>Employee</h1>
-      <Link to='/employee/profile' className='btn btn-light my-3'>
-        Go Back
-      </Link>
+    <div className='empDashboard'>
+      <h1>Employee Dashboard</h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Welcome {userInfo.name}
+      </p>
     </div>
   )
 }

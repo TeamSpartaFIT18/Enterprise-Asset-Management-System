@@ -7,6 +7,7 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listUsers, deleteUser } from '../../actions/userActions'
 import { getCurrentProfile } from '../../actions/profileActions'
+import '../Screens.css'
 
 const EmployeeProfileScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -27,11 +28,7 @@ const EmployeeProfileScreen = ({ history }) => {
 
   return (
     <>
-      <div>
-        <h1>Employee Dashboard</h1>
-        <p className='lead'>
-          <i className='fas fa-user' /> Welcome {userInfo.name}
-        </p>
+      <div className='empProfileScreen'>
         {loading ? (
           <Loader />
         ) : profile ? (

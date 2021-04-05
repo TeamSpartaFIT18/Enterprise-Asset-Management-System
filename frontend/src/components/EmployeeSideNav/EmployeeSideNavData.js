@@ -14,28 +14,6 @@ export const EmployeeSideNavData = [
     title: 'Profile',
     path: '/employee/profile',
     icon: <IoIcons.IoIosPaper />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-
-    subNav: [
-      {
-        title: 'Reports',
-        path: '/reports/reports1',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Reports 2',
-        path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Reports 3',
-        path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
-      },
-    ],
   },
   {
     title: 'Add Experience',
@@ -43,32 +21,24 @@ export const EmployeeSideNavData = [
     icon: <FaIcons.FaCartPlus />,
   },
   {
-    title: 'Orders',
-    path: '/admin/orderslist',
+    title: 'Jobs',
+    path: '/employee/jobslist',
     icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: 'Not paid orders',
-        path: '/reports/reports1',
+        title: 'Pending',
+        path: '/employee/jobslist/pending',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },
       {
-        title: 'Not delivered orders',
-        path: '/reports/reports2',
+        title: 'Completed',
+        path: '/employee/jobslist/completed',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
-      },
-      {
-        title: 'All orders',
-        path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
       },
     ],
-  },
-  {
-    title: 'Complaints',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
   },
 ]

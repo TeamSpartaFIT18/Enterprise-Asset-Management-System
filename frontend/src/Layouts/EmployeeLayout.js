@@ -18,10 +18,10 @@ const AdminLayout = () => {
   return (
     <Router history={history}>
       <Row>
-        <Col md={4}>
+        <Col md={2}>
           <EmployeeSideNav />
         </Col>
-        <Col md={8}>
+        <Col md={10}>
           <Switch>
             <Route
               exact

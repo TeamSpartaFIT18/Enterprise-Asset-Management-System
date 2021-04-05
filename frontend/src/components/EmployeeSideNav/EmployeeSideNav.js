@@ -17,7 +17,7 @@ const Nav = styled.div`
 `
 
 const Div = styled.div`
-  background: #15171c;
+  background: #001f33 !important;
   height: 60px;
   width: 80px;
   left: 0 !important;
@@ -43,7 +43,7 @@ const NavIcon = styled(Link)`
 
 const SidebarNav = styled.nav`
   margin-top: 65px;
-  background: #15171c;
+  background: #001f33;
   width: 250px;
   height: auto;
   min-height: 100vh;

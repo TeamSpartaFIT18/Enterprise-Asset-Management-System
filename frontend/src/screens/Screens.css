@@ -43,5 +43,14 @@
   margin-top: 70px;
 }
 .ResetPasswordScreen {
+  margin-top: 50px !important;
+}
+.empAddExperience {
+  margin-top: 50px !important;
+}
+.empDashboard {
+  margin-top: 50px !important;
+}
+.empProfileScreen {
   margin-top: 70px !important;
 }
