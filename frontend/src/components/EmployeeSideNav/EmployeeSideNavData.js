@@ -38,30 +38,9 @@ export const EmployeeSideNavData = [
     ],
   },
   {
-    title: 'Current jobs',
-    path: '/employee/jobslist',
+    title: 'Add Experience',
+    path: '/employee/addexperience',
     icon: <FaIcons.FaCartPlus />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-    subNav: [
-      {
-        title: 'Admins',
-        path: '/reports/reports1',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Employees',
-        path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'All users',
-        path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
-      },
-    ],
   },
   {
     title: 'Orders',

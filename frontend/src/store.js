@@ -37,6 +37,7 @@ import {
 import {
   createEmployeeProfileReducer,
   editEmployeeProfileReducer,
+  empAddExperienceReducer,
   employeeProfileReducer,
 } from './reducers/profileReducers'
 
@@ -72,6 +73,7 @@ const reducer = combineReducers({
   employeeProfile: employeeProfileReducer,
   createEmployeeProfile: createEmployeeProfileReducer,
   editEmployeeProfile: editEmployeeProfileReducer,
+  empAddExperience: empAddExperienceReducer,
 })
 
 //get Cart items from localStorage

@@ -11,6 +11,7 @@ import EmployeeDashboard from '../screens/EmployeeDashboard/EmployeeDashboard'
 import EmployeeProfileScreen from '../screens/EmployeeProfileScreen/EmployeeProfileScreen'
 import EmployeeCreateProfileScreen from '../screens/ProfileForms/EmployeeCreateProfileScreen'
 import EmployeeEditProfileScreen from '../screens/ProfileForms/EmployeeEditProfileScreen'
+import EmployeeAddExScreen from '../screens/EmployeeAddExScreen/EmployeeAddExScreen'
 
 const AdminLayout = () => {
   const history = useHistory()
@@ -41,6 +42,11 @@ const AdminLayout = () => {
               exact
               path='/edit-profile'
               component={EmployeeEditProfileScreen}
+            />
+            <Route
+              exact
+              path='/employee/addexperience'
+              component={EmployeeAddExScreen}
             />
           </Switch>
         </Col>

@@ -20,6 +20,7 @@ const ForgotPasswordScreen = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(passwordForgot(email))
+    window.alert('Check your mail')
   }
 
   return (
@@ -41,15 +42,9 @@ const ForgotPasswordScreen = ({ location, history }) => {
           </Form.Group>
 
           <Button type='submit' variant='primary'>
-            Sign In
+            Send verify email
           </Button>
         </Form>
-
-        <Row className='py-3'>
-          <Col>
-            New Customer? <Link to='/'>Register</Link>
-          </Col>
-        </Row>
       </FormContainer>
     </div>
   )

@@ -1,5 +1,8 @@
 import axios from 'axios'
 import {
+  EMPLOYEE_ADD_EX_FAIL,
+  EMPLOYEE_ADD_EX_REQUEST,
+  EMPLOYEE_ADD_EX_SUCCESS,
   EMPLOYEE_PROFILE_CREATE_FAIL,
   EMPLOYEE_PROFILE_CREATE_REQUEST,
   EMPLOYEE_PROFILE_CREATE_SUCCESS,
@@ -131,6 +134,52 @@ export const employeeEditProfile = (
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+//add experience
+export const empExperienceAdd = (
+  title,
+  company,
+  jobLocation,
+  fromDate,
+  toDate,
+  description
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: EMPLOYEE_ADD_EX_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/emp-profiles/experience',
+      { title, company, jobLocation, fromDate, toDate, description },
+      config
+    )
+
+    dispatch({
+      type: EMPLOYEE_ADD_EX_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: EMPLOYEE_ADD_EX_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
