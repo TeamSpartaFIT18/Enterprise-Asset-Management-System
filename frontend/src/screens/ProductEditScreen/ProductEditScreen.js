@@ -93,11 +93,11 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <div className='productEditScreen'>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
-        Go Back
+      <Link to='/admin/productslist' className='btn btn-light my-3'>
+        <button className='btnback'>Back to products list</button>
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Create Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (

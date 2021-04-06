@@ -25,7 +25,6 @@ import {
   NOT_DELIVERED_ORDER_LIST_SUCCESS,
   NOT_DELIVERED_ORDER_LIST_FAIL,
 } from '../types/orderTypes'
-import { logout } from './userActions'
 
 //create order
 export const createOrder = (order) => async (dispatch, getState) => {

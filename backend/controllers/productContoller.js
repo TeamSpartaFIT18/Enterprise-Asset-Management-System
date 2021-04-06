@@ -55,15 +55,15 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // POST -> /api/products/
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
-    name: 'sample',
-    price: 0,
+    name: ' ',
+    price: ' ',
     user: req.user._id,
-    image: '/images/sample.jpg',
-    brand: 'brand',
-    category: 'category',
+    image: ' ',
+    brand: ' ',
+    category: ' ',
     countInStock: 0,
     numReviews: 0,
-    description: 'sample',
+    description: ' ',
   })
 
   const createdProduct = await product.save()

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './style.css'
 
 import ceo3 from './Image/ceo3.jpg'
@@ -102,7 +101,5 @@ const Clients = (props) => {
     </div>
   )
 }
-
-Clients.propTypes = {}
 
 export default Clients

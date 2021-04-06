@@ -8,14 +8,6 @@ import EmployeeSideNavSubMenuData from './EmployeeSideNavSubMenuData'
 import { IconContext } from 'react-icons/lib'
 import './EmployeeSideNav.css'
 
-const Nav = styled.div`
-  background: #15171c;
-  height: 80px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`
-
 const Div = styled.div`
   background: #001f33 !important;
   height: 60px;
@@ -62,7 +54,7 @@ const SidebarWrap = styled.div`
 
 const EmployeeSideNav = () => {
   const [sidebar, setSidebar] = useState(true)
-  const [burg, setBurg] = useState(true)
+  const [burg] = useState(true)
 
   const showSidebar = () => setSidebar(!sidebar)
 

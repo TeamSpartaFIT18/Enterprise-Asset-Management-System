@@ -1,8 +1,6 @@
 import asyncHandler from 'express-async-handler'
-import generateToken from '../utils/generateToken.js'
 
 import EmpProfile from '../models/empProfileModel.js'
-import User from '../models/userModel.js'
 
 // Get current emp profile , private
 // GET -> /api/emp-profiles/me

@@ -1,7 +1,5 @@
 import React from 'react'
 import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
-import * as IoIcons from 'react-icons/io'
 import * as RiIcons from 'react-icons/ri'
 
 export const AdminSideNavData = [
@@ -62,11 +60,6 @@ export const AdminSideNavData = [
         cName: 'sub-nav',
       },
     ],
-  },
-  {
-    title: 'MailBox',
-    path: '/admin/mailtoclient',
-    icon: <IoIcons.IoIosMail />,
   },
   {
     title: 'Complaints',

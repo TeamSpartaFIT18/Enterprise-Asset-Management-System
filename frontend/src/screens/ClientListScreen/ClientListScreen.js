@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
@@ -37,7 +37,7 @@ const AdminMailBoxScreen = ({ history }) => {
   return (
     <div className='userListScreen'>
       <Link to='/admin/userslist' className='btn btn-light my-3'>
-        <button className='btnback'>Back to orders list</button>
+        <button className='btnback'>Back to users list</button>
       </Link>
       <h1>Clients</h1>
       {loading ? (
@@ -68,16 +68,16 @@ const AdminMailBoxScreen = ({ history }) => {
                     </i>
                   </LinkContainer>
                 </td>
-                <td>
+                <td className='isWho'>
                   {user.isClient ? (
                     <i className='fa fa-check' style={{ color: 'green' }}></i>
                   ) : (
                     <i className='fa fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td>
+                <td className='editOrDelete'>
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant='light' className='btn-sm'>
+                    <Button variant='info' className='btn-sm'>
                       <i className='fa fa-edit'></i>
                     </Button>
                   </LinkContainer>

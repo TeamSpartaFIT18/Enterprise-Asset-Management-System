@@ -93,27 +93,27 @@ const ProductListScreen = ({ history, match }) => {
       ) : (
         <>
           <Table striped bordered hover responsive className='table-sm'>
-            <thead>
+            <thead className='thead'>
               <tr>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
-                <th></th>
+                <th>EDIT/DELETE</th>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product._id}>
+                <tr className='trow' key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
-                  <td>
+                  <td className='editOrDelete'>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant='light' className='btn-sm'>
+                      <Button variant='info' className='btn-sm'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import Meta from '../../components/Meta'
 import FormContainer from '../../components/FormContainer'
-import {
-  getCurrentProfile,
-  employeeEditProfile,
-} from '../../actions/profileActions'
+import { employeeEditProfile } from '../../actions/profileActions'
 import '../Screens.css'
 const EmployeeEditProfileScreen = ({ location, history }) => {
   const [status, setStatus] = useState('')
@@ -19,13 +15,8 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
-
   const employeeProfile = useSelector((state) => state.employeeProfile)
   const { loading, error, profile } = employeeProfile
-
-  const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
     if (!error) {
@@ -34,7 +25,7 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
       setAddress(profile.address)
       setBio(profile.bio)
     }
-  }, [dispatch, history, profile])
+  }, [error, dispatch, history, profile])
 
   const submitHandler = (e) => {
     e.preventDefault()

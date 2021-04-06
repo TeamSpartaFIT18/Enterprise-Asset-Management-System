@@ -91,6 +91,29 @@
   background-color: #ccffcc;
 }
 
+.isWho {
+  text-align: center;
+}
+
+.editOrDelete {
+  text-align: center;
+}
+.notPaid {
+  text-align: center;
+}
+.isPaid {
+  text-align: center;
+}
+.notDelivered {
+  text-align: center;
+}
+.isDelivered {
+  text-align: center;
+}
+.details {
+  text-align: center;
+}
+
 .mailIcon {
   align-items: right;
 }
@@ -113,4 +136,20 @@
   border-radius: 30px;
   box-shadow: 12px 12px 12px gray;
   height: 500px;
+}
+
+.btnSendmail {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.btnSendmail:hover {
+  background-color: white;
+  border: 1px solid;
+  color: black;
 }

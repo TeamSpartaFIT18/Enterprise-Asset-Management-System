@@ -5,11 +5,10 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import AdminSideNav from '../components/AdminSideNav/AdminSideNav'
 import ProductListScreen from '../screens/ProductListScreen/ProductListScreen'
 import AdminDashboard from '../screens/AdminDashboard/AdminDashboard'
-import AdminRoute from '../components/Routing/AdminRoute'
 import OrderListScreen from '../screens/OrderListScreen/OrderListScreen'
 import UserEditScreen from '../screens/UserEditScreen/UserEditScreen'
 import ProductEditScreen from '../screens/ProductEditScreen/ProductEditScreen'
@@ -56,6 +55,7 @@ const AdminLayout = () => {
               path='/admin/product/:id/edit'
               component={ProductEditScreen}
             />
+            <Route path='/admin/product/' component={ProductEditScreen} />
             <Route path='/admin/userslist' component={UserListScreen} />
             <Route path='/admin/adminslist' component={AdminListScreen} />
             <Route path='/admin/employeelist' component={EmployeeListScreen} />

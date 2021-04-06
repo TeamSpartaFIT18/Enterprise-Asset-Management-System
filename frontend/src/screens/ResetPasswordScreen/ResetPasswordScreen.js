@@ -22,7 +22,7 @@ const ResetPasswordScreen = ({ match }) => {
     if (userId) {
       dispatch(rpGetUserDetails(userId))
     }
-  }, [userId])
+  }, [dispatch, userId])
 
   const submitHandler = (e) => {
     e.preventDefault()

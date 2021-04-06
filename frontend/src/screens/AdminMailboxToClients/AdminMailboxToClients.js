@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Table, Form, Button, Row, Col, Image } from 'react-bootstrap'
+import { Form, Button, Row, Col, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails, mailToClient } from '../../actions/userActions'
 import FormContainer from '../../components/FormContainer'
@@ -16,13 +15,13 @@ const AdminMailboxToClients = ({ match }) => {
   const dispatch = useDispatch()
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading, error, user } = userDetails
+  const { user } = userDetails
 
   useEffect(() => {
     if (userId) {
       dispatch(getUserDetails(userId))
     }
-  }, [userId])
+  }, [userId, dispatch])
 
   const email = user.email
 
@@ -80,7 +79,7 @@ const AdminMailboxToClients = ({ match }) => {
                     </Form.Group>
                   </Col>
                 </Row>
-                <Button type='submit' variant='primary'>
+                <Button className='btnSendMail' type='submit' variant='primary'>
                   Send Mail
                 </Button>
               </Form>

@@ -1,6 +1,4 @@
 import React from 'react'
-
-import { Table, Button, Row, Col } from 'react-bootstrap'
 import * as FaIcons from 'react-icons/fa'
 import './style.css'
 
