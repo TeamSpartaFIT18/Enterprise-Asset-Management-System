@@ -5,13 +5,13 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listEmployees, deleteUser } from '../../actions/userActions'
+import { listClients, deleteUser } from '../../actions/userActions'
 import '../Screens.css'
-const EmployeeListScreen = ({ history }) => {
+const AdminMailBoxScreen = ({ history }) => {
   const dispatch = useDispatch()
 
-  const employeeList = useSelector((state) => state.employeeList)
-  const { loading, error, users } = employeeList
+  const clientList = useSelector((state) => state.clientList)
+  const { loading, error, users } = clientList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -21,7 +21,7 @@ const EmployeeListScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listEmployees())
+      dispatch(listClients())
     } else {
       history.push('/signin')
     }
@@ -38,7 +38,7 @@ const EmployeeListScreen = ({ history }) => {
       <Link to='/admin/userslist' className='btn btn-light my-3'>
         <button className='btnback'>Back to orders list</button>
       </Link>
-      <h1>Employees</h1>
+      <h1>Clients</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -61,9 +61,14 @@ const EmployeeListScreen = ({ history }) => {
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>
+                  <LinkContainer to={`mail/${user._id}`}>
+                    <Button variant='light' className='btn-sm'>
+                      Details
+                    </Button>
+                  </LinkContainer>
                 </td>
                 <td>
-                  {user.isEmployee ? (
+                  {user.isClient ? (
                     <i className='fa fa-check' style={{ color: 'green' }}></i>
                   ) : (
                     <i className='fa fa-times' style={{ color: 'red' }}></i>
@@ -92,4 +97,4 @@ const EmployeeListScreen = ({ history }) => {
   )
 }
 
-export default EmployeeListScreen
+export default AdminMailBoxScreen

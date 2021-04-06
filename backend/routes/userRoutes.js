@@ -8,6 +8,7 @@ import {
   getUsers,
   getAdmins,
   getEmployees,
+  getClients,
   deleteUser,
   getUserById,
   updateUser,
@@ -22,6 +23,7 @@ router.route('/').post(registerUser).get(protect, admin, getUsers)
 router.post('/login', authUser)
 router.route('/admins').get(protect, admin, getAdmins)
 router.route('/employees').get(protect, admin, getEmployees)
+router.route('/clients').get(protect, admin, getClients)
 router
   .route('/profile')
   .get(protect, getUserProfile)

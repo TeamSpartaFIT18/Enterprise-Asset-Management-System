@@ -3,6 +3,10 @@ import {
   ADMIN_LIST_REQUEST,
   ADMIN_LIST_RESET,
   ADMIN_LIST_SUCCESS,
+  CLIENT_LIST_FAIL,
+  CLIENT_LIST_REQUEST,
+  CLIENT_LIST_RESET,
+  CLIENT_LIST_SUCCESS,
   EMPLOYEE_LIST_FAIL,
   EMPLOYEE_LIST_REQUEST,
   EMPLOYEE_LIST_RESET,
@@ -10,6 +14,9 @@ import {
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
+  MAIL_TO_CLIENT_FAIL,
+  MAIL_TO_CLIENT_REQUEST,
+  MAIL_TO_CLIENT_SUCCESS,
   RP_SUBMIT_FAIL,
   RP_SUBMIT_REQUEST,
   RP_SUBMIT_SUCCESS,
@@ -181,6 +188,22 @@ export const employeeListReducer = (state = { users: [] }, action) => {
   }
 }
 
+//client list
+export const clientListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case CLIENT_LIST_REQUEST:
+      return { loading: true }
+    case CLIENT_LIST_SUCCESS:
+      return { loading: false, users: action.payload }
+    case CLIENT_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    case CLIENT_LIST_RESET:
+      return { users: [] }
+    default:
+      return state
+  }
+}
+
 //forgot password
 export const forgotPasswordReducer = (state = {}, action) => {
   switch (action.type) {
@@ -217,6 +240,20 @@ export const rpSubmitReducer = (state = { user: {} }, action) => {
     case RP_SUBMIT_SUCCESS:
       return { loading: false, user: action.payload }
     case RP_SUBMIT_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+//send mail to client
+export const sendMailToClientReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case MAIL_TO_CLIENT_REQUEST:
+      return { ...state, loading: true }
+    case MAIL_TO_CLIENT_SUCCESS:
+      return { loading: false, user: action.payload }
+    case MAIL_TO_CLIENT_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

@@ -35,10 +35,10 @@ const AdminListScreen = ({ history }) => {
 
   return (
     <div className='userListScreen'>
-      <Link to='/admin/adminslist' className='btn btn-light my-3'>
-        Go Back
+      <Link to='/admin/userslist' className='btn btn-light my-3'>
+        <button className='btnback'>Back to orders list</button>
       </Link>
-      <h1>Users</h1>
+      <h1>Admin users</h1>
       {loading ? (
         <Loader />
       ) : error ? (

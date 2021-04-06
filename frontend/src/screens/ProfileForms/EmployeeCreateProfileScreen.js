@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
@@ -8,6 +7,7 @@ import Meta from '../../components/Meta'
 import FormContainer from '../../components/FormContainer'
 import { employeeCreateProfile } from '../../actions/profileActions'
 import '../Screens.css'
+
 const EmployeeCreateProfileScreen = ({ location, history }) => {
   const [status, setStatus] = useState('')
   const [contact, setContact] = useState('')
@@ -23,22 +23,12 @@ const EmployeeCreateProfileScreen = ({ location, history }) => {
   const createEmployeeProfile = useSelector(
     (state) => state.createEmployeeProfile
   )
-  const { employeeProfile, loading, error } = createEmployeeProfile
-
-  const redirect = location.search ? location.search.split('=')[1] : '/'
-
-  useEffect(() => {
-    if (userInfo && employeeProfile) {
-      history.push(redirect)
-    }
-  }, [history, redirect])
+  const { loading, error } = createEmployeeProfile
 
   const submitHandler = (e) => {
     e.preventDefault()
     if (userInfo) {
       dispatch(employeeCreateProfile(status, contact, address, bio, experience))
-    } else {
-      console.log('na')
     }
   }
 

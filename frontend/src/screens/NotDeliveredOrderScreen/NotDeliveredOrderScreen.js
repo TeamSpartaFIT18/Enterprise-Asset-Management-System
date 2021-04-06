@@ -7,7 +7,6 @@ import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listNotDeliveredOrders } from '../../actions/orderActions'
 import '../Screens.css'
-import '../CartScreen/CartScreen.css'
 
 const NotDeliveredOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -30,7 +29,7 @@ const NotDeliveredOrderScreen = ({ history }) => {
   return (
     <div className='NotDeliveredOrderListScreen'>
       <Link to='/admin/orderslist' className='btn btn-light my-3'>
-        Back to orders list
+        <button className='btnback'>Back to orders list</button>
       </Link>
       <h1>Not delivered orders</h1>
       {loading ? (

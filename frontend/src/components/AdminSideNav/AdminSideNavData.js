@@ -14,28 +14,6 @@ export const AdminSideNavData = [
     title: 'Inventory',
     path: '/admin/productslist',
     icon: <FaIcons.FaWarehouse />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-
-    subNav: [
-      {
-        title: 'Reports',
-        path: '/reports/reports1',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Reports 2',
-        path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Reports 3',
-        path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
-      },
-    ],
   },
   {
     title: 'Users',
@@ -53,6 +31,12 @@ export const AdminSideNavData = [
       {
         title: 'Employees',
         path: '/admin/employeelist',
+        icon: <FaIcons.FaArrowAltCircleRight />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Clients',
+        path: '/admin/clientlist',
         icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
@@ -77,12 +61,12 @@ export const AdminSideNavData = [
         icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
-      {
-        title: 'All orders',
-        path: '/reports/reports3',
-        icon: <FaIcons.FaArrowAltCircleRight />,
-      },
     ],
+  },
+  {
+    title: 'MailBox',
+    path: '/admin/mailtoclient',
+    icon: <IoIcons.IoIosMail />,
   },
   {
     title: 'Complaints',

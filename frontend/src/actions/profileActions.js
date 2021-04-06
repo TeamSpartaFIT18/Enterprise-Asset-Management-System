@@ -94,14 +94,11 @@ export const employeeCreateProfile = (
   }
 }
 
-//edit profile
-export const employeeEditProfile = (
-  status,
-  contact,
-  address,
-  bio,
-  experience
-) => async (dispatch, getState) => {
+//employee edit profile
+export const employeeEditProfile = (status, contact, address, bio) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_REQUEST,
@@ -120,13 +117,10 @@ export const employeeEditProfile = (
 
     const { data } = await axios.post(
       '/api/emp-profiles',
-      { status, contact, address, bio, experience },
+      { status, contact, address, bio },
       config
     )
 
-    dispatch({
-      type: EMPLOYEE_PROFILE_EDIT_SUCCESS,
-    })
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_SUCCESS,
       payload: data,
@@ -142,7 +136,7 @@ export const employeeEditProfile = (
   }
 }
 
-//add experience
+//employee add experience
 export const empExperienceAdd = (
   title,
   company,
