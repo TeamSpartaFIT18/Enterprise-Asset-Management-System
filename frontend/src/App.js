@@ -23,6 +23,7 @@ import EmployeeLayout from './Layouts/EmployeeLayout'
 import AdminSideNav from './components/AdminSideNav/AdminSideNav'
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen'
 import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen'
+import AdminMailboxToClients from './screens/AdminMailboxToClients/AdminMailboxToClients'
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <NavBar />
         <main className='py-3'>
           <Container>
+            <Route path='/mail' component={AdminMailboxToClients} />
             <Route path='/employee/dashboard' component={EmployeeLayout} />
             <Route path='/admin/dashboard' component={AdminLayout} />
             <Route path='/order/:id' component={OrderScreen} />

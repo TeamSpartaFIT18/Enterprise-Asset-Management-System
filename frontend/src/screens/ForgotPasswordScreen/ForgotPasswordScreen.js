@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
@@ -9,13 +8,13 @@ import FormContainer from '../../components/FormContainer'
 import { passwordForgot } from '../../actions/userActions'
 import '../Screens.css'
 
-const ForgotPasswordScreen = ({ location, history }) => {
+const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('')
 
   const dispatch = useDispatch()
 
   const forgotPassword = useSelector((state) => state.forgotPassword)
-  const { loading, error, userInfo } = forgotPassword
+  const { loading, error } = forgotPassword
 
   const submitHandler = (e) => {
     e.preventDefault()

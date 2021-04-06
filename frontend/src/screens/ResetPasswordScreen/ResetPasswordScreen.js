@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Table, Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
 import { rpGetUserDetails, passwordReset } from '../../actions/userActions'
 import FormContainer from '../../components/FormContainer'
 import '../Screens.css'
@@ -11,11 +11,12 @@ const ResetPasswordScreen = ({ match }) => {
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch()
 
   const rpUserDetails = useSelector((state) => state.rpUserDetails)
-  const { loading, error, user } = rpUserDetails
+  const { user } = rpUserDetails
 
   useEffect(() => {
     if (userId) {
@@ -26,7 +27,7 @@ const ResetPasswordScreen = ({ match }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
-      console.log('pa dnt match')
+      setMessage('Password do not match')
     } else {
       dispatch(passwordReset({ user, password }))
       window.location = '/signin'
@@ -35,9 +36,8 @@ const ResetPasswordScreen = ({ match }) => {
   return (
     <div className='ResetPasswordScreen'>
       <FormContainer>
-        <div>
-          <h1>' '</h1>
-        </div>
+        <div></div>
+        {message && <Message variant='danger'>{message}</Message>}
         <h4>Your Name : {user.name}</h4>
         <h4>Entered Email : {user.email}</h4>
         <Form onSubmit={submitHandler}>

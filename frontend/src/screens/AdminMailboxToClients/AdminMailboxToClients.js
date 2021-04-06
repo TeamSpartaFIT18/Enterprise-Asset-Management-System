@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Table, Form, Button, Row, Col } from 'react-bootstrap'
+import { Table, Form, Button, Row, Col, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails, mailToClient } from '../../actions/userActions'
 import FormContainer from '../../components/FormContainer'
 import '../Screens.css'
+import mail from '../Images/mail.jpg'
 
 const AdminMailboxToClients = ({ match }) => {
   const userId = match.params.id
@@ -32,36 +33,62 @@ const AdminMailboxToClients = ({ match }) => {
     }
   }
   return (
-    <FormContainer className='ResetPasswordScreen'>
-      <div>
-        <h1>thisal</h1>
-      </div>
-      <h4>Clients Email : {user.email}</h4>
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='subject'>
-          <Form.Label>Subject</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter the subject to the mail'
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+    <div className='container'>
+      <div className='adminMailboxToClients'>
+        <Row className='mainRow no-gutters'>
+          <Col md={4}>
+            <Image className='mailImage' src={mail} />
+          </Col>
+          <Col md={8}>
+            <FormContainer>
+              <h3 class='font-weight-bold mt-4 py-3'>
+                Send mail to {user.name}
+              </h3>
+              <Row>
+                <Col md={3}>To: </Col>
+                <Col md={9}>{user.email}</Col>
+              </Row>
 
-        <Form.Group controlId='body'>
-          <Form.Label>Email Body</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter the email body'
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Button type='submit' variant='primary'>
-          Send Mail
-        </Button>
-      </Form>
-    </FormContainer>
+              <Form onSubmit={submitHandler}>
+                <Row>
+                  <Col md={3}>Subject: </Col>
+                  <Col md={9}>
+                    <Form.Group controlId='subject'>
+                      <Form.Control
+                        as='textarea'
+                        rows={2}
+                        type='text'
+                        placeholder='Enter the subject to the mail'
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                      ></Form.Control>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={3}>Body: </Col>
+                  <Col md={9}>
+                    <Form.Group controlId='body'>
+                      <Form.Control
+                        as='textarea'
+                        rows={4}
+                        type='text'
+                        placeholder='Enter the email body'
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                      ></Form.Control>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Button type='submit' variant='primary'>
+                  Send Mail
+                </Button>
+              </Form>
+            </FormContainer>
+          </Col>
+        </Row>
+      </div>
+    </div>
   )
 }
 

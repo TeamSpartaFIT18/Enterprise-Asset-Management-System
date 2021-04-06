@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listClients, deleteUser } from '../../actions/userActions'
+import * as IoIcons from 'react-icons/io'
 import '../Screens.css'
 const AdminMailBoxScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -45,26 +46,26 @@ const AdminMailBoxScreen = ({ history }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
-          <thead>
+          <thead className='thead'>
             <tr>
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
               <th>EMPLOYEE</th>
-              <th>ID</th>
+              <th>EDIT/DELETE</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id}>
+              <tr className='trow' key={user._id}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>
                   <LinkContainer to={`mail/${user._id}`}>
-                    <Button variant='light' className='btn-sm'>
-                      Details
-                    </Button>
+                    <i className='mailIcon'>
+                      <IoIcons.IoIosMail size={20} />
+                    </i>
                   </LinkContainer>
                 </td>
                 <td>

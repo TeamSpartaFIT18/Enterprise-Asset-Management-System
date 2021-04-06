@@ -50,7 +50,7 @@
   margin-top: 70px;
 }
 .ResetPasswordScreen {
-  margin-top: 50px !important;
+  margin-top: 70px !important;
 }
 .empAddExperience {
   margin-top: 50px !important;
@@ -59,6 +59,9 @@
   margin-top: 50px !important;
 }
 .empProfileScreen {
+  margin-top: 70px !important;
+}
+.adminMailboxToClients {
   margin-top: 70px !important;
 }
 
@@ -76,4 +79,38 @@
   background-color: white;
   border: 1px solid;
   color: black;
+}
+
+.thead {
+  color: rgb(255, 255, 255);
+  background-color: #001a0f;
+  text-align: center;
+}
+
+.trow {
+  background-color: #ccffcc;
+}
+
+.mailIcon {
+  align-items: right;
+}
+.mailIcon:hover {
+  cursor: pointer;
+  color: green;
+}
+
+.mailImage {
+  height: 500px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.mainRow {
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  box-shadow: 12px 12px 12px gray;
+  height: 500px;
 }
