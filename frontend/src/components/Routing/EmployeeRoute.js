@@ -1,22 +1,23 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import LoginScreen from '../../screens/LoginScreen/LoginScreen'
-import AdminDashboard from '../../screens/AdminDashboard/AdminDashboard'
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EmployeeRoute = ({ component: Component, ...rest }) => {
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   return (
-    <Router>
-      {userInfo.isEmployee ? (
-        <Route exact path='/admin/dashboard' component={AdminDashboard} />
-      ) : (
-        <Route path='/signin' component={LoginScreen} />
-      )}
-    </Router>
-  )
-}
+    <Route
+      {...rest}
+      render={(props) =>
+        userInfo && userInfo.isEmployee ? (
+          <Component {...[props]} />
+        ) : (
+          <Redirect to="/signin" />
+        )
+      }
+    />
+  );
+};
 
-export default EmployeeRoute
+export default EmployeeRoute;

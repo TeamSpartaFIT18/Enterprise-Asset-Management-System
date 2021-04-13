@@ -29,8 +29,8 @@ const App = () => {
         <main className="py-3">
           <Container>
             <Route path="/mail" component={AdminMailboxToClients} />
-            <Route path="/employee/dashboard" component={EmployeeLayout} />
-            <Route path="/admin/dashboard" component={AdminLayout}></Route>
+            <Route path="/employee" component={EmployeeLayout}></Route>
+            <Route path="/admin" component={AdminLayout}></Route>
             <Route path="/order/:id" component={OrderScreen} />
             <Route path="/products" component={ProductScreen} exact />
             <Route path="/shipping" component={ShippingScreen} />

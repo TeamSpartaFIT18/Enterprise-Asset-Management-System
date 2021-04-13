@@ -1,58 +1,62 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-} from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
-import EmployeeSideNav from '../components/EmployeeSideNav/EmployeeSideNav'
-import EmployeeDashboard from '../screens/EmployeeDashboard/EmployeeDashboard'
-import EmployeeProfileScreen from '../screens/EmployeeProfileScreen/EmployeeProfileScreen'
-import EmployeeCreateProfileScreen from '../screens/ProfileForms/EmployeeCreateProfileScreen'
-import EmployeeEditProfileScreen from '../screens/ProfileForms/EmployeeEditProfileScreen'
-import EmployeeAddExScreen from '../screens/EmployeeAddExScreen/EmployeeAddExScreen'
+import React from "react";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
+import EmployeeSideNav from "../components/EmployeeSideNav/EmployeeSideNav";
+import EmployeeDashboard from "../screens/EmployeeDashboard/EmployeeDashboard";
+import EmployeeProfileScreen from "../screens/EmployeeProfileScreen/EmployeeProfileScreen";
+import EmployeeCreateProfileScreen from "../screens/ProfileForms/EmployeeCreateProfileScreen";
+import EmployeeEditProfileScreen from "../screens/ProfileForms/EmployeeEditProfileScreen";
+import EmployeeAddExScreen from "../screens/EmployeeAddExScreen/EmployeeAddExScreen";
+import EmployeeRoute from "../components/Routing/EmployeeRoute";
 
 const AdminLayout = () => {
-  const history = useHistory()
+  const { url, path } = useRouteMatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   return (
-    <Router history={history}>
-      <Row>
-        <Col md={2}>
-          <EmployeeSideNav />
-        </Col>
-        <Col md={10}>
-          <Switch>
+    <Row>
+      <Col md={2}>
+        <EmployeeSideNav />
+      </Col>
+      <Col md={10}>
+        <Switch>
+          <EmployeeRoute
+            exact
+            path={`${url}/dashboard`}
+            component={EmployeeDashboard}
+          />
+          <EmployeeRoute
+            exact
+            path={`${url}/profile`}
+            component={EmployeeProfileScreen}
+          />
+          <EmployeeRoute
+            exact
+            path={`${url}/createprofile`}
+            component={EmployeeCreateProfileScreen}
+          />
+          {userInfo && userInfo.isEmployee && (
             <Route
               exact
-              path='/employee/dashboard'
-              component={EmployeeDashboard}
-            />
-            <Route
-              exact
-              path='/employee/profile'
-              component={EmployeeProfileScreen}
-            />
-            <Route
-              exact
-              path='/create-profile'
-              component={EmployeeCreateProfileScreen}
-            />
-            <Route
-              exact
-              path='/edit-profile'
+              path={`${url}/editprofile`}
               component={EmployeeEditProfileScreen}
             />
+          )}
+          {userInfo && userInfo.isEmployee && (
             <Route
               exact
-              path='/employee/addexperience'
+              path={`${url}/addexperience`}
               component={EmployeeAddExScreen}
             />
-          </Switch>
-        </Col>
-      </Row>
-    </Router>
-  )
-}
+          )}
+        </Switch>
+      </Col>
+    </Row>
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;
