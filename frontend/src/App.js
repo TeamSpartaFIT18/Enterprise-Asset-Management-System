@@ -20,7 +20,6 @@ import EmployeeLayout from "./Layouts/EmployeeLayout";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen/ResetPasswordScreen";
 import AdminMailboxToClients from "./screens/AdminMailboxToClients/AdminMailboxToClients";
-import AdminSideNav from "./components/AdminSideNav/AdminSideNav";
 
 const App = () => {
   return (
