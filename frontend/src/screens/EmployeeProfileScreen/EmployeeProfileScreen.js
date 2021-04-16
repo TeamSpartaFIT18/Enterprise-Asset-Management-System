@@ -7,8 +7,6 @@ import { getCurrentProfile } from "../../actions/profileActions";
 import "../Screens.css";
 
 const EmployeeProfileScreen = ({ history }) => {
-  const [experiencess, setExperiencess] = useState([]);
-
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);

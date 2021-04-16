@@ -14,3 +14,7 @@
   font-size: 15px;
   margin: auto;
 }
+
+.navUserName #username {
+  font-size: 15px;
+}

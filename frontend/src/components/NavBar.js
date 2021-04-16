@@ -1,89 +1,102 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import { logout } from '../actions/userActions'
-import SearchBox from './SearchBox'
-import './NavBar.css'
+import React from "react";
+import { Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { logout } from "../actions/userActions";
+import SearchBox from "./SearchBox";
+import "./NavBar.css";
 
 const NavBar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    dispatch(logout())
-    window.location = '/signin'
-  }
+    dispatch(logout());
+    window.location = "/signin";
+  };
 
   return (
-    <header className='nav1'>
+    <header className="nav1">
       <Navbar
-        className='Navibar'
-        bg='black'
-        variant='dark'
-        fixed='top'
-        expand='md'
+        className="Navibar"
+        bg="black"
+        variant="dark"
+        fixed="top"
+        expand="md"
         collapseOnSelect
       >
         <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand className='EimskyBrand'>Eimsky</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand className="EimskyBrand">Eimsky</Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             <Route
               render={({ history }) => <SearchBox history={history} />}
             ></Route>
-            <Nav className='ml-auto'>
-              <LinkContainer to='/products'>
+            <Nav className="ml-auto">
+              <LinkContainer to="/products">
                 <Nav.Link>
-                  <p className='NavLinks'>
-                    <i className='fas fa-shopping-basket'></i> Products
+                  <p className="NavLinks">
+                    <i className="fas fa-shopping-basket"></i> Products
                   </p>
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/cart'>
-                <Nav.Link href='#cart'>
-                  <p className='NavLinks'>
-                    <i className='fas fa-shopping-cart'></i> Cart
+              <LinkContainer to="/cart">
+                <Nav.Link href="#cart">
+                  <p className="NavLinks">
+                    <i className="fas fa-shopping-cart"></i> Cart
                   </p>
                 </Nav.Link>
               </LinkContainer>
               {userInfo && userInfo.isAdmin && (
-                <LinkContainer to='/admin/dashboard'>
-                  <Nav.Link href='#sign-in'>
-                    <p className='NavLinks'>
-                      <i className='fas fa-user'></i> Dashboard
+                <LinkContainer to="/admin/dashboard">
+                  <Nav.Link href="#sign-in">
+                    <p className="NavLinks">
+                      <i className="fas fa-user"></i> Dashboard
                     </p>
                   </Nav.Link>
                 </LinkContainer>
               )}
               {userInfo && userInfo.isEmployee && (
-                <LinkContainer to='/employee/dashboard'>
-                  <Nav.Link href='#sign-in'>
-                    <p className='NavLinks'>
-                      <i className='fas fa-user'></i> Dashboard
+                <LinkContainer to="/employee/dashboard">
+                  <Nav.Link href="#sign-in">
+                    <p className="NavLinks">
+                      <i className="fas fa-user"></i> Dashboard
                     </p>
                   </Nav.Link>
                 </LinkContainer>
               )}
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
+                <NavDropdown
+                  className="navUserName"
+                  title={userInfo.name}
+                  id="username"
+                >
+                  {" "}
+                  {userInfo.isAdmin || userInfo.isEmployee ? (
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  ) : (
+                    <>
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
+                    </>
+                  )}
                 </NavDropdown>
               ) : (
-                <LinkContainer to='/signin'>
-                  <Nav.Link href='#sign-in'>
-                    <p className='NavLinks'>
-                      <i className='fas fa-user'></i> Sign in
+                <LinkContainer to="/signin">
+                  <Nav.Link href="#sign-in">
+                    <p className="NavLinks">
+                      <i className="fas fa-user"></i> Sign in
                     </p>
                   </Nav.Link>
                 </LinkContainer>
@@ -93,7 +106,7 @@ const NavBar = () => {
         </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
