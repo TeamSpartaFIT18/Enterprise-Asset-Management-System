@@ -1,16 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productListReducer,
+  allProductListReducer,
   productDetailsReducer,
   productDeleteReducer,
   productCreateReducer,
   productUpdateReducer,
   productReviewCreateReducer,
   productTopRatedReducer,
-} from './reducers/productReducers'
-import { cartReducer } from './reducers/cartReducers'
+} from "./reducers/productReducers";
+import { cartReducer } from "./reducers/cartReducers";
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -26,7 +27,7 @@ import {
   rpSubmitReducer,
   clientListReducer,
   sendMailToClientReducer,
-} from './reducers/userReducers'
+} from "./reducers/userReducers";
 import {
   orderCreateReducer,
   orderDetailsReducer,
@@ -36,16 +37,17 @@ import {
   orderListReducer,
   notPaidOrderListReducer,
   notDeliveredOrderListReducer,
-} from './reducers/orderReducers'
+} from "./reducers/orderReducers";
 import {
   createEmployeeProfileReducer,
   editEmployeeProfileReducer,
   empAddExperienceReducer,
   employeeProfileReducer,
-} from './reducers/profileReducers'
+} from "./reducers/profileReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
+  allProductList: allProductListReducer,
   productDetails: productDetailsReducer,
   productDelete: productDeleteReducer,
   productCreate: productCreateReducer,
@@ -80,22 +82,22 @@ const reducer = combineReducers({
   createEmployeeProfile: createEmployeeProfileReducer,
   editEmployeeProfile: editEmployeeProfileReducer,
   empAddExperience: empAddExperienceReducer,
-})
+});
 
 //get Cart items from localStorage
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : []
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
 
 //get user info from localStorage
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
 
 //get shippingAddress localStorage
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-  ? JSON.parse(localStorage.getItem('shippingAddress'))
-  : {}
+const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
+  : {};
 
 const initialState = {
   cart: {
@@ -103,14 +105,14 @@ const initialState = {
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
-}
+};
 
-const middleware = [thunk]
+const middleware = [thunk];
 
 const store = createStore(
   reducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
-)
+);
 
-export default store
+export default store;
