@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listNotDeliveredOrders } from "../../actions/orderActions";
+import {
+  listNotDeliveredOrders,
+  listNotPaidOrders,
+  listOrders,
+} from "../../actions/orderActions";
 import { listAllProducts } from "../../actions/productActions";
-import { listUsers, listAdmins } from "../../actions/userActions";
+import {
+  listUsers,
+  listAdmins,
+  listEmployees,
+  listClients,
+} from "../../actions/userActions";
 import Loader from "../../components/Loader";
 import "../Screens.css";
 import "./AdminDashboard.css";
@@ -34,6 +43,34 @@ const AdminDashboard = (history) => {
     users: adminUsers,
   } = adminList;
 
+  //employees count
+  const employeeList = useSelector((state) => state.employeeList);
+  const {
+    loading: loadingEmployees,
+    error: errorEmployees,
+    users: employeeUsers,
+  } = employeeList;
+
+  //clients count
+  const clientList = useSelector((state) => state.clientList);
+  const {
+    loading: loadingClients,
+    error: errorClients,
+    users: clientUsers,
+  } = clientList;
+
+  //orders Count
+  const orderList = useSelector((state) => state.orderList);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderList;
+
+  //not paid orders
+  const notPaidOrderList = useSelector((state) => state.notPaidOrderList);
+  const {
+    loading: loadingNotPaid,
+    error: errorNotPaid,
+    orders: notPaidOrders,
+  } = notPaidOrderList;
+
   //not delivered orders
   const notDeliveredOrderList = useSelector(
     (state) => state.notDeliveredOrderList
@@ -50,6 +87,10 @@ const AdminDashboard = (history) => {
       dispatch(listAllProducts());
       dispatch(listUsers());
       dispatch(listAdmins());
+      dispatch(listEmployees());
+      dispatch(listClients());
+      dispatch(listOrders());
+      dispatch(listNotPaidOrders());
     } else {
       history.push("/signin");
     }
@@ -88,6 +129,8 @@ const AdminDashboard = (history) => {
           </Card>
         </Col>
       </Row>
+
+      {/* USERS */}
 
       <h2 className="topic mt-4">Users</h2>
       <Row className="mt-2">
@@ -132,6 +175,131 @@ const AdminDashboard = (history) => {
                     )
                   ) : (
                     <p>No Admins</p>
+                  )}
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={3}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              No. of Employees
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">Employees</Col>
+                <Col className="colCount">
+                  {employeeUsers && employeeUsers.length ? (
+                    loadingEmployees ? (
+                      <Loader />
+                    ) : (
+                      <p>{employeeUsers.length}</p>
+                    )
+                  ) : (
+                    <p>No Employees</p>
+                  )}
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={3}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Number of Clients
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">Clients</Col>
+                <Col className="colCount">
+                  {clientUsers && clientUsers.length ? (
+                    loadingClients ? (
+                      <Loader />
+                    ) : (
+                      <p>{clientUsers.length}</p>
+                    )
+                  ) : (
+                    <p>No Clients</p>
+                  )}
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* ORDERS */}
+
+      <h2 className="topic mt-4">Orders</h2>
+      <Row className="mt-2">
+        <Col md={3}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Number of orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">Orders</Col>
+                <Col className="colCount">
+                  {orders && orders.length ? (
+                    loadingOrders ? (
+                      <Loader />
+                    ) : (
+                      <p>{orders.length}</p>
+                    )
+                  ) : (
+                    <p>No orders</p>
+                  )}
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={3}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Not paid orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">Not paid</Col>
+                <Col className="colCount">
+                  {notPaidOrders && notPaidOrders.length ? (
+                    loadingNotPaid ? (
+                      <Loader />
+                    ) : (
+                      <p>{notPaidOrders.length}</p>
+                    )
+                  ) : (
+                    <p>No orders</p>
+                  )}
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={6}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Not delivered orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">Not delivered</Col>
+                <Col className="colCount">
+                  {notDelOrders && notDelOrders.length ? (
+                    notDelOrdersLoading ? (
+                      <Loader />
+                    ) : (
+                      <p>{notDelOrders.length}</p>
+                    )
+                  ) : (
+                    <p>No orders</p>
                   )}
                 </Col>
               </Row>
