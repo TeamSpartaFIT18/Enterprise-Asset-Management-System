@@ -12,7 +12,7 @@ import {
   EMPLOYEE_ADD_EX_REQUEST,
   EMPLOYEE_ADD_EX_SUCCESS,
   EMPLOYEE_ADD_EX_FAIL,
-} from "../types/profileTypes";
+} from '../types/profileTypes';
 
 //employee profile details
 export const employeeProfileReducer = (state = { profile: {} }, action) => {

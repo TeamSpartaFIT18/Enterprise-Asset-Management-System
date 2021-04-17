@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   EMPLOYEE_ADD_EX_FAIL,
   EMPLOYEE_ADD_EX_REQUEST,
@@ -12,7 +12,7 @@ import {
   EMPLOYEE_PROFILE_FAIL,
   EMPLOYEE_PROFILE_REQUEST,
   EMPLOYEE_PROFILE_SUCCESS,
-} from "../types/profileTypes";
+} from '../types/profileTypes';
 
 //get employee profile
 export const getCurrentProfile = () => async (dispatch, getState) => {
@@ -27,12 +27,12 @@ export const getCurrentProfile = () => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.get("/api/emp-profiles/me", config);
+    const { data } = await axios.get('/api/emp-profiles/me', config);
 
     dispatch({
       type: EMPLOYEE_PROFILE_SUCCESS,
@@ -68,13 +68,13 @@ export const employeeCreateProfile = (
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
     const { data } = await axios.post(
-      "/api/emp-profiles",
+      '/api/emp-profiles',
       { status, contact, address, bio, experience },
       config
     );
@@ -110,13 +110,13 @@ export const employeeEditProfile = (status, contact, address, bio) => async (
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
     const { data } = await axios.post(
-      "/api/emp-profiles",
+      '/api/emp-profiles',
       { status, contact, address, bio },
       config
     );
@@ -156,13 +156,13 @@ export const empExperienceAdd = (
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
     const { data } = await axios.post(
-      "/api/emp-profiles/experience",
+      '/api/emp-profiles/experience',
       { title, company, jobLocation, fromDate, toDate, description },
       config
     );

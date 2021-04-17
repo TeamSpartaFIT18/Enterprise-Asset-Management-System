@@ -26,7 +26,7 @@ import {
   ALL_PRODUCT_LIST_REQUEST,
   ALL_PRODUCT_LIST_SUCCESS,
   ALL_PRODUCT_LIST_FAIL,
-} from "../types/productTypes";
+} from '../types/productTypes';
 
 //product list
 export const productListReducer = (state = { products: [] }, action) => {

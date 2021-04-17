@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import { listAdmins, deleteUser } from "../../actions/userActions";
-import "../Screens.css";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import { listAdmins, deleteUser } from '../../actions/userActions';
+import '../Screens.css';
 const AdminListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -23,12 +23,12 @@ const AdminListScreen = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listAdmins());
     } else {
-      history.push("/signin");
+      history.push('/signin');
     }
   }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm('Are you sure?')) {
       dispatch(deleteUser(id));
     }
   };
@@ -67,9 +67,9 @@ const AdminListScreen = ({ history }) => {
                 </td>
                 <td className="isWho">
                   {user.isAdmin ? (
-                    <i className="fa fa-check" style={{ color: "green" }}></i>
+                    <i className="fa fa-check" style={{ color: 'green' }}></i>
                   ) : (
-                    <i className="fa fa-times" style={{ color: "red" }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td className="editOrDelete">

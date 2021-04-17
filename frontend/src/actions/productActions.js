@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -24,10 +24,10 @@ import {
   ALL_PRODUCT_LIST_REQUEST,
   ALL_PRODUCT_LIST_SUCCESS,
   ALL_PRODUCT_LIST_FAIL,
-} from "../types/productTypes";
+} from '../types/productTypes';
 
 //GET products list
-export const listProducts = (keyword = "", pageNumber = "") => async (
+export const listProducts = (keyword = '', pageNumber = '') => async (
   dispatch
 ) => {
   try {
@@ -184,7 +184,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -226,7 +226,7 @@ export const createProductReview = (productId, review) => async (
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -248,7 +248,7 @@ export const createProductReview = (productId, review) => async (
 };
 
 //GET top products list
-export const listTopProducts = (keyword = "", pageNumber = "") => async (
+export const listTopProducts = (keyword = '', pageNumber = '') => async (
   dispatch
 ) => {
   try {

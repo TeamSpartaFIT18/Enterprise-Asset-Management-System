@@ -1,11 +1,11 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { logout } from "../actions/userActions";
-import SearchBox from "./SearchBox";
-import "./NavBar.css";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { logout } from '../actions/userActions';
+import SearchBox from './SearchBox';
+import './NavBar.css';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const NavBar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    window.location = "/signin";
+    window.location = '/signin';
   };
 
   return (
@@ -76,7 +76,7 @@ const NavBar = () => {
                   title={userInfo.name}
                   id="username"
                 >
-                  {" "}
+                  {' '}
                   {userInfo.isAdmin || userInfo.isEmployee ? (
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout

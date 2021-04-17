@@ -1,15 +1,15 @@
-import React from "react";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
-import EmployeeSideNav from "../components/EmployeeSideNav/EmployeeSideNav";
-import EmployeeDashboard from "../screens/EmployeeDashboard/EmployeeDashboard";
-import EmployeeProfileScreen from "../screens/EmployeeProfileScreen/EmployeeProfileScreen";
-import EmployeeCreateProfileScreen from "../screens/ProfileForms/EmployeeCreateProfileScreen";
-import EmployeeEditProfileScreen from "../screens/ProfileForms/EmployeeEditProfileScreen";
-import EmployeeAddExScreen from "../screens/EmployeeAddExScreen/EmployeeAddExScreen";
-import EmployeeRoute from "../components/Routing/EmployeeRoute";
+import EmployeeSideNav from '../components/EmployeeSideNav/EmployeeSideNav';
+import EmployeeDashboard from '../screens/EmployeeDashboard/EmployeeDashboard';
+import EmployeeProfileScreen from '../screens/EmployeeProfileScreen/EmployeeProfileScreen';
+import EmployeeCreateProfileScreen from '../screens/ProfileForms/EmployeeCreateProfileScreen';
+import EmployeeEditProfileScreen from '../screens/ProfileForms/EmployeeEditProfileScreen';
+import EmployeeAddExScreen from '../screens/EmployeeAddExScreen/EmployeeAddExScreen';
+import EmployeeRoute from '../components/Routing/EmployeeRoute';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();

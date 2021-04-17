@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { PayPalButton } from "react-paypal-button-v2";
-import { Link } from "react-router-dom";
-import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import Meta from "../../components/Meta";
-import "../Screens.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { PayPalButton } from 'react-paypal-button-v2';
+import { Link } from 'react-router-dom';
+import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import Meta from '../../components/Meta';
+import '../Screens.css';
 import {
   getOrderDetails,
   payOrder,
   deliverOrder,
-} from "../../actions/orderActions";
-import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../../types/orderTypes";
+} from '../../actions/orderActions';
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../types/orderTypes';
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -46,13 +46,13 @@ const OrderScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/signin");
+      history.push('/signin');
     }
 
     const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get("/api/config/paypal");
-      const script = document.createElement("script");
-      script.type = "text/javascript";
+      const { data: clientId } = await axios.get('/api/config/paypal');
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
       script.async = true;
       script.onload = () => {
@@ -102,13 +102,13 @@ const OrderScreen = ({ match, history }) => {
                 <strong>Name: </strong> {order.user.name}
               </p>
               <p>
-                <strong>Email: </strong>{" "}
+                <strong>Email: </strong>{' '}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
                 <strong>Address:</strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
-                {order.shippingAddress.postalCode},{" "}
+                {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
+                {order.shippingAddress.postalCode},{' '}
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (

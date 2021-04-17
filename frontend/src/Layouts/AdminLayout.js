@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useHistory,
   useRouteMatch,
-} from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Row, Col } from "react-bootstrap";
-import AdminRoute from "../components/Routing/AdminRoute";
-import AdminSideNav from "../components/AdminSideNav/AdminSideNav";
-import ProductListScreen from "../screens/ProductListScreen/ProductListScreen";
-import AdminDashboard from "../screens/AdminDashboard/AdminDashboard";
-import OrderListScreen from "../screens/OrderListScreen/OrderListScreen";
-import UserEditScreen from "../screens/UserEditScreen/UserEditScreen";
-import ProductEditScreen from "../screens/ProductEditScreen/ProductEditScreen";
-import UserListScreen from "../screens/UserListScreen/UserListScreen";
-import AdminListScreen from "../screens/AdminListScreen/AdminListScreen";
-import EmployeeListScreen from "../screens/EmployeeListScreen/EmployeeListScreen";
-import ClientListScreen from "../screens/ClientListScreen/ClientListScreen";
-import NotPaidOrderListScreen from "../screens/NotPaidOrderListScreen/NotPaidOrderListScreen";
-import OrderScreen from "../screens/OrderScreen/OrderScreen";
-import NotDeliveredOrderScreen from "../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen";
-import AdminMailboxToClients from "../screens/AdminMailboxToClients/AdminMailboxToClients";
+} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
+import AdminRoute from '../components/Routing/AdminRoute';
+import AdminSideNav from '../components/AdminSideNav/AdminSideNav';
+import ProductListScreen from '../screens/ProductListScreen/ProductListScreen';
+import AdminDashboard from '../screens/AdminDashboard/AdminDashboard';
+import OrderListScreen from '../screens/OrderListScreen/OrderListScreen';
+import UserEditScreen from '../screens/UserEditScreen/UserEditScreen';
+import ProductEditScreen from '../screens/ProductEditScreen/ProductEditScreen';
+import UserListScreen from '../screens/UserListScreen/UserListScreen';
+import AdminListScreen from '../screens/AdminListScreen/AdminListScreen';
+import EmployeeListScreen from '../screens/EmployeeListScreen/EmployeeListScreen';
+import ClientListScreen from '../screens/ClientListScreen/ClientListScreen';
+import NotPaidOrderListScreen from '../screens/NotPaidOrderListScreen/NotPaidOrderListScreen';
+import OrderScreen from '../screens/OrderScreen/OrderScreen';
+import NotDeliveredOrderScreen from '../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen';
+import AdminMailboxToClients from '../screens/AdminMailboxToClients/AdminMailboxToClients';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -49,7 +49,7 @@ const AdminLayout = () => {
               component={ProductListScreen}
             />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
           {userInfo && userInfo.isAdmin ? (
             <Route
@@ -58,7 +58,7 @@ const AdminLayout = () => {
               exact
             />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
           <AdminRoute path={`${url}/orderslist`} component={OrderListScreen} />
           <AdminRoute
@@ -75,7 +75,7 @@ const AdminLayout = () => {
               component={ProductEditScreen}
             />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
           <AdminRoute
             path={`${url}/product/addproduct`}
@@ -91,17 +91,17 @@ const AdminLayout = () => {
           {userInfo && userInfo.isAdmin ? (
             <Route path={`${url}/mail/:id`} component={AdminMailboxToClients} />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
           {userInfo && userInfo.isAdmin ? (
             <Route path={`${url}/user/:id/edit`} component={UserEditScreen} />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
           {userInfo && userInfo.isAdmin ? (
             <Route path="/order/:id" component={OrderScreen} />
           ) : (
-            (window.location = "/signin")
+            (window.location = '/signin')
           )}
         </Switch>
       </Col>

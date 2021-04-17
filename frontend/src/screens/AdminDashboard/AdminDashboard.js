@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { Card, Col, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
+import React, { useEffect } from 'react';
+import { Card, Col, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   listNotDeliveredOrders,
   listNotPaidOrders,
   listOrders,
-} from "../../actions/orderActions";
-import { listAllProducts } from "../../actions/productActions";
+} from '../../actions/orderActions';
+import { listAllProducts } from '../../actions/productActions';
 import {
   listUsers,
   listAdmins,
   listEmployees,
   listClients,
-} from "../../actions/userActions";
-import Loader from "../../components/Loader";
-import "../Screens.css";
-import "./AdminDashboard.css";
+} from '../../actions/userActions';
+import Loader from '../../components/Loader';
+import '../Screens.css';
+import './AdminDashboard.css';
 
 const AdminDashboard = (history) => {
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ const AdminDashboard = (history) => {
       dispatch(listOrders());
       dispatch(listNotPaidOrders());
     } else {
-      history.push("/signin");
+      history.push('/signin');
     }
   }, [dispatch, userInfo]);
 

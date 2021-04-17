@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Table } from "react-bootstrap";
-import Loader from "../../components/Loader";
-import { getCurrentProfile } from "../../actions/profileActions";
-import "../Screens.css";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Table } from 'react-bootstrap';
+import Loader from '../../components/Loader';
+import { getCurrentProfile } from '../../actions/profileActions';
+import '../Screens.css';
 
 const EmployeeProfileScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const EmployeeProfileScreen = ({ history }) => {
     if (userInfo) {
       dispatch(getCurrentProfile());
     } else {
-      history.push("/signin");
+      history.push('/signin');
     }
   }, [dispatch, history, userInfo]);
 

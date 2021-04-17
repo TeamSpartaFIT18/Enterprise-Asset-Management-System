@@ -1,17 +1,17 @@
-import asyncHandler from "express-async-handler";
+import asyncHandler from 'express-async-handler';
 
-import EmpProfile from "../models/empProfileModel.js";
+import EmpProfile from '../models/empProfileModel.js';
 
 // Get current emp profile , private
 // GET -> /api/emp-profiles/me
 const getMyProfile = asyncHandler(async (req, res) => {
   const profile = await EmpProfile.findOne({
     user: req.user._id,
-  }).populate("User", ["name", "email"]);
+  }).populate('User', ['name', 'email']);
 
   if (!profile) {
     res.status(400);
-    throw new Error("There is no profile for this employee");
+    throw new Error('There is no profile for this employee');
   }
 
   res.json(profile);
@@ -27,9 +27,9 @@ const createEmpProfile = asyncHandler(async (req, res) => {
   if (req.body.address) profileFields.address = req.body.address;
   if (req.body.bio) profileFields.bio = req.body.bio;
   //Skills - Spilt into array
-  if (typeof req.body.skills !== "undefined") {
+  if (typeof req.body.skills !== 'undefined') {
     profileFields.skills = req.body.skills
-      .split(",")
+      .split(',')
       .map((skill) => skill.trim());
   }
 
@@ -70,7 +70,7 @@ const getEmpProfile = asyncHandler(async (req, res) => {
 
   if (!profile) {
     res.status(400);
-    throw new Error("Profile not found");
+    throw new Error('Profile not found');
   }
 
   res.json(profile);

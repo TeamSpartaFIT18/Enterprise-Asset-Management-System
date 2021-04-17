@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import Paginate from "../../components/Paginate";
+import React, { useEffect } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import Paginate from '../../components/Paginate';
 import {
   listProducts,
   deleteProduct,
   createProduct,
-} from "../../actions/productActions";
-import { PRODUCT_CREATE_RESET } from "../../types/productTypes";
-import "../Screens.css";
-import { Link } from "react-router-dom";
+} from '../../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../../types/productTypes';
+import '../Screens.css';
+import { Link } from 'react-router-dom';
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
 
@@ -43,13 +43,13 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
     if (!userInfo || !userInfo.isAdmin) {
-      history.push("/signin");
+      history.push('/signin');
     }
 
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts("", pageNumber));
+      dispatch(listProducts('', pageNumber));
     }
   }, [
     dispatch,
@@ -62,7 +62,7 @@ const ProductListScreen = ({ history, match }) => {
   ]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure")) {
+    if (window.confirm('Are you sure')) {
       dispatch(deleteProduct(id));
     }
   };

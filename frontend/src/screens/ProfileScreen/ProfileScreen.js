@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Table, Form, Button, Row, Col } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import * as MdIcons from "react-icons/md";
-import { getUserDetails, updateUserProfile } from "../../actions/userActions";
-import { listMyOrders } from "../../actions/orderActions";
-import { USER_UPDATE_PROFILE_RESET } from "../../types/userTypes";
-import "../Screens.css";
+import React, { useState, useEffect } from 'react';
+import { Table, Form, Button, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import * as MdIcons from 'react-icons/md';
+import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import { listMyOrders } from '../../actions/orderActions';
+import { USER_UPDATE_PROFILE_RESET } from '../../types/userTypes';
+import '../Screens.css';
 
 const ProfileScreen = ({ location, history }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/signin");
+      history.push('/signin');
     } else {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserDetails('profile'));
         dispatch(listMyOrders());
       } else {
         setName(user.name);
@@ -49,7 +49,7 @@ const ProfileScreen = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage('Passwords do not match');
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
@@ -142,14 +142,14 @@ const ProfileScreen = ({ location, history }) => {
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
