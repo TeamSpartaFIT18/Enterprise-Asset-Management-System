@@ -4,8 +4,11 @@ import {
   Switch,
   Route,
   useHistory,
+  useRouteMatch,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
+import AdminRoute from "../components/Routing/AdminRoute";
 import AdminSideNav from "../components/AdminSideNav/AdminSideNav";
 import ProductListScreen from "../screens/ProductListScreen/ProductListScreen";
 import AdminDashboard from "../screens/AdminDashboard/AdminDashboard";
@@ -22,51 +25,87 @@ import NotDeliveredOrderScreen from "../screens/NotDeliveredOrderScreen/NotDeliv
 import AdminMailboxToClients from "../screens/AdminMailboxToClients/AdminMailboxToClients";
 
 const AdminLayout = () => {
-  const history = useHistory();
+  const { url, path } = useRouteMatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   return (
-    <Router history={history}>
-      <Row>
-        <Col md={2}>
-          <AdminSideNav />
-        </Col>
-        <Col md={10}>
-          <Switch>
-            <Route exact path="/admin/dashboard" component={AdminDashboard} />
+    <Row>
+      <Col md={2}>
+        <AdminSideNav />
+      </Col>
+      <Col md={10}>
+        <Switch>
+          <AdminRoute
+            exact
+            path={`${url}/dashboard`}
+            component={AdminDashboard}
+          />
+          {userInfo && userInfo.isAdmin ? (
             <Route
               exact
-              path="/admin/productslist"
+              path={`${url}/productslist`}
               component={ProductListScreen}
             />
+          ) : (
+            (window.location = "/signin")
+          )}
+          {userInfo && userInfo.isAdmin ? (
             <Route
-              path="/admin/productslist/:pageNumber"
+              path={`${url}/productslist/:pageNumver`}
               component={ProductListScreen}
               exact
             />
-            <Route path="/admin/orderslist" component={OrderListScreen} />
+          ) : (
+            (window.location = "/signin")
+          )}
+          <AdminRoute path={`${url}/orderslist`} component={OrderListScreen} />
+          <AdminRoute
+            path={`${url}/orders/notpaidorders`}
+            component={NotPaidOrderListScreen}
+          />
+          <AdminRoute
+            path={`${url}/orders/notDeliveredorders`}
+            component={NotDeliveredOrderScreen}
+          />
+          {userInfo && userInfo.isAdmin ? (
             <Route
-              path="/admin/orders/notpaidorders"
-              component={NotPaidOrderListScreen}
-            />
-            <Route
-              path="/admin/orders/notDeliveredorders"
-              component={NotDeliveredOrderScreen}
-            />
-            <Route
-              path="/admin/product/:id/edit"
+              path={`${url}/product/:id/edit`}
               component={ProductEditScreen}
             />
-            <Route path="/admin/product/" component={ProductEditScreen} />
-            <Route path="/admin/userslist" component={UserListScreen} />
-            <Route path="/admin/adminslist" component={AdminListScreen} />
-            <Route path="/admin/employeelist" component={EmployeeListScreen} />
-            <Route path="/admin/clientlist" component={ClientListScreen} />
-            <Route path="/admin/mail/:id" component={AdminMailboxToClients} />
-            <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+          ) : (
+            (window.location = "/signin")
+          )}
+          <AdminRoute
+            path={`${url}/product/addproduct`}
+            component={ProductEditScreen}
+          />
+          <AdminRoute path={`${url}/userslist`} component={UserListScreen} />
+          <AdminRoute path={`${url}/adminslist`} component={AdminListScreen} />
+          <AdminRoute
+            path={`${url}/employeelist`}
+            component={EmployeeListScreen}
+          />
+          <AdminRoute path={`${url}/clientlist`} component={ClientListScreen} />
+          {userInfo && userInfo.isAdmin ? (
+            <Route path={`${url}/mail/:id`} component={AdminMailboxToClients} />
+          ) : (
+            (window.location = "/signin")
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route path={`${url}/user/:id/edit`} component={UserEditScreen} />
+          ) : (
+            (window.location = "/signin")
+          )}
+          {userInfo && userInfo.isAdmin ? (
             <Route path="/order/:id" component={OrderScreen} />
-          </Switch>
-        </Col>
-      </Row>
-    </Router>
+          ) : (
+            (window.location = "/signin")
+          )}
+        </Switch>
+      </Col>
+    </Row>
   );
 };
 

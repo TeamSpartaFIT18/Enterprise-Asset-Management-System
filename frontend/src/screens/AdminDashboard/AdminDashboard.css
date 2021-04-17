@@ -1,8 +1,17 @@
+.adminDashboardHeader {
+  margin-bottom: 0px !important;
+}
 .colCount {
   font-size: 40px;
   font-weight: bold;
   margin-top: 0;
   margin-left: 30px;
+  transition: transform 0.2s;
+}
+.colCount :hover {
+  color: white;
+  cursor: pointer !important;
+  transform: scale(1.1);
 }
 .colDesc {
   font-size: 15px;
@@ -22,4 +31,36 @@
 }
 .topic {
   font-weight: bold;
+}
+
+.notDelOrdCard {
+  background-color: #ff554f;
+  color: black;
+}
+.notDelOrdCard :hover {
+  cursor: default;
+}
+.notPaidOrdCard {
+  background-color: #ffbf00;
+  color: black;
+}
+.ordCard {
+  background-color: #8e8c84;
+  color: black;
+}
+.clientsCard {
+  background-color: #20c997;
+  color: black;
+}
+.employeesCard {
+  background-color: #29abe0;
+  color: black;
+}
+.adminCard {
+  background-color: #ffa677;
+  color: black;
+}
+.usersCard {
+  background-color: #8a4dfa;
+  color: black;
 }

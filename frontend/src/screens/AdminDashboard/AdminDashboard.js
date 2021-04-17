@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import {
   listNotDeliveredOrders,
   listNotPaidOrders,
@@ -98,10 +99,14 @@ const AdminDashboard = (history) => {
 
   return (
     <div className="adminDashboard">
-      <h1>Admin Dashboard</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Welcome {userInfo.name}
-      </p>
+      <Row>
+        <h1 className="adminDashboardHeader">Admin Dashboard</h1>
+
+        <p className="lead ml-auto mt-4">
+          <i className="fas fa-user" /> Welcome {userInfo.name}
+        </p>
+      </Row>
+
       <hr className="topLine"></hr>
       <h2 className="topic">Inventory</h2>
       <Row>
@@ -113,17 +118,19 @@ const AdminDashboard = (history) => {
             <Card.Text>
               <Row>
                 <Col className="colDesc">No. of Items</Col>
-                <Col className="colCount">
-                  {products && products.length ? (
-                    loading ? (
-                      <Loader />
+                <LinkContainer to="/admin/productslist">
+                  <Col className="colCount">
+                    {products && products.length ? (
+                      loading ? (
+                        <Loader />
+                      ) : (
+                        <p>{products.length}</p>
+                      )
                     ) : (
-                      <p>{products.length}</p>
-                    )
-                  ) : (
-                    <p>No products</p>
-                  )}
-                </Col>
+                      <p>No products</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
@@ -135,96 +142,104 @@ const AdminDashboard = (history) => {
       <h2 className="topic mt-4">Users</h2>
       <Row className="mt-2">
         <Col md={3}>
-          <Card bg="success">
+          <Card className="usersCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Number of Users
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Users</Col>
-                <Col className="colCount">
-                  {ListUsers && ListUsers.length ? (
-                    loadingUsers ? (
-                      <Loader />
+                <LinkContainer to="/admin/userslist">
+                  <Col className="colCount">
+                    {ListUsers && ListUsers.length ? (
+                      loadingUsers ? (
+                        <Loader />
+                      ) : (
+                        <p>{ListUsers.length}</p>
+                      )
                     ) : (
-                      <p>{ListUsers.length}</p>
-                    )
-                  ) : (
-                    <p>No users</p>
-                  )}
-                </Col>
+                      <p>No users</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
         </Col>
 
         <Col md={3}>
-          <Card bg="success">
+          <Card className="adminCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Number of Admins
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Admins</Col>
-                <Col className="colCount">
-                  {adminUsers && adminUsers.length ? (
-                    loadingAdmins ? (
-                      <Loader />
+                <LinkContainer to="/admin/adminslist">
+                  <Col className="colCount">
+                    {adminUsers && adminUsers.length ? (
+                      loadingAdmins ? (
+                        <Loader />
+                      ) : (
+                        <p>{adminUsers.length}</p>
+                      )
                     ) : (
-                      <p>{adminUsers.length}</p>
-                    )
-                  ) : (
-                    <p>No Admins</p>
-                  )}
-                </Col>
+                      <p>No Admins</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
         </Col>
 
         <Col md={3}>
-          <Card bg="success">
+          <Card className="employeesCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               No. of Employees
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Employees</Col>
-                <Col className="colCount">
-                  {employeeUsers && employeeUsers.length ? (
-                    loadingEmployees ? (
-                      <Loader />
+                <LinkContainer to="/admin/employeelist">
+                  <Col className="colCount">
+                    {employeeUsers && employeeUsers.length ? (
+                      loadingEmployees ? (
+                        <Loader />
+                      ) : (
+                        <p>{employeeUsers.length}</p>
+                      )
                     ) : (
-                      <p>{employeeUsers.length}</p>
-                    )
-                  ) : (
-                    <p>No Employees</p>
-                  )}
-                </Col>
+                      <p>No Employees</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
         </Col>
 
         <Col md={3}>
-          <Card bg="success">
+          <Card className="clientsCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Number of Clients
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Clients</Col>
-                <Col className="colCount">
-                  {clientUsers && clientUsers.length ? (
-                    loadingClients ? (
-                      <Loader />
+                <LinkContainer to="/admin/clientlist">
+                  <Col className="colCount">
+                    {clientUsers && clientUsers.length ? (
+                      loadingClients ? (
+                        <Loader />
+                      ) : (
+                        <p>{clientUsers.length}</p>
+                      )
                     ) : (
-                      <p>{clientUsers.length}</p>
-                    )
-                  ) : (
-                    <p>No Clients</p>
-                  )}
-                </Col>
+                      <p>No Clients</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
@@ -236,72 +251,78 @@ const AdminDashboard = (history) => {
       <h2 className="topic mt-4">Orders</h2>
       <Row className="mt-2">
         <Col md={3}>
-          <Card bg="success">
+          <Card className="ordCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Number of orders
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Orders</Col>
-                <Col className="colCount">
-                  {orders && orders.length ? (
-                    loadingOrders ? (
-                      <Loader />
+                <LinkContainer to="/admin/orderslist">
+                  <Col className="colCount">
+                    {orders && orders.length ? (
+                      loadingOrders ? (
+                        <Loader />
+                      ) : (
+                        <p>{orders.length}</p>
+                      )
                     ) : (
-                      <p>{orders.length}</p>
-                    )
-                  ) : (
-                    <p>No orders</p>
-                  )}
-                </Col>
+                      <p>No orders</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
         </Col>
 
         <Col md={3}>
-          <Card bg="success">
+          <Card className="notPaidOrdCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Not paid orders
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Not paid</Col>
-                <Col className="colCount">
-                  {notPaidOrders && notPaidOrders.length ? (
-                    loadingNotPaid ? (
-                      <Loader />
+                <LinkContainer to="/admin/orders/notpaidorders">
+                  <Col className="colCount">
+                    {notPaidOrders && notPaidOrders.length ? (
+                      loadingNotPaid ? (
+                        <Loader />
+                      ) : (
+                        <p>{notPaidOrders.length}</p>
+                      )
                     ) : (
-                      <p>{notPaidOrders.length}</p>
-                    )
-                  ) : (
-                    <p>No orders</p>
-                  )}
-                </Col>
+                      <p>No orders</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
         </Col>
 
         <Col md={6}>
-          <Card bg="success">
+          <Card className="notDelOrdCard">
             <Card.Title className="cardTitle ml-2 mt-2">
               Not delivered orders
             </Card.Title>
             <Card.Text>
               <Row>
                 <Col className="colDesc">Not delivered</Col>
-                <Col className="colCount">
-                  {notDelOrders && notDelOrders.length ? (
-                    notDelOrdersLoading ? (
-                      <Loader />
+                <LinkContainer to="/admin/orders/notDeliveredorders">
+                  <Col className="colCount">
+                    {notDelOrders && notDelOrders.length ? (
+                      notDelOrdersLoading ? (
+                        <Loader />
+                      ) : (
+                        <p>{notDelOrders.length}</p>
+                      )
                     ) : (
-                      <p>{notDelOrders.length}</p>
-                    )
-                  ) : (
-                    <p>No orders</p>
-                  )}
-                </Col>
+                      <p>No orders</p>
+                    )}
+                  </Col>
+                </LinkContainer>
               </Row>
             </Card.Text>
           </Card>
