@@ -53,7 +53,7 @@ const AdminLayout = () => {
           )}
           {userInfo && userInfo.isAdmin ? (
             <Route
-              path={`${url}/productslist/:pageNumver`}
+              path={`${url}/productslist/:pageNumber`}
               component={ProductListScreen}
               exact
             />
@@ -77,10 +77,6 @@ const AdminLayout = () => {
           ) : (
             (window.location = '/signin')
           )}
-          <AdminRoute
-            path={`${url}/product/addproduct`}
-            component={ProductEditScreen}
-          />
           <AdminRoute path={`${url}/userslist`} component={UserListScreen} />
           <AdminRoute path={`${url}/adminslist`} component={AdminListScreen} />
           <AdminRoute
