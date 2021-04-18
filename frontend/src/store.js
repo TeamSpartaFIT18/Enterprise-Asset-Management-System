@@ -27,6 +27,8 @@ import {
   rpSubmitReducer,
   clientListReducer,
   sendMailToClientReducer,
+  addAdminByAdminReducer,
+  addEmployeeByAdminReducer,
 } from './reducers/userReducers';
 import {
   orderCreateReducer,
@@ -69,6 +71,9 @@ const reducer = combineReducers({
   employeeList: employeeListReducer,
   clientList: clientListReducer,
   sendMailToClient: sendMailToClientReducer,
+  addAdminByAdmin: addAdminByAdminReducer,
+  addEmployeeByAdmin: addEmployeeByAdminReducer,
+
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,

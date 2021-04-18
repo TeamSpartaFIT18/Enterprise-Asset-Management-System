@@ -262,6 +262,98 @@ const resetForgotPassword = asyncHandler(async (req, res) => {
   }
 });
 
+// Add a admin, Admin only
+// POST -> /api/users/add/admin
+const addAdmin = asyncHandler(async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already Exists');
+  }
+
+  const user = await User.create({
+    name,
+    email,
+    password,
+    isAdmin: true,
+    isClient: false,
+    isEmployee: false,
+  });
+
+  if (user) {
+    transporter.sendMail({
+      to: user.email,
+      from: 'teamsparta.eams@gmail.com',
+      subject: 'Successfully added as Admin',
+      html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
+      <h3>You are successfully added as admin to the EAMS!</h3>
+      <h3>Your default password is "eamsuser"</h3>
+      <h3>Please login to your account using your email and default password and change it in your way</h3>
+      `,
+    });
+
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: true,
+      isEmployee: false,
+      isClient: false,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
+});
+
+// Add a employee, Admin only
+// POST -> /api/users/add/employee
+const addEmployee = asyncHandler(async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already Exists');
+  }
+
+  const user = await User.create({
+    name,
+    email,
+    password,
+    isAdmin: false,
+    isClient: false,
+    isEmployee: true,
+  });
+
+  if (user) {
+    transporter.sendMail({
+      to: user.email,
+      from: 'teamsparta.eams@gmail.com',
+      subject: 'Successfully added as Employee',
+      html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
+      <h3>You are successfully added as Employee to the EAMS!</h3>
+      `,
+    });
+
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: false,
+      isEmployee: true,
+      isClient: false,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
+});
+
 export {
   authUser,
   registerUser,
@@ -276,4 +368,6 @@ export {
   updateUser,
   resetForgotPassword,
   forgotPassword,
+  addAdmin,
+  addEmployee,
 };

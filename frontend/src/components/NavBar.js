@@ -77,10 +77,24 @@ const NavBar = () => {
                   id="username"
                 >
                   {' '}
-                  {userInfo.isAdmin || userInfo.isEmployee ? (
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
+                  {userInfo.isAdmin ? (
+                    <>
+                      <LinkContainer to="/admin/updateprofile">
+                        <NavDropdown.Item>Update profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
+                    </>
+                  ) : userInfo.isEmployee ? (
+                    <>
+                      <LinkContainer to="/employee/updateprofile">
+                        <NavDropdown.Item>Update profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
+                    </>
                   ) : (
                     <>
                       <LinkContainer to="/profile">

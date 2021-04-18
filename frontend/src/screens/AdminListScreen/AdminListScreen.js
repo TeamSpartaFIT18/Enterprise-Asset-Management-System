@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -35,12 +35,21 @@ const AdminListScreen = ({ history }) => {
 
   return (
     <div className="userListScreen">
-      <Link to="/admin/userslist" className="btn btn-light my-3">
-        <button className="btnback">Back to users list</button>
-      </Link>
-      <Link to="/admin/userslist" className="mr-auto btn btn-light my-3">
-        <button className="btnback">Back to users list</button>
-      </Link>
+      <Row>
+        <Col>
+          <Link to="/admin/userslist" className="btn btn-light my-3">
+            <button className="btnback">Back to users list</button>
+          </Link>
+        </Col>
+        <Col className="text-right">
+          <Link to="/admin/addadmin" className="btn btn-light">
+            <Button className="my-3">
+              <i className="fas fa-plus"></i> Add a admin
+            </Button>
+          </Link>
+        </Col>
+      </Row>
+
       <h1>Admin users</h1>
       {loading ? (
         <Loader />

@@ -10,6 +10,7 @@ import EmployeeCreateProfileScreen from '../screens/ProfileForms/EmployeeCreateP
 import EmployeeEditProfileScreen from '../screens/ProfileForms/EmployeeEditProfileScreen';
 import EmployeeAddExScreen from '../screens/EmployeeAddExScreen/EmployeeAddExScreen';
 import EmployeeRoute from '../components/Routing/EmployeeRoute';
+import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -33,6 +34,11 @@ const AdminLayout = () => {
             exact
             path={`${url}/profile`}
             component={EmployeeProfileScreen}
+          />
+          <EmployeeRoute
+            exact
+            path={`${url}/updateprofile`}
+            component={UpdateCredentialsScreen}
           />
           <EmployeeRoute
             exact

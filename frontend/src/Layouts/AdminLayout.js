@@ -23,6 +23,9 @@ import NotPaidOrderListScreen from '../screens/NotPaidOrderListScreen/NotPaidOrd
 import OrderScreen from '../screens/OrderScreen/OrderScreen';
 import NotDeliveredOrderScreen from '../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen';
 import AdminMailboxToClients from '../screens/AdminMailboxToClients/AdminMailboxToClients';
+import AddAdminScreen from '../screens/AddAdminScreen/AddAdminScreen';
+import AddEmployeeScreen from '../screens/AddEmployeeScreen/AddEmployeeScreen';
+import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -41,6 +44,11 @@ const AdminLayout = () => {
             exact
             path={`${url}/dashboard`}
             component={AdminDashboard}
+          />
+          <AdminRoute
+            exact
+            path={`${url}/updateprofile`}
+            component={UpdateCredentialsScreen}
           />
           {userInfo && userInfo.isAdmin ? (
             <Route
@@ -79,6 +87,11 @@ const AdminLayout = () => {
           )}
           <AdminRoute path={`${url}/userslist`} component={UserListScreen} />
           <AdminRoute path={`${url}/adminslist`} component={AdminListScreen} />
+          <AdminRoute path={`${url}/addadmin`} component={AddAdminScreen} />
+          <AdminRoute
+            path={`${url}/addemployee`}
+            component={AddEmployeeScreen}
+          />
           <AdminRoute
             path={`${url}/employeelist`}
             component={EmployeeListScreen}
