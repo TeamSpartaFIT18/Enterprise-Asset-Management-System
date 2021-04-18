@@ -2,7 +2,7 @@
   min-height: 60px;
   display: flex;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.8;
   justify-content: space-between;
 }
 
@@ -17,4 +17,13 @@
 
 .navUserName #username {
   font-size: 15px;
+}
+.navUserName {
+  font-size: 15px;
+  opacity: 1;
+}
+.navdropitem {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  opacity: 1 !important;
 }

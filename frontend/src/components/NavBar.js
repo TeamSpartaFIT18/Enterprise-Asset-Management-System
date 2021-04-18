@@ -80,27 +80,42 @@ const NavBar = () => {
                   {userInfo.isAdmin ? (
                     <>
                       <LinkContainer to="/admin/updateprofile">
-                        <NavDropdown.Item>Update profile</NavDropdown.Item>
+                        <NavDropdown.Item className="navdropitem">
+                          Update profile
+                        </NavDropdown.Item>
                       </LinkContainer>
-                      <NavDropdown.Item onClick={logoutHandler}>
+                      <NavDropdown.Item
+                        className="navdropitem"
+                        onClick={logoutHandler}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </>
                   ) : userInfo.isEmployee ? (
                     <>
                       <LinkContainer to="/employee/updateprofile">
-                        <NavDropdown.Item>Update profile</NavDropdown.Item>
+                        <NavDropdown.Item className="navdropitem">
+                          Update profile
+                        </NavDropdown.Item>
                       </LinkContainer>
-                      <NavDropdown.Item onClick={logoutHandler}>
+                      <NavDropdown.Item
+                        className="navdropitem"
+                        onClick={logoutHandler}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </>
                   ) : (
                     <>
                       <LinkContainer to="/profile">
-                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                        <NavDropdown.Item className="navdropitem">
+                          Profile
+                        </NavDropdown.Item>
                       </LinkContainer>
-                      <NavDropdown.Item onClick={logoutHandler}>
+                      <NavDropdown.Item
+                        className="navdropitem"
+                        onClick={logoutHandler}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </>

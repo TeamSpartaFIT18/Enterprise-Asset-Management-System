@@ -156,3 +156,35 @@
   border: 1px solid;
   color: black;
 }
+
+.userIcon {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.btn {
+  font-size: 12px;
+}
+.cardName {
+  font-size: 22px;
+  font-weight: bold;
+}
+.vl {
+  border-right: 3px solid rgb(255, 255, 255);
+  height: auto;
+  margin-left: -3px;
+  top: 0;
+}
+.profDet {
+  margin-bottom: 0px;
+}
+.skillsDisplay {
+  display: inline;
+  margin-left: 0 !important;
+}
+
+.skillsBullet {
+  font-size: 10px;
+}
+.infoCard {
+  background-color: rgb(156, 229, 255);
+}

@@ -24,6 +24,7 @@ export const employeeProfileReducer = (state = { profile: {} }, action) => {
         loading: false,
         profile: action.payload,
         experiences: action.payload.experience,
+        skills: action.payload.skills,
       };
     case EMPLOYEE_PROFILE_FAIL:
       return { loading: false, error: action.payload };

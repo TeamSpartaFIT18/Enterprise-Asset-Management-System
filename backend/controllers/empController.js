@@ -26,6 +26,7 @@ const createEmpProfile = asyncHandler(async (req, res) => {
   if (req.body.status) profileFields.status = req.body.status;
   if (req.body.address) profileFields.address = req.body.address;
   if (req.body.bio) profileFields.bio = req.body.bio;
+  if (req.body.contact) profileFields.contact = req.body.contact;
   //Skills - Spilt into array
   if (typeof req.body.skills !== 'undefined') {
     profileFields.skills = req.body.skills
