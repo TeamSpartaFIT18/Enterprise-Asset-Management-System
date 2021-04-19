@@ -117,7 +117,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">No. of Items</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-desktop"></i>
+                </Col>
                 <LinkContainer to="/admin/productslist">
                   <Col className="colCount">
                     {products && products.length ? (
@@ -148,7 +150,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Users</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-users"></i>
+                </Col>
                 <LinkContainer to="/admin/userslist">
                   <Col className="colCount">
                     {ListUsers && ListUsers.length ? (
@@ -174,7 +178,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Admins</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-user"></i>
+                </Col>
                 <LinkContainer to="/admin/adminslist">
                   <Col className="colCount">
                     {adminUsers && adminUsers.length ? (
@@ -200,7 +206,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Employees</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-user"></i>
+                </Col>
                 <LinkContainer to="/admin/employeelist">
                   <Col className="colCount">
                     {employeeUsers && employeeUsers.length ? (
@@ -226,7 +234,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Clients</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-user"></i>
+                </Col>
                 <LinkContainer to="/admin/clientlist">
                   <Col className="colCount">
                     {clientUsers && clientUsers.length ? (
@@ -257,7 +267,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Orders</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-shopping-cart"></i>
+                </Col>
                 <LinkContainer to="/admin/orderslist">
                   <Col className="colCount">
                     {orders && orders.length ? (
@@ -283,7 +295,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Not paid</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-credit-card"></i>
+                </Col>
                 <LinkContainer to="/admin/orders/notpaidorders">
                   <Col className="colCount">
                     {notPaidOrders && notPaidOrders.length ? (
@@ -309,7 +323,9 @@ const AdminDashboard = (history) => {
             </Card.Title>
             <Card.Text>
               <Row>
-                <Col className="colDesc">Not delivered</Col>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-truck"></i>
+                </Col>
                 <LinkContainer to="/admin/orders/notDeliveredorders">
                   <Col className="colCount">
                     {notDelOrders && notDelOrders.length ? (

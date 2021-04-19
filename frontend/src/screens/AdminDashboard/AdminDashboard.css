@@ -16,8 +16,8 @@
 .colDesc {
   font-size: 15px;
   font-weight: bold;
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: 25px;
+  margin-top: 5px;
 }
 .cardTitle {
   font-size: 20px;
@@ -63,4 +63,8 @@
 .usersCard {
   background-color: #8a4dfa;
   color: black;
+}
+
+.dashboardIcons {
+  font-size: 40px;
 }
