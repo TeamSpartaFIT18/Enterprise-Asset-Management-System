@@ -13,7 +13,7 @@ import {
 import '../Screens.css';
 import { Link } from 'react-router-dom';
 
-const ProductsComplaintScreen = ({ history, match }) => {
+const ComplaintListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
@@ -85,7 +85,19 @@ const ProductsComplaintScreen = ({ history, match }) => {
                           style={{ color: 'green' }}
                         ></i>
                       ) : (
-                        <i className="fa fa-times" style={{ color: 'red' }}></i>
+                        <>
+                          <i
+                            className="fa fa-times"
+                            style={{ color: 'red' }}
+                          ></i>
+                          <LinkContainer
+                            to={`/admin/complaints/${complaint._id}/product/${product._id}`}
+                          >
+                            <Button variant="info" className="btn-sm">
+                              <i className="fa fa-info"></i>
+                            </Button>
+                          </LinkContainer>
+                        </>
                       )}
                     </td>
                   </tr>
@@ -100,4 +112,4 @@ const ProductsComplaintScreen = ({ history, match }) => {
   );
 };
 
-export default ProductsComplaintScreen;
+export default ComplaintListScreen;

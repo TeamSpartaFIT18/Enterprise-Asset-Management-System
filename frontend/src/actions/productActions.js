@@ -27,6 +27,9 @@ import {
   PRODUCT_CREATE_COMPLAINT_REQUEST,
   PRODUCT_CREATE_COMPLAINT_SUCCESS,
   PRODUCT_CREATE_COMPLAINT_FAIL,
+  PRODUCT_UPDATE_COMPLAINT_REQUEST,
+  PRODUCT_UPDATE_COMPLAINT_SUCCESS,
+  PRODUCT_UPDATE_COMPLAINT_FAIL,
 } from '../types/productTypes';
 
 //GET products list
@@ -279,6 +282,48 @@ export const createProductComplaint = (productId, complain) => async (
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_COMPLAINT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//update complaint
+export const updateProductComplaint = (
+  productId,
+  complaintId,
+  employee
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_UPDATE_COMPLAINT_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    await axios.put(
+      `/api/products/${productId}/complaints`,
+      { complaintId, employee },
+      config
+    );
+
+    dispatch({
+      type: PRODUCT_UPDATE_COMPLAINT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_UPDATE_COMPLAINT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
