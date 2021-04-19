@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
+import mongoose from 'mongoose';
 
 // Fetch all products , public
 // GET -> /api/products/
@@ -181,18 +182,26 @@ const updateComplaint = asyncHandler(async (req, res) => {
 
   const product = await Product.findById(req.params.id);
 
-  const complaint_id = req.body.id;
-  const product_id = req.params.id;
+  const complaints = product.complaints;
+  console.log(complaints.length);
 
-  console.log(complaint_id, product_id, req.body.employee);
+  var name = req.body.employee;
+  var isHandled = true;
+  for (var i = 0; i < complaints.length; i++) {
+    if (complaints[i]._id == req.body.id) {
+      if (product) {
+        (complaints[i].employee = name), (complaints[i].isHandled = isHandled);
 
-  await product.save(
-    { _id: product_id },
-    { $set: { 'complaints.$[c].employee': req.body.employee } },
-    { arrayFilters: [{ 'c._id': complaint_id }] }
-  );
+        const updated = await product.save();
+        res.json(updated);
+      } else {
+        res.status(404);
+        throw new Error('Order not found');
+      }
 
-  req.db.find({}).toArray((err, data) => res.json(data));
+      break;
+    }
+  }
 });
 
 // get top rated products , public

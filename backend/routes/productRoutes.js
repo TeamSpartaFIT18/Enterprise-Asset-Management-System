@@ -20,7 +20,7 @@ router.route('/:id/reviews').post(protect, createProductReview);
 router
   .route('/:id/complaints')
   .post(protect, createProductComplaint)
-  .patch(protect, admin, updateComplaint);
+  .put(protect, admin, updateComplaint);
 router.get('/top', getTopProducts);
 router
   .route('/:id')
