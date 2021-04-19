@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema(
   {
@@ -14,7 +14,24 @@ const reviewSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
+
+const complaintSchema = mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    complain: { type: String, required: true },
+    isHandled: { type: Boolean, required: true, default: false },
+    employee: { type: String, default: null },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const productSchema = mongoose.Schema(
   {
@@ -44,6 +61,7 @@ const productSchema = mongoose.Schema(
       required: true,
     },
     reviews: [reviewSchema],
+    complaints: [complaintSchema],
     rating: {
       type: Number,
       required: true,
@@ -68,8 +86,8 @@ const productSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model('Product', productSchema);
 
-export default Product
+export default Product;

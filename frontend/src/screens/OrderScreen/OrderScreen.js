@@ -14,6 +14,7 @@ import {
   deliverOrder,
 } from '../../actions/orderActions';
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../types/orderTypes';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -23,6 +24,8 @@ const OrderScreen = ({ match, history }) => {
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
+  console.log(order);
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
@@ -75,7 +78,6 @@ const OrderScreen = ({ match, history }) => {
   }, [dispatch, history, userInfo, orderId, successPay, successDeliver, order]);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
 
@@ -150,13 +152,24 @@ const OrderScreen = ({ match, history }) => {
                             rounded
                           />
                         </Col>
-                        <Col>
+                        <Col md={6}>
                           <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
                         </Col>
                         <Col md={4}>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
+                        </Col>
+                        <Col md={1}>
+                          {userInfo && userInfo.isClient ? (
+                            <LinkContainer to={`/complain/${item.product}`}>
+                              <i className="mailIcon">
+                                <p>com</p>
+                              </i>
+                            </LinkContainer>
+                          ) : (
+                            ''
+                          )}
                         </Col>
                       </Row>
                     </ListGroup.Item>

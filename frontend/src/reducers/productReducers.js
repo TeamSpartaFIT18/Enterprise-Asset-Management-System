@@ -26,6 +26,10 @@ import {
   ALL_PRODUCT_LIST_REQUEST,
   ALL_PRODUCT_LIST_SUCCESS,
   ALL_PRODUCT_LIST_FAIL,
+  PRODUCT_CREATE_COMPLAINT_REQUEST,
+  PRODUCT_CREATE_COMPLAINT_SUCCESS,
+  PRODUCT_CREATE_COMPLAINT_FAIL,
+  PRODUCT_CREATE_COMPLAINT_RESET,
 } from '../types/productTypes';
 
 //product list
@@ -137,6 +141,22 @@ export const productReviewCreateReducer = (state = {}, action) => {
     case PRODUCT_CREATE_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_CREATE_REVIEW_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+//create complaint
+export const productComplaintCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_CREATE_COMPLAINT_REQUEST:
+      return { loading: true };
+    case PRODUCT_CREATE_COMPLAINT_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_CREATE_COMPLAINT_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_CREATE_COMPLAINT_RESET:
       return {};
     default:
       return state;

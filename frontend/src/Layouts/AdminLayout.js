@@ -26,6 +26,7 @@ import AdminMailboxToClients from '../screens/AdminMailboxToClients/AdminMailbox
 import AddAdminScreen from '../screens/AddAdminScreen/AddAdminScreen';
 import AddEmployeeScreen from '../screens/AddEmployeeScreen/AddEmployeeScreen';
 import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
+import ProductsComplaintScreen from '../screens/ProductsComplaintScreen/ProductsComplaintScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -64,6 +65,15 @@ const AdminLayout = () => {
               path={`${url}/productslist/:pageNumber`}
               component={ProductListScreen}
               exact
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/complaints`}
+              component={ProductsComplaintScreen}
             />
           ) : (
             (window.location = '/signin')

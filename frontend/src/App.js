@@ -20,6 +20,7 @@ import EmployeeLayout from './Layouts/EmployeeLayout';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen';
 import AdminMailboxToClients from './screens/AdminMailboxToClients/AdminMailboxToClients';
+import ComplaintScreen from './screens/ComplaintScreen/ComplaintScreen';
 
 const App = () => {
   return (
@@ -43,6 +44,8 @@ const App = () => {
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/product/:id" component={OneProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
+            <Route path="/complain/:id" component={ComplaintScreen} />
+
             <Route
               path="/products/page/:pageNumber"
               component={ProductScreen}

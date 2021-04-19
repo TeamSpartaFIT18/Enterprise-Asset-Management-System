@@ -149,6 +149,52 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+// create complaint , pvt
+// POST -> /api/products/:id/complaints
+const createProductComplaint = asyncHandler(async (req, res) => {
+  const { complain, isHandled } = req.body;
+
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    const complaint = {
+      name: req.user.name,
+      complain,
+      isHandled,
+      user: req.user._id,
+    };
+
+    product.complaints.push(complaint);
+
+    await product.save();
+    res.status(201).json({ message: 'Complaint added' });
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
+// update complaint to handled and assign employee , admin only
+// PUT -> /api/products/:id/complaints
+const updateComplaint = asyncHandler(async (req, res) => {
+  const { employee, id } = req.body;
+
+  const product = await Product.findById(req.params.id);
+
+  const complaint_id = req.body.id;
+  const product_id = req.params.id;
+
+  console.log(complaint_id, product_id, req.body.employee);
+
+  await product.save(
+    { _id: product_id },
+    { $set: { 'complaints.$[c].employee': req.body.employee } },
+    { arrayFilters: [{ 'c._id': complaint_id }] }
+  );
+
+  req.db.find({}).toArray((err, data) => res.json(data));
+});
+
 // get top rated products , public
 // GET -> /api/products/top
 const getTopProducts = asyncHandler(async (req, res) => {
@@ -165,5 +211,7 @@ export {
   createProduct,
   updateProduct,
   createProductReview,
+  createProductComplaint,
+  updateComplaint,
   getTopProducts,
 };

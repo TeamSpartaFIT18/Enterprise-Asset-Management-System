@@ -63,7 +63,7 @@ export const AdminSideNavData = [
   },
   {
     title: 'Complaints',
-    path: '/messages',
+    path: '/admin/complaints',
     icon: <RiIcons.RiErrorWarningFill />,
   },
 ];
