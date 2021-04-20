@@ -72,7 +72,7 @@ const ComplaintListScreen = ({ history, match }) => {
                           <LinkContainer
                             to={`/admin/complaints/${complaint._id}/product/${product._id}`}
                           >
-                            <Button variant="info" className="btn-sm">
+                            <Button variant="danger" className="btn-sm">
                               <i className="fa fa-info"></i>
                             </Button>
                           </LinkContainer>

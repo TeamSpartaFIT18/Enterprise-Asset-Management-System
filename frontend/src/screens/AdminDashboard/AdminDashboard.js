@@ -108,9 +108,10 @@ const AdminDashboard = (history) => {
       </Row>
 
       <hr className="topLine"></hr>
-      <h2 className="topic">Inventory</h2>
+
       <Row>
         <Col md={6}>
+          <h2 className="topic">Inventory</h2>
           <Card bg="success">
             <Card.Title className="cardTitle ml-2 mt-2">
               Inventory Items
