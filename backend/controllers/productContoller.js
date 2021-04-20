@@ -178,17 +178,15 @@ const createProductComplaint = asyncHandler(async (req, res) => {
 // update complaint to handled and assign employee , admin only
 // PUT -> /api/products/:id/complaints
 const updateComplaint = asyncHandler(async (req, res) => {
-  const { employee, id } = req.body;
-
+  const { employee, complaintId } = req.body;
   const product = await Product.findById(req.params.id);
 
   const complaints = product.complaints;
-  console.log(complaints.length);
 
   var name = req.body.employee;
   var isHandled = true;
   for (var i = 0; i < complaints.length; i++) {
-    if (complaints[i]._id == req.body.id) {
+    if (complaints[i]._id == req.body.complaintId) {
       if (product) {
         (complaints[i].employee = name), (complaints[i].isHandled = isHandled);
 

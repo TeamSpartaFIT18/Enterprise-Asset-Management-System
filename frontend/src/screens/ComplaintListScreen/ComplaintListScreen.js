@@ -5,13 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Paginate from '../../components/Paginate';
-import {
-  listProducts,
-  deleteProduct,
-  createProduct,
-} from '../../actions/productActions';
+import { listProducts } from '../../actions/productActions';
 import '../Screens.css';
-import { Link } from 'react-router-dom';
 
 const ComplaintListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -33,16 +28,6 @@ const ComplaintListScreen = ({ history, match }) => {
       dispatch(listProducts('', pageNumber));
     }
   }, [dispatch, history, userInfo, pageNumber]);
-
-  const deleteHandler = (id) => {
-    if (window.confirm('Are you sure')) {
-      dispatch(deleteProduct(id));
-    }
-  };
-
-  const createProductHandler = () => {
-    dispatch(createProduct());
-  };
 
   return (
     <div className="productListScreen">
@@ -78,18 +63,12 @@ const ComplaintListScreen = ({ history, match }) => {
                     <td>{complaint.name}</td>
                     <td>{complaint.complain}</td>
                     <td>{complaint.createdAt.substring(0, 10)}</td>
-                    <td>
+                    <td className="handlingDet">
                       {complaint.isHandled ? (
-                        <i
-                          className="fa fa-check"
-                          style={{ color: 'green' }}
-                        ></i>
+                        complaint.employee
                       ) : (
                         <>
-                          <i
-                            className="fa fa-times"
-                            style={{ color: 'red' }}
-                          ></i>
+                          Not handled &nbsp;
                           <LinkContainer
                             to={`/admin/complaints/${complaint._id}/product/${product._id}`}
                           >
