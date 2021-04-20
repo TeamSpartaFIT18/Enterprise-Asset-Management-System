@@ -61,7 +61,7 @@ const ComplaintHandlingScreen = ({ match }) => {
       dispatch(listEmployees());
     }
     if (successProductComplaint) {
-      alert('Update Submitted!');
+      alert('Employee assigned!');
       setEmployee('');
       dispatch({ type: PRODUCT_UPDATE_COMPLAINT_RESET });
       window.location = '/admin/complaints';

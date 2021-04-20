@@ -25,6 +25,7 @@ const ComplaintScreen = ({ match }) => {
   const productId = match.params.id;
 
   const [complain, setComplain] = useState(' ');
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -47,15 +48,20 @@ const ComplaintScreen = ({ match }) => {
       dispatch(listProductDetails(productId));
     }
     if (successProductComplaint) {
-      alert('Review Submitted!');
+      alert('Complaint Submitted!');
       setComplain('');
       dispatch({ type: PRODUCT_CREATE_COMPLAINT_RESET });
+      window.location = '/profile';
     }
   }, [dispatch, match, successProductComplaint]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createProductComplaint(match.params.id, { complain }));
+    if (!complain || complain == ' ') {
+      setMessage('You need to write a complain before submit');
+    } else {
+      dispatch(createProductComplaint(match.params.id, { complain }));
+    }
   };
 
   return (
@@ -67,52 +73,67 @@ const ComplaintScreen = ({ match }) => {
       ) : (
         <>
           <Meta title={product.name} />
-          <Row>
-            <Col md={3}>
-              <Image src={product.image} alt={product.name} fluid />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h3>{product.name}</h3>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
-                </ListGroup.Item>
-                <ListGroup.Item>Price: Rs. {product.price}</ListGroup.Item>
-                <ListGroup.Item>{product.description}</ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col md={6}>
-              <h2>Write a review</h2>
-              {errorProductComplaint && (
-                <Message variant="danger">{errorProductComplaint}</Message>
-              )}
-              {userInfo ? (
-                <Form onSubmit={submitHandler}>
-                  <Form.Group controlId="complain">
-                    <Form.Label>Complaint</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      row="3"
-                      value={complain}
-                      onChange={(e) => setComplain(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Button type="submit" variant="primary">
-                    Submit
-                  </Button>
-                </Form>
-              ) : (
-                <Message>
-                  Please <Link to="/signin">login</Link> to review
-                </Message>
-              )}
-            </Col>
-          </Row>
+          <Card className="complaintCreateCard">
+            <Row>
+              <Col md={3}>
+                <Image
+                  className="complaintCreateImage"
+                  src={product.image}
+                  alt={product.name}
+                  fluid
+                />
+              </Col>
+              <Col md={3}>
+                <ListGroup
+                  className="complaintCreateProductDet"
+                  variant="flush"
+                >
+                  <ListGroup.Item>
+                    <h3>{product.name}</h3>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Rating
+                      value={product.rating}
+                      text={`${product.numReviews} reviews`}
+                    />
+                  </ListGroup.Item>
+                  <ListGroup.Item>Price: Rs. {product.price}</ListGroup.Item>
+                  <ListGroup.Item>{product.description}</ListGroup.Item>
+                </ListGroup>
+              </Col>
+              <Col md={6}>
+                <div className="complaintCreateCol">
+                  {message && <Message variant="danger">{message}</Message>}
+                  <h2>Add a complain</h2>
+                  {errorProductComplaint && (
+                    <Message variant="danger">{errorProductComplaint}</Message>
+                  )}
+                  {userInfo ? (
+                    <Form onSubmit={submitHandler}>
+                      <Form.Group controlId="complain">
+                        <Form.Label>
+                          <strong>Complaint:</strong>
+                        </Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          row="5"
+                          value={complain}
+                          onChange={(e) => setComplain(e.target.value)}
+                        ></Form.Control>
+                      </Form.Group>
+                      <Button type="submit" variant="primary">
+                        Submit complain
+                      </Button>
+                    </Form>
+                  ) : (
+                    <Message>
+                      Please <Link to="/signin">login</Link> to review
+                    </Message>
+                  )}
+                </div>
+              </Col>
+            </Row>
+          </Card>
         </>
       )}
     </div>
