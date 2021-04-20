@@ -202,6 +202,36 @@ const updateComplaint = asyncHandler(async (req, res) => {
   }
 });
 
+// update complaint to handled and assign employee , admin only
+// PUT -> /api/products/:id/complaints
+const updateComplaintByEmp = asyncHandler(async (req, res) => {
+  const { jobDescription, complaintId } = req.body;
+  const product = await Product.findById(req.params.id);
+
+  const complaints = product.complaints;
+
+  console.log(req.body.jobDescription, product, req.body.complaintId);
+
+  var desc = req.body.jobDescription;
+  var isJobDone = true;
+  for (var i = 0; i < complaints.length; i++) {
+    if (complaints[i]._id == req.body.complaintId) {
+      if (product) {
+        (complaints[i].jobDescription = desc),
+          (complaints[i].isJobDone = isJobDone);
+
+        const updated = await product.save();
+        res.json(updated);
+      } else {
+        res.status(404);
+        throw new Error('Order not found');
+      }
+
+      break;
+    }
+  }
+});
+
 // get top rated products , public
 // GET -> /api/products/top
 const getTopProducts = asyncHandler(async (req, res) => {
@@ -220,5 +250,6 @@ export {
   createProductReview,
   createProductComplaint,
   updateComplaint,
+  updateComplaintByEmp,
   getTopProducts,
 };

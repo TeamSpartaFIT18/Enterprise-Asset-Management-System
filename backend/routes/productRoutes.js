@@ -11,8 +11,9 @@ import {
   getAllProducts,
   createProductComplaint,
   updateComplaint,
+  updateComplaintByEmp,
 } from '../controllers/productContoller.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+import { protect, admin, employee } from '../middleware/authMiddleware.js';
 
 router.route('/').get(getProducts).post(protect, admin, createProduct);
 router.route('/all').get(protect, admin, getAllProducts);
@@ -21,6 +22,9 @@ router
   .route('/:id/complaints')
   .post(protect, createProductComplaint)
   .put(protect, admin, updateComplaint);
+router
+  .route('/:id/complaints/emp')
+  .put(protect, employee, updateComplaintByEmp);
 router.get('/top', getTopProducts);
 router
   .route('/:id')

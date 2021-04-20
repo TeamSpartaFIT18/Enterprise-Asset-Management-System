@@ -34,6 +34,10 @@ import {
   PRODUCT_UPDATE_COMPLAINT_SUCCESS,
   PRODUCT_UPDATE_COMPLAINT_FAIL,
   PRODUCT_UPDATE_COMPLAINT_RESET,
+  PRODUCT_EMP_UPDATE_COMPLAINT_REQUEST,
+  PRODUCT_EMP_UPDATE_COMPLAINT_SUCCESS,
+  PRODUCT_EMP_UPDATE_COMPLAINT_FAIL,
+  PRODUCT_EMP_UPDATE_COMPLAINT_RESET,
 } from '../types/productTypes';
 
 //product list
@@ -177,6 +181,22 @@ export const productComplaintUpdateReducer = (state = {}, action) => {
     case PRODUCT_UPDATE_COMPLAINT_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_UPDATE_COMPLAINT_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+//update complaint by employee
+export const productComplaintEmpUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_EMP_UPDATE_COMPLAINT_REQUEST:
+      return { loading: true };
+    case PRODUCT_EMP_UPDATE_COMPLAINT_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_EMP_UPDATE_COMPLAINT_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_EMP_UPDATE_COMPLAINT_RESET:
       return {};
     default:
       return state;

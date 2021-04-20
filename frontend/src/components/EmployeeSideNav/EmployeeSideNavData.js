@@ -1,8 +1,8 @@
-import React from 'react'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
-import * as IoIcons from 'react-icons/io'
-import * as RiIcons from 'react-icons/ri'
+import React from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
+import * as RiIcons from 'react-icons/ri';
 
 export const EmployeeSideNavData = [
   {
@@ -28,8 +28,8 @@ export const EmployeeSideNavData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: 'Pending',
-        path: '/employee/jobslist/pending',
+        title: 'Complaints',
+        path: '/employee/jobs/complaints',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },
@@ -41,4 +41,4 @@ export const EmployeeSideNavData = [
       },
     ],
   },
-]
+];

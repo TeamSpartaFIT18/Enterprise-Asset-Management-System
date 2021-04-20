@@ -22,6 +22,8 @@ const complaintSchema = mongoose.Schema(
     complain: { type: String, required: true },
     isHandled: { type: Boolean, required: true, default: false },
     employee: { type: String, default: null },
+    isJobDone: { type: Boolean, required: true, default: false },
+    jobDescription: { type: String, default: null },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

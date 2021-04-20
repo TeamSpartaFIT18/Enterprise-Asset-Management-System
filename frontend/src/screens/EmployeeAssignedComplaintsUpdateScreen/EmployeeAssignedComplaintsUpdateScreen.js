@@ -17,16 +17,15 @@ import Meta from '../../components/Meta';
 import '../Screens.css';
 import {
   listProductDetails,
-  updateProductComplaint,
+  updateProductComplaintEmp,
 } from '../../actions/productActions';
-import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
-import { listEmployees } from '../../actions/userActions';
+import { PRODUCT_EMP_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
 
-const ComplaintHandlingScreen = ({ match }) => {
+const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
   const complaintId = match.params.complaintId;
   const productId = match.params.productId;
 
-  const [employee, setEmployee] = useState(' ');
+  const [jobDescription, setJobDescription] = useState(' ');
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -37,40 +36,34 @@ const ComplaintHandlingScreen = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const employeeList = useSelector((state) => state.employeeList);
-  const {
-    loading: loadingEmployee,
-    error: errorEmployee,
-    users,
-  } = employeeList;
-
-  const productComplaintUpdate = useSelector(
-    (state) => state.productComplaintUpdate
+  const productComplaintEmpUpdate = useSelector(
+    (state) => state.productComplaintEmpUpdate
   );
   const {
     success: successProductComplaint,
     error: errorProductComplaint,
-  } = productComplaintUpdate;
+  } = productComplaintEmpUpdate;
 
   useEffect(() => {
     if (productId) {
       dispatch(listProductDetails(productId));
-      dispatch(listEmployees());
     }
     if (successProductComplaint) {
-      alert('Employee assigned!');
-      setEmployee('');
-      dispatch({ type: PRODUCT_UPDATE_COMPLAINT_RESET });
-      window.location = '/admin/complaints';
+      alert('Job Done!');
+      setJobDescription('');
+      dispatch({ type: PRODUCT_EMP_UPDATE_COMPLAINT_RESET });
+      window.location = '/employee/jobs/complaints';
     }
   }, [dispatch, match, successProductComplaint]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!employee || employee == ' ') {
-      setMessage('You need to select employee to submit');
+    if (!jobDescription || jobDescription == ' ') {
+      setMessage('You need to enter description to submit');
     } else {
-      dispatch(updateProductComplaint(productId, complaintId, employee));
+      dispatch(
+        updateProductComplaintEmp(productId, complaintId, jobDescription)
+      );
     }
   };
 
@@ -152,36 +145,20 @@ const ComplaintHandlingScreen = ({ match }) => {
                   <hr></hr>
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
-                      <Form.Group controlId="employee">
+                      <Form.Group controlId="jobDone">
                         <Form.Label>
-                          <strong>
-                            Select a employee from employees list:
-                          </strong>
+                          <strong>Enter a job description:</strong>
                         </Form.Label>
                         <br />
-                        <select
-                          className="selectEmployee"
-                          type="select"
-                          name="select"
-                          id="select"
-                          onChange={(e) => setEmployee(e.target.value)}
-                        >
-                          <option value="0">Select a employee</option>
-                          {users &&
-                            users.map((user) => (
-                              <option value={user.name}>{user.name}</option>
-                            ))}
-                        </select>
+                        <Form.Control
+                          type="name"
+                          placeholder="Enter name"
+                          value={jobDescription}
+                          onChange={(e) => setJobDescription(e.target.value)}
+                        ></Form.Control>
                       </Form.Group>
-                      <p>
-                        {employee && employee != ' '
-                          ? 'You selected ' +
-                            employee +
-                            ' to assign to this complaint!'
-                          : 'Currently no employee assigned!'}
-                      </p>
                       <Button type="submit" variant="primary">
-                        Assign employee to the complaint!
+                        Mark as completed
                       </Button>
                     </Form>
                   ) : (
@@ -199,4 +176,4 @@ const ComplaintHandlingScreen = ({ match }) => {
   );
 };
 
-export default ComplaintHandlingScreen;
+export default EmployeeAssignedComplaintsUpdateScreen;

@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import * as MdIcons from 'react-icons/md';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { listMyOrders } from '../../actions/orderActions';
 import { USER_UPDATE_PROFILE_RESET } from '../../types/userTypes';
@@ -156,13 +155,8 @@ const ProfileScreen = ({ history }) => {
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className="btn-sm" variant="light">
+                      <Button className="btn-sm" variant="info">
                         Details
-                      </Button>
-                    </LinkContainer>
-                    <LinkContainer to={`/order/complaint`}>
-                      <Button variant="danger" className="btn-sm">
-                        <MdIcons.MdMoodBad />
                       </Button>
                     </LinkContainer>
                   </td>
