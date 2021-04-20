@@ -157,15 +157,15 @@ const OrderScreen = ({ match, history }) => {
                             {item.name}
                           </Link>
                         </Col>
-                        <Col md={4}>
+                        <Col className="OrderAddComplaint" md={4}>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                         <Col md={1}>
                           {userInfo && userInfo.isClient ? (
                             <LinkContainer to={`/complain/${item.product}`}>
-                              <i className="mailIcon">
-                                <p>com</p>
-                              </i>
+                              <Button variant="danger" className="btn-sm">
+                                Complaint
+                              </Button>
                             </LinkContainer>
                           ) : (
                             ''

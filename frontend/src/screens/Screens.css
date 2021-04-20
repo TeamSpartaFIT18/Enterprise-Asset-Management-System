@@ -248,3 +248,8 @@
 .complaintCreateCol {
   margin-top: 35px;
 }
+
+/* ORDER SCREEN -> button add a complaint */
+.OrderAddComplaint {
+  text-align: center;
+}
