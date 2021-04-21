@@ -297,7 +297,8 @@ export const createProductComplaint = (productId, complain) => async (
 export const updateProductComplaint = (
   productId,
   complaintId,
-  employee
+  employee,
+  empEmail
 ) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -317,7 +318,7 @@ export const updateProductComplaint = (
 
     await axios.put(
       `/api/products/${productId}/complaints`,
-      { complaintId, employee },
+      { complaintId, employee, empEmail },
       config
     );
 

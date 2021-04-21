@@ -27,6 +27,7 @@ const ComplaintHandlingScreen = ({ match }) => {
   const productId = match.params.productId;
 
   const [employee, setEmployee] = useState(' ');
+  var empEmail;
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -70,7 +71,14 @@ const ComplaintHandlingScreen = ({ match }) => {
     if (!employee || employee == ' ') {
       setMessage('You need to select employee to submit');
     } else {
-      dispatch(updateProductComplaint(productId, complaintId, employee));
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].name == employee) {
+          empEmail = users[i].email;
+        }
+      }
+      dispatch(
+        updateProductComplaint(productId, complaintId, employee, empEmail)
+      );
     }
   };
 

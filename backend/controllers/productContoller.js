@@ -1,6 +1,17 @@
 import asyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
-import mongoose from 'mongoose';
+
+import nodemailer from 'nodemailer';
+import sendgridTransport from 'nodemailer-sendgrid-transport';
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:
+        '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',
+    },
+  })
+);
 
 // Fetch all products , public
 // GET -> /api/products/
@@ -160,6 +171,7 @@ const createProductComplaint = asyncHandler(async (req, res) => {
   if (product) {
     const complaint = {
       name: req.user.name,
+      email: req.user.email,
       address: req.user.address,
       contact: req.user.contact,
       complain,
@@ -187,10 +199,46 @@ const updateComplaint = asyncHandler(async (req, res) => {
 
   var name = req.body.employee;
   var isHandled = true;
+  var email;
   for (var i = 0; i < complaints.length; i++) {
     if (complaints[i]._id == req.body.complaintId) {
       if (product) {
-        (complaints[i].employee = name), (complaints[i].isHandled = isHandled);
+        (complaints[i].employee = name),
+          (complaints[i].isHandled = isHandled),
+          (email = complaints[i].email);
+
+        if (email) {
+          transporter.sendMail({
+            to: email,
+            from: 'teamsparta.eams@gmail.com',
+            subject: 'Complaint reviewed',
+            html: `<h2>Complaint ${req.body.complaintId} about ${product.name}</h2>
+      <p>We reviewed your complaint about ${product.name} and we assigned ${req.body.employee} to fix that issue.</p>
+      <p><strong>We are extremely sorry for the inconvenience!</strong></p>
+      <br></br>
+      <p>Thank you!</p>
+      <p>Best regards</p>
+      <p><strong>EAMS</strong></p>
+      `,
+          });
+        }
+
+        if (req.body.empEmail) {
+          transporter.sendMail({
+            to: req.body.empEmail,
+            from: 'teamsparta.eams@gmail.com',
+            subject: 'Assigned to a new job',
+            html: `<h2>Regarding complaint ${req.body.complaintId} about ${product.name}</h2>
+      <p>We recently recieved a complaint about ${product.name} and we assigned you (${req.body.employee}) to fix that issue.</p>
+      <p>You can see this job in detail from your dashboard of EAMS web page</p>
+      <p>Please make sure to complete this job ASAP and update system with details when it is done</p>
+      <br></br>
+      <p>Thank you!</p>
+      <p>Best regards</p>
+      <p><strong>EAMS</strong></p>
+      `,
+          });
+        }
 
         const updated = await product.save();
         res.json(updated);
