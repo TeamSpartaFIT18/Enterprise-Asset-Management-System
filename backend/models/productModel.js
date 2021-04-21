@@ -86,6 +86,10 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    scheduledEmailsSent : {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,

@@ -12,6 +12,7 @@ import {
   createProductComplaint,
   updateComplaint,
   updateComplaintByEmp,
+  emailSchedular
 } from '../controllers/productContoller.js';
 import { protect, admin, employee } from '../middleware/authMiddleware.js';
 
@@ -26,6 +27,7 @@ router
   .route('/:id/complaints/emp')
   .put(protect, employee, updateComplaintByEmp);
 router.get('/top', getTopProducts);
+router.get('/emailSchedular',emailSchedular);
 router
   .route('/:id')
   .get(getOneProductById)

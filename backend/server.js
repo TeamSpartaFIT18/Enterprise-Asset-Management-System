@@ -11,10 +11,13 @@ import empRoutes from './routes/empRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import clientRoutes from './routes/clientRoutes.js';
+import sendScheduledEmails from './utils/sendScheduledEmails.js';
 
 dotenv.config();
 
 connectDB();
+
+sendScheduledEmails();
 
 const app = express();
 
