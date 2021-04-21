@@ -295,7 +295,7 @@ const addAdmin = asyncHandler(async (req, res) => {
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>You are successfully added as admin to the EAMS!</h3>
       <h3>Your email is ${user.email}</h3>
-      <h3>Your default password is "eamsadmin"</h3>
+      <h3>Your default password is "adminEams"</h3>
       <h3>Please login to your account using your email and default password and change it in your way!</h3>
       <h3>Thank you!</h3>
       `,
@@ -344,7 +344,7 @@ const addEmployee = asyncHandler(async (req, res) => {
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>You are successfully added as employee to the EAMS!</h3>
       <h3>Your email is ${user.email}</h3>
-      <h3>Your default password is "eamsemployee"</h3>
+      <h3>Your default password is "employeeEams"</h3>
       <h3>Please login to your account using your email and default password and change it in your way!</h3>
       <h3>Thank you!</h3>
       `,
