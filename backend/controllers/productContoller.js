@@ -244,83 +244,6 @@ const getTopProducts = asyncHandler(async (req, res) => {
 });
 
 
-const emailSchedular = asyncHandler(async (req,res)=>{
-  // let product = {
-  //   rating: 4,
-  //   numReviews: 12,
-  //   price: 8000,
-  //   countInStock: 0,
-  //   _id: '605ecbfd29723722744f28bf',
-  //   name: 'Laser Printer',
-  //   image: '/images/laserPrinter.png',
-  //   description: 'Epson laser printer for clear printing',
-  //   brand: 'Epson',
-  //   category: 'Printer',
-  //   user: '605ecbfd29723722744f28b5',
-  //   reviews: [],__v: 0,
-  //   createdAt: '2021-03-27T06:09:01.784Z',
-  //   updatedAt: '2021-03-27T06:09:01.784Z',
-  //   complaints: []}
-
-    //let date = product.createdAt.getDate();
-    // let date = Date.parse(product.createdAt);
-    // let month = date.getMonth();
-    // let year = date.getFullYear();
-
-    // console.log('date : '+date, ' month : '+month+' year : '+year);
-
-    let products =await Product.find({})
-
-    products.map((item)=>{
-      console.log(item.createdAt.getDate());
-    })
-
-    let date = products[0].createdAt.getDate();
-    let month = products[0].createdAt.getMonth();
-    let year = products[0].createdAt.getFullYear();
-
-    let scheduledMonth = month + 7;
-    let schceduledYear = year;
-
-    if(scheduledMonth > 12){
-      scheduledMonth = scheduledMonth - 12;
-      schceduledYear++;
-    }
-
-    // console.log('Date : '+date,' Month : '+month,' Year : '+ year)
-    console.log('Date : '+date,' Scheduled Month : '+scheduledMonth,' Scheduled Year : '+ schceduledYear)
-
-    // cron.schedule('* * * * *', () => {
-    //   console.log('running a task every minute');
-    // });
-
-    // cron.schedule('0 45 12 4 *', () => {
-    //   console.log('Scheduled for 12 50');
-    // });
-
-    console.log(cron.validate('3 13 * * *'))
-
-    var task = cron.schedule('9 13 * * *', () =>  {
-      console.log('stopped task execute at 13 9 '+Date.now().toLocaleString());
-    }, {
-      scheduled: true
-    });
-    
-    task.start();
-  
-  // transporter.sendMail({
-  //   to: user.email,
-  //   from: 'teamsparta.eams@gmail.com',
-  //   subject: 'Reset Password',
-  //   html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
-  //   <h3>Please Click on the given link to reset your password</h3>
-  //   <a href="${process.env.CLIENT_URL}/resetpassword/${user._id}">Reset Link</a>
-  //   `,
-  // });
-
-  res.json(products);
-})
-
 export {
   getProducts,
   getAllProducts,
@@ -332,6 +255,5 @@ export {
   createProductComplaint,
   updateComplaint,
   updateComplaintByEmp,
-  getTopProducts,
-  emailSchedular
+  getTopProducts
 };
