@@ -104,13 +104,13 @@ const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
               <Col md={6}>
                 <div className="complaintCol">
                   {message && <Message variant="danger">{message}</Message>}
-                  <h2>Complaint!</h2>
+                  <h2>New job</h2>
                   {errorProductComplaint && (
                     <Message variant="danger">{errorProductComplaint}</Message>
                   )}
                   {
                     <div>
-                      <h4>This Item has a complain</h4>
+                      <h4>You are assigned to this job</h4>
 
                       <div>
                         {product.complaints &&
@@ -124,6 +124,16 @@ const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
                               <p className="complaintDet">
                                 {complaintId == complaint._id
                                   ? 'User : ' + complaint.name
+                                  : ''}
+                              </p>
+                              <p className="complaintDet">
+                                {complaintId == complaint._id
+                                  ? 'Address : ' + complaint.address
+                                  : ''}
+                              </p>
+                              <p className="complaintDet">
+                                {complaintId == complaint._id
+                                  ? 'Contact : ' + complaint.contact
                                   : ''}
                               </p>
                               <p className="complaintDet">

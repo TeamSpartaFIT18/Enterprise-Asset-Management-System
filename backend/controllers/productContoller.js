@@ -160,6 +160,8 @@ const createProductComplaint = asyncHandler(async (req, res) => {
   if (product) {
     const complaint = {
       name: req.user.name,
+      address: req.user.address,
+      contact: req.user.contact,
       complain,
       isHandled,
       user: req.user._id,

@@ -19,6 +19,8 @@ const reviewSchema = mongoose.Schema(
 const complaintSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
+    address: { type: String, required: true },
+    contact: { type: String, required: true },
     complain: { type: String, required: true },
     isHandled: { type: Boolean, required: true, default: false },
     employee: { type: String, default: null },
