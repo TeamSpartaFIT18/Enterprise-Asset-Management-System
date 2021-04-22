@@ -1,27 +1,24 @@
 import cron from 'node-cron';
 
 import Product from '../models/productModel.js';
+import Order from '../models/orderModel.js';
 import User from '../models/userModel.js';
 
 const sendScheduledEmails = async () => {
   
-  let products = await Product.find({ scheduledEmailsSent: false});
+  let orders = await Order.find({ scheduledEmailsSent: false, isDelivered: true});
 
   let employees = await User.find({ isEmployee: true });
 
-  if(products.length != 0){
-    products.map((item)=>{
+  if(orders.length != 0){
+    orders.map((item)=>{
 
-      let date = item.createdAt.getDate();
-      let month = item.createdAt.getMonth();
-      let year = item.createdAt.getFullYear();
-
+      let date = item.deliveredAt.getDate();
+      let month = item.deliveredAt.getMonth();
       let scheduledMonth = month + 7;
-      let schceduledYear = year;
-
+  
       if(scheduledMonth > 12){
         scheduledMonth = scheduledMonth - 12;
-        schceduledYear++;
       }
 
       var task = cron.schedule(`0 6 ${date} ${scheduledMonth} *`,async () =>  {
@@ -31,10 +28,10 @@ const sendScheduledEmails = async () => {
           transporter.sendMail({
             to: emp.email,
             from: 'teamsparta.eams@gmail.com',
-            subject: 'Reset Password',
+            subject: 'Service Schedule',
             html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
             <h3>Please Click on the given link to reset your password</h3>
-          <a href="${process.env.CLIENT_URL}/resetpassword/${user._id}">Reset Link</a>
+            <a href="${process.env.CLIENT_URL}/resetpassword/${user._id}">Reset Link</a>
             `,
           });
         })
