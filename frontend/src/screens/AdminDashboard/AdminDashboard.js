@@ -21,6 +21,8 @@ import './AdminDashboard.css';
 const AdminDashboard = (history) => {
   const dispatch = useDispatch();
 
+  var complaintCount = 0;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -82,6 +84,15 @@ const AdminDashboard = (history) => {
     orders: notDelOrders,
   } = notDeliveredOrderList;
 
+  //for getting not handled complaints count
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].complaints.length != 0) {
+      for (var j = 0; j < products[i].complaints.length; j++) {
+        if (products[i].complaints[j].isHandled == false) complaintCount++;
+      }
+    }
+  }
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listNotDeliveredOrders());
@@ -132,6 +143,27 @@ const AdminDashboard = (history) => {
                     ) : (
                       <p>No products</p>
                     )}
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={6}>
+          <h2 className="topic">Complaints</h2>
+          <Card bg="danger">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              New complaints
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-exclamation-triangle"></i>
+                </Col>
+                <LinkContainer to="/admin/complaints">
+                  <Col className="colCount">
+                    <p>{complaintCount}</p>
                   </Col>
                 </LinkContainer>
               </Row>
