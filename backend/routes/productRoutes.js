@@ -11,7 +11,7 @@ import {
   getAllProducts,
   createProductComplaint,
   updateComplaint,
-  updateComplaintByEmp,
+  updateComplaintByEmp
 } from '../controllers/productContoller.js';
 import { protect, admin, employee } from '../middleware/authMiddleware.js';
 

@@ -11,10 +11,15 @@ import empRoutes from './routes/empRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import clientRoutes from './routes/clientRoutes.js';
+import sendScheduledEmails from './utils/sendScheduledEmails.js';
+import scheduleRoutes from './routes/scheduleRoutes.js';
 
 dotenv.config();
 
 connectDB();
+
+// email sending method
+sendScheduledEmails();
 
 const app = express();
 
@@ -34,6 +39,7 @@ app.use('/api/emp-profiles', empRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/client', clientRoutes);
+app.use('/api/schedules', scheduleRoutes);
 
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)

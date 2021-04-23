@@ -67,6 +67,21 @@ const orderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+    scheduledEmailsSent : {
+      type: Boolean,
+      default: false
+    },
+    isSchedulePicked : {
+      type: Boolean,
+      default: false
+    },
+    schedulePickedBy : {
+      type: String
+    },
+    isScheduleCompleted : {
+      type: Boolean,
+      default : false
+    }
   },
   {
     timestamps: true,
