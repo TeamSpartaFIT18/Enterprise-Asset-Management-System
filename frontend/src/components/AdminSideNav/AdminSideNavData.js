@@ -65,5 +65,15 @@ export const AdminSideNavData = [
     title: 'Complaints',
     path: '/admin/complaints',
     icon: <RiIcons.RiErrorWarningFill />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    subNav: [
+      {
+        title: 'Not handled complaints',
+        path: '/admin/complaints/nothandled',
+        icon: <FaIcons.FaArrowAltCircleRight />,
+        cName: 'sub-nav',
+      },
+    ],
   },
 ];

@@ -28,6 +28,7 @@ import AddEmployeeScreen from '../screens/AddEmployeeScreen/AddEmployeeScreen';
 import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
 import ComplaintListScreen from '../screens/ComplaintListScreen/ComplaintListScreen';
 import ComplaintHandlingScreen from '../screens/ComplaintHandlingScreen/ComplaintHandlingScreen';
+import NotHandledComplaintsScreen from '../screens/NotHandledComplaintsScreen/NotHandledComplaintsScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -75,6 +76,15 @@ const AdminLayout = () => {
               exact
               path={`${url}/complaints`}
               component={ComplaintListScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/complaints/nothandled`}
+              component={NotHandledComplaintsScreen}
             />
           ) : (
             (window.location = '/signin')

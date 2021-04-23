@@ -161,7 +161,7 @@ const AdminDashboard = (history) => {
                 <Col className="colDesc">
                   <i className="dashboardIcons fas fa-exclamation-triangle"></i>
                 </Col>
-                <LinkContainer to="/admin/complaints">
+                <LinkContainer to="/admin/complaints/nothandled">
                   <Col className="colCount">
                     <p>{complaintCount}</p>
                   </Col>
