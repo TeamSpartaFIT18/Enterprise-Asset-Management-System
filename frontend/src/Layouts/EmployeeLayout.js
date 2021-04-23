@@ -13,6 +13,7 @@ import EmployeeRoute from '../components/Routing/EmployeeRoute';
 import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
 import EmployeeAssignedComplaintsScreen from '../screens/EmployeeAssignedComplaintsScreen/EmployeeAssignedComplaintsScreen';
 import EmployeeAssignedComplaintsUpdateScreen from '../screens/EmployeeAssignedComplaintsUpdateScreen/EmployeeAssignedComplaintsUpdateScreen';
+import ScheduleListScreen from '../screens/ScheduleListScreen/ScheduleListScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -59,6 +60,13 @@ const AdminLayout = () => {
               exact
               path={`${url}/addexperience`}
               component={EmployeeAddExScreen}
+            />
+          )}
+          {userInfo && userInfo.isEmployee && (
+            <Route
+              exact
+              path={`${url}/schedules`}
+              component={ScheduleListScreen}
             />
           )}
           {userInfo && userInfo.isEmployee && (

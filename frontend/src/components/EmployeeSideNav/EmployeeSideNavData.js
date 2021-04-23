@@ -41,4 +41,25 @@ export const EmployeeSideNavData = [
       },
     ],
   },
+  {
+    title: 'Schedules',
+    path: '/employee/schedules',
+    icon: <IoIcons.IoMdPeople />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    subNav: [
+      {
+        title: 'Complaints',
+        path: '/employee/jobs/complaints',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Completed',
+        path: '/employee/jobslist/completed',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+    ],
+  },
 ];
