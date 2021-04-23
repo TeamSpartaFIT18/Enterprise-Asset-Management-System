@@ -77,6 +77,10 @@ const orderSchema = mongoose.Schema(
     },
     schedulePickedBy : {
       type: String
+    },
+    isScheduleCompleted : {
+      type: Boolean,
+      default : false
     }
   },
   {
