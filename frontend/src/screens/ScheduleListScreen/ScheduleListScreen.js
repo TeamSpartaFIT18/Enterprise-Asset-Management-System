@@ -37,7 +37,7 @@ const ScheduleListScreen = ({ history }) => {
 
   return (
     <div className="orderListScreen">
-      <h1>Orders</h1>
+      <h1>Available Schedules</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -92,7 +92,7 @@ const ScheduleListScreen = ({ history }) => {
                             pickScheduleHandler();
                           }}
                         >
-                          Pick
+                          Sure?
                         </Button>
                       )}
                     </div>

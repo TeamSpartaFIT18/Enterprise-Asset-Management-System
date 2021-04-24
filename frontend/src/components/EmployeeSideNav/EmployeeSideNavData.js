@@ -22,24 +22,8 @@ export const EmployeeSideNavData = [
   },
   {
     title: 'Jobs',
-    path: '/employee/jobslist',
+    path: '/employee/jobs/complaints',
     icon: <IoIcons.IoMdPeople />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-    subNav: [
-      {
-        title: 'Complaints',
-        path: '/employee/jobs/complaints',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-      {
-        title: 'Completed',
-        path: '/employee/jobslist/completed',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'sub-nav',
-      },
-    ],
   },
   {
     title: 'Schedules',
@@ -49,13 +33,13 @@ export const EmployeeSideNavData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: 'My schedules',
+        title: 'Picked schedules',
         path: '/employee/schedules/myschedules',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },
       {
-        title: 'Completed',
+        title: 'Completed Schedules',
         path: '/employee/schedules/completed',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',

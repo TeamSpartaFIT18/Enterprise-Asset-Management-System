@@ -33,7 +33,7 @@ const ComplaintListScreen = ({ history, match }) => {
     <div className="productListScreen">
       <Row className="align-items-center">
         <Col>
-          <h1>Complaints</h1>
+          <h1>Assigned Jobs</h1>
         </Col>
         <Col className="text-right"></Col>
       </Row>
