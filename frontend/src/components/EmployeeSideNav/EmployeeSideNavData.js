@@ -56,7 +56,7 @@ export const EmployeeSideNavData = [
       },
       {
         title: 'Completed',
-        path: '/employee/jobslist/completed',
+        path: '/employee/schedules/completed',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },

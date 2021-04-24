@@ -50,6 +50,7 @@ import {
   employeeProfileReducer,
 } from './reducers/profileReducers';
 import {
+  allCompletedScheduleListByEmpReducer,
   allScheduleListReducer,
   completeScheduleReducer,
   pickScheduleReducer,
@@ -106,6 +107,7 @@ const reducer = combineReducers({
   schedulesListMy: schedulesListMyReducer,
   unpickSchedule: unpickScheduleReducer,
   completeSchedule: completeScheduleReducer,
+  allCompletedScheduleListByEmp: allCompletedScheduleListByEmpReducer,
 });
 
 //get Cart items from localStorage

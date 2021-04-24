@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+  ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
+  ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST,
+  ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS,
   ALL_SCHEDULES_LIST_FAIL,
   ALL_SCHEDULES_LIST_REQUEST,
   ALL_SCHEDULES_LIST_SUCCESS,
@@ -196,6 +199,44 @@ export const scheduleComplete = (orderId) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: COMPLETE_SCHEDULE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//list completed schedules by employee
+export const completedSchedulesByEmp = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const id = userInfo._id;
+    const { data } = await axios.get(
+      `/api/schedules/completed/all/${id}`,
+      config
+    );
+
+    dispatch({
+      type: ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -18,6 +18,9 @@ import {
   COMPLETE_SCHEDULE_SUCCESS,
   COMPLETE_SCHEDULE_FAIL,
   COMPLETE_SCHEDULE_RESET,
+  ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST,
+  ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS,
+  ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
 } from '../types/scheduleTypes';
 
 //all schedule list
@@ -121,6 +124,26 @@ export const completeScheduleReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case COMPLETE_SCHEDULE_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+//all completed schedule list by employee
+export const allCompletedScheduleListByEmpReducer = (
+  state = { schedules: [] },
+  action
+) => {
+  switch (action.type) {
+    case ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST:
+      return { loading: true, schedules: [] };
+    case ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS:
+      return {
+        loading: false,
+        schedules: action.payload,
+      };
+    case ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
