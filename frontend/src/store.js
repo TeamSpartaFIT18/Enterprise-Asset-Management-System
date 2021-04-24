@@ -49,7 +49,10 @@ import {
   empAddExperienceReducer,
   employeeProfileReducer,
 } from './reducers/profileReducers';
-import { allScheduleListReducer } from './reducers/scheduleReducers';
+import {
+  allScheduleListReducer,
+  pickScheduleReducer,
+} from './reducers/scheduleReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -96,6 +99,7 @@ const reducer = combineReducers({
   empAddExperience: empAddExperienceReducer,
 
   allScheduleList: allScheduleListReducer,
+  pickSchedule: pickScheduleReducer,
 });
 
 //get Cart items from localStorage

@@ -85,6 +85,8 @@ const pickSchedule = asyncHandler(async (req, res) => {
     const orderId = req.body.orderId;
     const order = await Order.find({ _id: orderId });
 
+    console.log(req.body.employeeId, req.body.orderId);
+
     if (order) {
       updatedOrder = await Order.findByIdAndUpdate(
         { _id: orderId },

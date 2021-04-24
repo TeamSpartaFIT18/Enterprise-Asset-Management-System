@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { listSchedules } from '../../actions/scheduleActions';
+import { listSchedules, schedulePick } from '../../actions/scheduleActions';
 import '../Screens.css';
 
 const ScheduleListScreen = ({ history }) => {
+  const [orderId, setOrderId] = useState(' ');
+
   const dispatch = useDispatch();
 
   const allScheduleList = useSelector((state) => state.allScheduleList);
@@ -23,6 +25,15 @@ const ScheduleListScreen = ({ history }) => {
       history.push('/signin');
     }
   }, [dispatch, history, userInfo]);
+
+  const employeeId = userInfo._id;
+
+  function pickScheduleHandler() {
+    dispatch(schedulePick(employeeId, orderId));
+
+    alert('Picked the schedule!');
+    window.location = '/employee/schedules';
+  }
 
   return (
     <div className="orderListScreen">
@@ -60,9 +71,32 @@ const ScheduleListScreen = ({ history }) => {
                   ))}
                 </td>
                 <td>
-                  <Button variant="danger" className="btn-sm">
-                    Pick
-                  </Button>
+                  {orderId && orderId == ' ' ? (
+                    <Button
+                      variant="info"
+                      className="btn-sm"
+                      onClick={() => {
+                        setOrderId(schedule._id);
+                      }}
+                    >
+                      Pick
+                    </Button>
+                  ) : (
+                    <div>
+                      {orderId == schedule._id && (
+                        <Button
+                          variant="danger"
+                          className="btn-sm"
+                          onClick={() => {
+                            setOrderId(schedule._id);
+                            pickScheduleHandler();
+                          }}
+                        >
+                          Pick
+                        </Button>
+                      )}
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
