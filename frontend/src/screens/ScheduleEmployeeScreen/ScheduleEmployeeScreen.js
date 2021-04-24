@@ -54,6 +54,7 @@ const ScheduleEmployeeScreen = ({ history }) => {
                   <th>ADDRESS</th>
                   <th>ITEMS</th>
                   <th>PICK</th>
+                  <th>DETAILS</th>
                 </tr>
               </thead>
               <tbody>
@@ -100,6 +101,15 @@ const ScheduleEmployeeScreen = ({ history }) => {
                           )}
                         </div>
                       )}
+                    </td>
+                    <td>
+                      <LinkContainer
+                        to={`/employee/schedules/myschedules/${schedule._id}`}
+                      >
+                        <Button variant="info" className="btn-sm">
+                          Details
+                        </Button>
+                      </LinkContainer>
                     </td>
                   </tr>
                 ))}

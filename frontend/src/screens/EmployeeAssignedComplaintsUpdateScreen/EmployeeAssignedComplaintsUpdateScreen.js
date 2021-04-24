@@ -22,8 +22,8 @@ import {
 import { PRODUCT_EMP_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
 
 const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
-  const complaintId = match.params.complaintId;
   const productId = match.params.productId;
+  const complaintId = match.params.complaintId;
 
   const [jobDescription, setJobDescription] = useState(' ');
   const [message, setMessage] = useState(null);

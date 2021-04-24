@@ -15,6 +15,7 @@ import EmployeeAssignedComplaintsScreen from '../screens/EmployeeAssignedComplai
 import EmployeeAssignedComplaintsUpdateScreen from '../screens/EmployeeAssignedComplaintsUpdateScreen/EmployeeAssignedComplaintsUpdateScreen';
 import ScheduleListScreen from '../screens/ScheduleListScreen/ScheduleListScreen';
 import ScheduleEmployeeScreen from '../screens/ScheduleEmployeeScreen/ScheduleEmployeeScreen';
+import ScheduleCompleteScreen from '../screens/ScheduleCompleteScreen/ScheduleCompleteScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -75,6 +76,13 @@ const AdminLayout = () => {
               exact
               path={`${url}/schedules/myschedules`}
               component={ScheduleEmployeeScreen}
+            />
+          )}
+          {userInfo && userInfo.isEmployee && (
+            <Route
+              exact
+              path={`${url}/schedules/myschedules/:id`}
+              component={ScheduleCompleteScreen}
             />
           )}
           {userInfo && userInfo.isEmployee && (

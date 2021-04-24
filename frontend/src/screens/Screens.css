@@ -253,3 +253,9 @@
 .OrderAddComplaint {
   text-align: center;
 }
+
+/* SCHEDULE COMPLETE SCREEN -> listgroup*/
+.ordItemsSchedComplete {
+  margin-top: 20px;
+  margin-left: 10px;
+}

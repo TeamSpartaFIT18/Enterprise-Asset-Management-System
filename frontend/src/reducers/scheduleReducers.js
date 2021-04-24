@@ -14,6 +14,10 @@ import {
   UNPICK_A_SCHEDULE_SUCCESS,
   UNPICK_A_SCHEDULE_FAIL,
   UNPICK_A_SCHEDULE_RESET,
+  COMPLETE_SCHEDULE_REQUEST,
+  COMPLETE_SCHEDULE_SUCCESS,
+  COMPLETE_SCHEDULE_FAIL,
+  COMPLETE_SCHEDULE_RESET,
 } from '../types/scheduleTypes';
 
 //all schedule list
@@ -100,6 +104,22 @@ export const unpickScheduleReducer = (state = {}, action) => {
         error: action.payload,
       };
     case UNPICK_A_SCHEDULE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+//complete a schedule by employee
+export const completeScheduleReducer = (state = {}, action) => {
+  switch (action.type) {
+    case COMPLETE_SCHEDULE_REQUEST:
+      return { loading: true };
+    case COMPLETE_SCHEDULE_SUCCESS:
+      return { loading: false, success: true };
+    case COMPLETE_SCHEDULE_FAIL:
+      return { loading: false, error: action.payload };
+    case COMPLETE_SCHEDULE_RESET:
       return {};
     default:
       return state;

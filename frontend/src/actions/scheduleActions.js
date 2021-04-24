@@ -3,6 +3,9 @@ import {
   ALL_SCHEDULES_LIST_FAIL,
   ALL_SCHEDULES_LIST_REQUEST,
   ALL_SCHEDULES_LIST_SUCCESS,
+  COMPLETE_SCHEDULE_FAIL,
+  COMPLETE_SCHEDULE_REQUEST,
+  COMPLETE_SCHEDULE_SUCCESS,
   PICK_A_SCHEDULE_FAIL,
   PICK_A_SCHEDULE_REQUEST,
   PICK_A_SCHEDULE_SUCCESS,
@@ -159,6 +162,40 @@ export const scheduleUnpick = (orderId) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: UNPICK_A_SCHEDULE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//update complaint by employee
+export const scheduleComplete = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: COMPLETE_SCHEDULE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    await axios.post(`/api/schedules/complete`, { orderId }, config);
+
+    dispatch({
+      type: COMPLETE_SCHEDULE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: COMPLETE_SCHEDULE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
