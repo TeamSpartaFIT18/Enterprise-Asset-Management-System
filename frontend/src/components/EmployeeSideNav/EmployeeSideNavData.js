@@ -49,8 +49,8 @@ export const EmployeeSideNavData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: 'Complaints',
-        path: '/employee/jobs/complaints',
+        title: 'My schedules',
+        path: '/employee/schedules/myschedules',
         icon: <IoIcons.IoIosPaper />,
         cName: 'sub-nav',
       },

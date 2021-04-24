@@ -52,6 +52,8 @@ import {
 import {
   allScheduleListReducer,
   pickScheduleReducer,
+  schedulesListMyReducer,
+  unpickScheduleReducer,
 } from './reducers/scheduleReducers';
 
 const reducer = combineReducers({
@@ -100,6 +102,8 @@ const reducer = combineReducers({
 
   allScheduleList: allScheduleListReducer,
   pickSchedule: pickScheduleReducer,
+  schedulesListMy: schedulesListMyReducer,
+  unpickSchedule: unpickScheduleReducer,
 });
 
 //get Cart items from localStorage
