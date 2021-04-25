@@ -76,4 +76,19 @@ export const AdminSideNavData = [
       },
     ],
   },
+  {
+    title: 'Schedules',
+    path: '/admin/schedules',
+    icon: <RiIcons.RiErrorWarningFill />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    subNav: [
+      {
+        title: 'Ongoing Schedules',
+        path: '/admin/schedules/ongoing',
+        icon: <FaIcons.FaArrowAltCircleRight />,
+        cName: 'sub-nav',
+      },
+    ],
+  },
 ];

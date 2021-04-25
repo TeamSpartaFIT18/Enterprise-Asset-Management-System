@@ -3,6 +3,9 @@ import {
   EMPLOYEE_ADD_EX_FAIL,
   EMPLOYEE_ADD_EX_REQUEST,
   EMPLOYEE_ADD_EX_SUCCESS,
+  EMPLOYEE_PROFILE_ADMIN_FAIL,
+  EMPLOYEE_PROFILE_ADMIN_REQUEST,
+  EMPLOYEE_PROFILE_ADMIN_SUCCESS,
   EMPLOYEE_PROFILE_CREATE_FAIL,
   EMPLOYEE_PROFILE_CREATE_REQUEST,
   EMPLOYEE_PROFILE_CREATE_SUCCESS,
@@ -174,6 +177,45 @@ export const empExperienceAdd = (
   } catch (error) {
     dispatch({
       type: EMPLOYEE_ADD_EX_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//get employee profile by admin
+export const getEmpProfileAdmin = (employeeId) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: EMPLOYEE_PROFILE_ADMIN_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const id = employeeId;
+    const { data } = await axios.get(`/api/emp-profiles/${id}`, config);
+
+    dispatch({
+      type: EMPLOYEE_PROFILE_ADMIN_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: EMPLOYEE_PROFILE_ADMIN_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -12,6 +12,9 @@ import {
   EMPLOYEE_ADD_EX_REQUEST,
   EMPLOYEE_ADD_EX_SUCCESS,
   EMPLOYEE_ADD_EX_FAIL,
+  EMPLOYEE_PROFILE_ADMIN_SUCCESS,
+  EMPLOYEE_PROFILE_ADMIN_FAIL,
+  EMPLOYEE_PROFILE_ADMIN_REQUEST,
 } from '../types/profileTypes';
 
 //employee profile details
@@ -71,6 +74,28 @@ export const empAddExperienceReducer = (state = {}, action) => {
     case EMPLOYEE_ADD_EX_SUCCESS:
       return { loading: false, experience: action.payload };
     case EMPLOYEE_ADD_EX_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+//employee profile details by admin
+export const employeeProfileAdminReducer = (
+  state = { profile: {} },
+  action
+) => {
+  switch (action.type) {
+    case EMPLOYEE_PROFILE_ADMIN_REQUEST:
+      return { ...state, loading: true };
+    case EMPLOYEE_PROFILE_ADMIN_SUCCESS:
+      return {
+        loading: false,
+        profile: action.payload,
+        experiences: action.payload.experience,
+        skills: action.payload.skills,
+      };
+    case EMPLOYEE_PROFILE_ADMIN_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

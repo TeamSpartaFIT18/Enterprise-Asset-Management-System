@@ -48,6 +48,7 @@ import {
   editEmployeeProfileReducer,
   empAddExperienceReducer,
   employeeProfileReducer,
+  employeeProfileAdminReducer,
 } from './reducers/profileReducers';
 import {
   allCompletedScheduleListByEmpReducer,
@@ -56,6 +57,7 @@ import {
   pickScheduleReducer,
   schedulesListMyReducer,
   unpickScheduleReducer,
+  ongoingScheduleListReducer,
 } from './reducers/scheduleReducers';
 
 const reducer = combineReducers({
@@ -101,6 +103,7 @@ const reducer = combineReducers({
   createEmployeeProfile: createEmployeeProfileReducer,
   editEmployeeProfile: editEmployeeProfileReducer,
   empAddExperience: empAddExperienceReducer,
+  employeeProfileAdmin: employeeProfileAdminReducer,
 
   allScheduleList: allScheduleListReducer,
   pickSchedule: pickScheduleReducer,
@@ -108,6 +111,7 @@ const reducer = combineReducers({
   unpickSchedule: unpickScheduleReducer,
   completeSchedule: completeScheduleReducer,
   allCompletedScheduleListByEmp: allCompletedScheduleListByEmpReducer,
+  ongoingScheduleList: ongoingScheduleListReducer,
 });
 
 //get Cart items from localStorage

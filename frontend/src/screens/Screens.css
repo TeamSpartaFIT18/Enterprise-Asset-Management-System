@@ -260,6 +260,8 @@
   margin-left: 10px;
 }
 
+/* PRODUCT EDIT OR CREATE SCREEN CARD */
+
 .editOrCreateFormCard {
   margin-top: 70px;
   padding-bottom: 20px;
@@ -293,4 +295,10 @@
   font-size: 30px;
   margin-left: 50px;
   margin-top: 10px;
+}
+
+/* SCHEDULE ONGOING DETAILS BY ADMIN SCREEN */
+.detailsTopic {
+  font-size: 20px;
+  margin-bottom: 5px;
 }

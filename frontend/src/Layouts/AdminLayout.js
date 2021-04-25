@@ -29,6 +29,8 @@ import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCr
 import ComplaintListScreen from '../screens/ComplaintListScreen/ComplaintListScreen';
 import ComplaintHandlingScreen from '../screens/ComplaintHandlingScreen/ComplaintHandlingScreen';
 import NotHandledComplaintsScreen from '../screens/NotHandledComplaintsScreen/NotHandledComplaintsScreen';
+import ScheduleOngoingListAdminScreen from '../screens/ScheduleOngoingListAdminScreen/ScheduleOngoingListAdminScreen';
+import ScheduleOngoingDetailsScreen from '../screens/ScheduleOngoingDetailsScreen/ScheduleOngoingDetailsScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -76,6 +78,24 @@ const AdminLayout = () => {
               exact
               path={`${url}/complaints`}
               component={ComplaintListScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/schedules/ongoing`}
+              component={ScheduleOngoingListAdminScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/schedules/ongoing/:scheduleId/:employeeId`}
+              component={ScheduleOngoingDetailsScreen}
             />
           ) : (
             (window.location = '/signin')

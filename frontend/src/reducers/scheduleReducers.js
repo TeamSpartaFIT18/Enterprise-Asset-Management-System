@@ -21,6 +21,9 @@ import {
   ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST,
   ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS,
   ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
+  ALL_ONGOING_SCHEDULES_FAIL,
+  ALL_ONGOING_SCHEDULES_SUCCESS,
+  ALL_ONGOING_SCHEDULES_REQUEST,
 } from '../types/scheduleTypes';
 
 //all schedule list
@@ -143,6 +146,26 @@ export const allCompletedScheduleListByEmpReducer = (
         schedules: action.payload,
       };
     case ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+//all ongoing schedule list
+export const ongoingScheduleListReducer = (
+  state = { schedules: [] },
+  action
+) => {
+  switch (action.type) {
+    case ALL_ONGOING_SCHEDULES_REQUEST:
+      return { loading: true, schedules: [] };
+    case ALL_ONGOING_SCHEDULES_SUCCESS:
+      return {
+        loading: false,
+        schedules: action.payload,
+      };
+    case ALL_ONGOING_SCHEDULES_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

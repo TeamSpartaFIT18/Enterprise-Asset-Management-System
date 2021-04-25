@@ -3,6 +3,9 @@ import {
   ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
   ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST,
   ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS,
+  ALL_ONGOING_SCHEDULES_FAIL,
+  ALL_ONGOING_SCHEDULES_REQUEST,
+  ALL_ONGOING_SCHEDULES_SUCCESS,
   ALL_SCHEDULES_LIST_FAIL,
   ALL_SCHEDULES_LIST_REQUEST,
   ALL_SCHEDULES_LIST_SUCCESS,
@@ -237,6 +240,40 @@ export const completedSchedulesByEmp = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//get ongoing schedules
+export const listOngoingSchedules = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ALL_ONGOING_SCHEDULES_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/schedules/ongoing/all`, config);
+
+    dispatch({
+      type: ALL_ONGOING_SCHEDULES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_ONGOING_SCHEDULES_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

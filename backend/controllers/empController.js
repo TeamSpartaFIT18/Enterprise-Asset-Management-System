@@ -62,7 +62,7 @@ const createEmpProfile = asyncHandler(async (req, res) => {
   res.json(profile);
 });
 
-// Get Profile by user ID , Public
+// Get Profile by user ID , admin
 // GET api/emp-profiles/:user_id
 const getEmpProfile = asyncHandler(async (req, res) => {
   const profile = await EmpProfile.findOne({
