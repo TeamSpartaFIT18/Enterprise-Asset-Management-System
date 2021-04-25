@@ -86,7 +86,19 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
-    }
+    },
+    supplierName: {
+      type: String,
+      required: true,
+    },
+    supplierAddress: {
+      type: String,
+      required: true,
+    },
+    supplierContact: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

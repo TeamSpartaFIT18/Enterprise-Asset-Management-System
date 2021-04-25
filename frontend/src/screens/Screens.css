@@ -259,3 +259,38 @@
   margin-top: 20px;
   margin-left: 10px;
 }
+
+.editOrCreateFormCard {
+  margin-top: 70px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  box-shadow: 12px 12px 12px gray;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+}
+
+.editCreateProdForm {
+  margin-left: 90px;
+}
+.halfinput {
+  width: 350px;
+  border-color: rgb(3, 64, 0);
+  border-radius: 0px;
+}
+.updateOrCreateButton {
+  width: 350px;
+  margin-top: 27px;
+}
+.formFieldDet {
+  font-weight: bold;
+}
+
+.formColTopic {
+  font-size: 24px;
+}
+.cardTopic {
+  font-size: 30px;
+  margin-left: 50px;
+  margin-top: 10px;
+}
