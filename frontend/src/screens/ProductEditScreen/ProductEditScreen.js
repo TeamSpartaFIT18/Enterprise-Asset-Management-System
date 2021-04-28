@@ -26,6 +26,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [supplierAddress, setSupplierAddress] = useState('');
   const [supplierContact, setSupplierContact] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [message, setMessage] = useState('');
 
   const dispatch = useDispatch();
 
@@ -86,21 +87,36 @@ const ProductEditScreen = ({ match, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      updateProduct({
-        _id: productId,
-        name,
-        price,
-        image,
-        brand,
-        category,
-        description,
-        countInStock,
-        supplierName,
-        supplierAddress,
-        supplierContact,
-      })
-    );
+    if (
+      name == '' ||
+      price == 0 ||
+      image == '' ||
+      brand == '' ||
+      category == '' ||
+      description == '' ||
+      countInStock == 0 ||
+      supplierName == '' ||
+      supplierAddress == '' ||
+      supplierContact == ''
+    ) {
+      setMessage('All fields required');
+    } else {
+      dispatch(
+        updateProduct({
+          _id: productId,
+          name,
+          price,
+          image,
+          brand,
+          category,
+          description,
+          countInStock,
+          supplierName,
+          supplierAddress,
+          supplierContact,
+        })
+      );
+    }
   };
 
   return (
@@ -117,9 +133,12 @@ const ProductEditScreen = ({ match, history }) => {
             </p>
           )}
         </Row>
-        <Row>
+        <Row className="ml-5">
           {loadingUpdate && <Loader />}
           {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
+          {message && <Message variant="danger">{message}</Message>}
+        </Row>
+        <Row>
           {loading ? (
             <Loader />
           ) : error ? (

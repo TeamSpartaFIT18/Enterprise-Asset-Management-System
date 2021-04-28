@@ -39,7 +39,7 @@ const ScheduleOngoingListAdminScreen = ({ history }) => {
               <th>DATE</th>
               <th>ADDRESS</th>
               <th>ITEMS</th>
-              <th>PICK</th>
+              <th>DETAILS</th>
             </tr>
           </thead>
           <tbody>
