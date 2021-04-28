@@ -253,12 +253,12 @@ export const rpSubmitReducer = (state = { user: {} }, action) => {
 };
 
 //send mail to client
-export const sendMailToClientReducer = (state = { user: {} }, action) => {
+export const sendMailToClientReducer = (state = { message: {} }, action) => {
   switch (action.type) {
     case MAIL_TO_CLIENT_REQUEST:
       return { ...state, loading: true };
     case MAIL_TO_CLIENT_SUCCESS:
-      return { loading: false, user: action.payload };
+      return { loading: false, message: action.payload };
     case MAIL_TO_CLIENT_FAIL:
       return { loading: false, error: action.payload };
     default:

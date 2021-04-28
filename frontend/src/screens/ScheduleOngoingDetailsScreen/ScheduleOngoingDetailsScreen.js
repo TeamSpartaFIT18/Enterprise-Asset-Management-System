@@ -15,6 +15,7 @@ import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Meta from '../../components/Meta';
 import '../Screens.css';
+import * as IoIcons from 'react-icons/io';
 import { scheduleComplete } from '../../actions/scheduleActions';
 import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes';
 import { getOrderDetails } from '../../actions/orderActions';
@@ -130,10 +131,13 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
                   </div>
                   <div>
                     <strong>Email: </strong>
-                    {user.email}
+                    {user.email} &nbsp;
                     <LinkContainer to={`${user._id}/mail`}>
                       <Button variant="info" className="btn-sm">
-                        Email to employee
+                        <i>
+                          <IoIcons.IoIosMail size={20} />
+                          <IoIcons.IoMdArrowRoundForward size={20} />
+                        </i>
                       </Button>
                     </LinkContainer>
                   </div>

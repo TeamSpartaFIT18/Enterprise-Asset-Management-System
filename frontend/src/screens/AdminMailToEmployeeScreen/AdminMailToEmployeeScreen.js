@@ -6,24 +6,44 @@ import FormContainer from '../../components/FormContainer';
 import '../Screens.css';
 import mail from '../Images/mail.jpg';
 import Message from '../../components/Message';
+import { getOrderDetails } from '../../actions/orderActions';
 
-const AdminMailboxToClients = ({ match }) => {
-  const userId = match.params.id;
+const AdminMailToEmployeeScreen = ({ match }) => {
+  const orderId = match.params.scheduleId;
+  const employeeId = match.params.employeeId;
 
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
   const [message, setMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order, loading, error } = orderDetails;
+
+  const sendMailToClient = useSelector((state) => state.sendMailToClient);
+  const {
+    message: resMessage,
+    loading: loadingMessage,
+    error: errorMessage,
+  } = sendMailToClient;
+
   useEffect(() => {
-    if (userId) {
-      dispatch(getUserDetails(userId));
+    if (userInfo.isAdmin) {
+      dispatch(getUserDetails(employeeId));
+      dispatch(getOrderDetails(orderId));
     }
-  }, [userId, dispatch]);
+    if (orderId && employeeId) {
+      setSubject('Regarding schedule ' + orderId + ' you picked');
+    }
+  }, [employeeId, orderId, dispatch]);
 
   const email = user.email;
 
@@ -33,15 +53,21 @@ const AdminMailboxToClients = ({ match }) => {
       setMessage('All fields are required!');
     } else {
       dispatch(mailToClient({ email, subject, body }));
-      window.location = '/admin/clientlist';
+      if (resMessage) {
+        setSuccessMessage('Successfully sent');
+        setTimeout(function () {
+          window.location.href = '/admin/schedules/ongoing';
+        }, 3000);
+      }
     }
   };
+
   return (
     <div className="container">
       <div className="adminMailboxToClients">
         <Row className="mainRow no-gutters">
           <Col md={2}>
-            <Image className="mailImage mt-4 ml-2" src={mail} />
+            <Image className="mailImage" src={mail} />
           </Col>
           <Col md={10}>
             <FormContainer>
@@ -49,6 +75,9 @@ const AdminMailboxToClients = ({ match }) => {
                 Send mail to {user.name}
               </h3>
               {message && <Message variant="danger">{message}</Message>}
+              {successMessage && (
+                <Message variant="success">{successMessage}</Message>
+              )}
               <Row className="dataRow mb-1">
                 <Col md={3}>
                   <strong>To: </strong>
@@ -57,23 +86,11 @@ const AdminMailboxToClients = ({ match }) => {
               </Row>
 
               <Form onSubmit={submitHandler}>
-                <Row className="dataRow">
+                <Row className="dataRow mb-1">
                   <Col md={3}>
                     <strong>Subject: </strong>
                   </Col>
-                  <Col md={9}>
-                    <Form.Group controlId="subject">
-                      <Form.Control
-                        className="dataBody"
-                        as="textarea"
-                        rows={2}
-                        type="text"
-                        placeholder="Enter the subject to the mail"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                      ></Form.Control>
-                    </Form.Group>
-                  </Col>
+                  <Col md={9}>{subject}</Col>
                 </Row>
                 <Row className="dataRow">
                   <Col md={3}>
@@ -115,4 +132,4 @@ const AdminMailboxToClients = ({ match }) => {
   );
 };
 
-export default AdminMailboxToClients;
+export default AdminMailToEmployeeScreen;

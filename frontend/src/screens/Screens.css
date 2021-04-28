@@ -126,7 +126,7 @@
 }
 
 .mailImage {
-  height: 500px;
+  height: 300px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -134,14 +134,25 @@
   border-top-left-radius: 30px;
 }
 
+.dataRow {
+  width: 500px;
+}
+.dataBody {
+  border-color: rgb(0, 72, 14);
+  border-radius: 10px;
+}
+
 .mainRow {
-  background-color: rgb(255, 255, 255);
+  margin-top: 90px;
+  background-color: rgb(238, 238, 238);
   border-radius: 30px;
   box-shadow: 12px 12px 12px gray;
-  height: 500px;
+  height: auto;
+  padding-bottom: 30px;
 }
 
 .btnSendmail {
+  float: right;
   border: none;
   outline: none;
   height: 50px;
@@ -155,6 +166,12 @@
   background-color: white;
   border: 1px solid;
   color: black;
+}
+.buttonRow {
+  width: 500px;
+}
+.imageCol {
+  background-color: #001a0f;
 }
 
 .userIcon {
