@@ -24,6 +24,10 @@ import {
   ALL_ONGOING_SCHEDULES_FAIL,
   ALL_ONGOING_SCHEDULES_SUCCESS,
   ALL_ONGOING_SCHEDULES_REQUEST,
+  SCHEDULE_EMP_ASSIGN_REQUEST,
+  SCHEDULE_EMP_ASSIGN_SUCCESS,
+  SCHEDULE_EMP_ASSIGN_FAIL,
+  SCHEDULE_EMP_ASSIGN_RESET,
 } from '../types/scheduleTypes';
 
 //all schedule list
@@ -167,6 +171,30 @@ export const ongoingScheduleListReducer = (
       };
     case ALL_ONGOING_SCHEDULES_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+//assign an employee to a schedule
+export const assignEmpToScheduleReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SCHEDULE_EMP_ASSIGN_REQUEST:
+      return {
+        loading: true,
+      };
+    case SCHEDULE_EMP_ASSIGN_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case SCHEDULE_EMP_ASSIGN_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case SCHEDULE_EMP_ASSIGN_RESET:
+      return {};
     default:
       return state;
   }

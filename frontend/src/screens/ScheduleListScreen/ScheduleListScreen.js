@@ -19,7 +19,7 @@ const ScheduleListScreen = ({ history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.isEmployee) {
+    if ((userInfo && userInfo.isEmployee) || (userInfo && userInfo.isAdmin)) {
       dispatch(listSchedules());
     } else {
       history.push('/signin');
@@ -50,7 +50,8 @@ const ScheduleListScreen = ({ history }) => {
               <th>DATE</th>
               <th>ADDRESS</th>
               <th>ITEMS</th>
-              <th>PICK</th>
+              {userInfo.isEmployee && <th>PICK</th>}
+              {userInfo.isAdmin && <th>DETAILS</th>}
             </tr>
           </thead>
           <tbody>
@@ -70,34 +71,45 @@ const ScheduleListScreen = ({ history }) => {
                     <li key={item._id}>{item.name}</li>
                   ))}
                 </td>
-                <td>
-                  {orderId && orderId == ' ' ? (
-                    <Button
-                      variant="info"
-                      className="btn-sm"
-                      onClick={() => {
-                        setOrderId(schedule._id);
-                      }}
-                    >
-                      Pick
-                    </Button>
-                  ) : (
-                    <div>
-                      {orderId == schedule._id && (
-                        <Button
-                          variant="danger"
-                          className="btn-sm"
-                          onClick={() => {
-                            setOrderId(schedule._id);
-                            pickScheduleHandler();
-                          }}
-                        >
-                          Sure?
-                        </Button>
-                      )}
-                    </div>
-                  )}
-                </td>
+                {userInfo.isEmployee && (
+                  <td>
+                    {orderId && orderId == ' ' ? (
+                      <Button
+                        variant="info"
+                        className="btn-sm"
+                        onClick={() => {
+                          setOrderId(schedule._id);
+                        }}
+                      >
+                        Pick
+                      </Button>
+                    ) : (
+                      <div>
+                        {orderId == schedule._id && (
+                          <Button
+                            variant="danger"
+                            className="btn-sm"
+                            onClick={() => {
+                              setOrderId(schedule._id);
+                              pickScheduleHandler();
+                            }}
+                          >
+                            Sure?
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  </td>
+                )}
+                {userInfo.isAdmin && (
+                  <td>
+                    <LinkContainer to={`/admin/schedules/${schedule._id}`}>
+                      <Button variant="info" className="btn-sm">
+                        Details
+                      </Button>
+                    </LinkContainer>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

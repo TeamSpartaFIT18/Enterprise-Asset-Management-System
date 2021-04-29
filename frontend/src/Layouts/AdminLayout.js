@@ -32,6 +32,8 @@ import NotHandledComplaintsScreen from '../screens/NotHandledComplaintsScreen/No
 import ScheduleOngoingListAdminScreen from '../screens/ScheduleOngoingListAdminScreen/ScheduleOngoingListAdminScreen';
 import ScheduleOngoingDetailsScreen from '../screens/ScheduleOngoingDetailsScreen/ScheduleOngoingDetailsScreen';
 import AdminMailToEmployeeScreen from '../screens/AdminMailToEmployeeScreen/AdminMailToEmployeeScreen';
+import ScheduleListScreen from '../screens/ScheduleListScreen/ScheduleListScreen';
+import ScheduleHandlingScreen from '../screens/ScheduleHandlingScreen/ScheduleHandlingScreen';
 
 const AdminLayout = () => {
   const { url, path } = useRouteMatch();
@@ -95,8 +97,26 @@ const AdminLayout = () => {
           {userInfo && userInfo.isAdmin ? (
             <Route
               exact
+              path={`${url}/schedules`}
+              component={ScheduleListScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
               path={`${url}/schedules/ongoing/:scheduleId/:employeeId`}
               component={ScheduleOngoingDetailsScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/schedules/:scheduleId`}
+              component={ScheduleHandlingScreen}
             />
           ) : (
             (window.location = '/signin')

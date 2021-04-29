@@ -1,6 +1,18 @@
 import asyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 
+import nodemailer from 'nodemailer';
+import sendgridTransport from 'nodemailer-sendgrid-transport';
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:
+        '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',
+    },
+  })
+);
+
 // Get all available service schedules
 // GET api/schedule/
 const getSchedules = asyncHandler(async (req, res) => {
@@ -84,8 +96,7 @@ const pickSchedule = asyncHandler(async (req, res) => {
     const employeeId = req.body.employeeId;
     const orderId = req.body.orderId;
     const order = await Order.find({ _id: orderId });
-
-    console.log(req.body.employeeId, req.body.orderId);
+    console.log(req.body);
 
     if (order) {
       updatedOrder = await Order.findByIdAndUpdate(
@@ -97,6 +108,23 @@ const pickSchedule = asyncHandler(async (req, res) => {
         },
         { useFindAndModify: false }
       );
+
+      if (req.body.empEmail) {
+        transporter.sendMail({
+          to: req.body.empEmail,
+          from: 'teamsparta.eams@gmail.com',
+          subject: 'Assigned to a new job',
+          html: `<h2>Regarding complaint ${req.body.orderId}</h2>
+      <p>we assigned you (${req.body.employeeId}) to fix that issue.</p>
+      <p>You can see this job in detail from your dashboard of EAMS web page</p>
+      <p>Please make sure to complete this job ASAP and update system with details when it is done</p>
+      <br></br>
+      <p>Thank you!</p>
+      <p>Best regards</p>
+      <p><strong>EAMS</strong></p>
+      `,
+        });
+      }
     }
 
     res.status(200).json(updatedOrder);

@@ -18,6 +18,9 @@ import {
   SCHEDULES_LIST_MY_FAIL,
   SCHEDULES_LIST_MY_REQUEST,
   SCHEDULES_LIST_MY_SUCCESS,
+  SCHEDULE_EMP_ASSIGN_FAIL,
+  SCHEDULE_EMP_ASSIGN_REQUEST,
+  SCHEDULE_EMP_ASSIGN_SUCCESS,
   UNPICK_A_SCHEDULE_FAIL,
   UNPICK_A_SCHEDULE_REQUEST,
   UNPICK_A_SCHEDULE_SUCCESS,
@@ -274,6 +277,47 @@ export const listOngoingSchedules = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ALL_ONGOING_SCHEDULES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//pick a schedule by employee
+export const scheduleAssign = (employeeId, orderId, empEmail) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: SCHEDULE_EMP_ASSIGN_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/schedules/pick`,
+      { employeeId, orderId, empEmail },
+      config
+    );
+
+    dispatch({
+      type: SCHEDULE_EMP_ASSIGN_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SCHEDULE_EMP_ASSIGN_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
