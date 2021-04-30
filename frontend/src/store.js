@@ -1,6 +1,6 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   productListReducer,
   allProductListReducer,
@@ -13,8 +13,8 @@ import {
   productComplaintCreateReducer,
   productComplaintUpdateReducer,
   productComplaintEmpUpdateReducer,
-} from './reducers/productReducers';
-import { cartReducer } from './reducers/cartReducers';
+} from './reducers/productReducers'
+import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -32,7 +32,7 @@ import {
   sendMailToClientReducer,
   addAdminByAdminReducer,
   addEmployeeByAdminReducer,
-} from './reducers/userReducers';
+} from './reducers/userReducers'
 import {
   orderCreateReducer,
   orderDetailsReducer,
@@ -42,14 +42,15 @@ import {
   orderListReducer,
   notPaidOrderListReducer,
   notDeliveredOrderListReducer,
-} from './reducers/orderReducers';
+  orderListEmpReducer,
+} from './reducers/orderReducers'
 import {
   createEmployeeProfileReducer,
   editEmployeeProfileReducer,
   empAddExperienceReducer,
   employeeProfileReducer,
   employeeProfileAdminReducer,
-} from './reducers/profileReducers';
+} from './reducers/profileReducers'
 import {
   allCompletedScheduleListByEmpReducer,
   allScheduleListReducer,
@@ -59,7 +60,7 @@ import {
   unpickScheduleReducer,
   ongoingScheduleListReducer,
   assignEmpToScheduleReducer,
-} from './reducers/scheduleReducers';
+} from './reducers/scheduleReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -99,6 +100,7 @@ const reducer = combineReducers({
   orderList: orderListReducer,
   notPaidOrderList: notPaidOrderListReducer,
   notDeliveredOrderList: notDeliveredOrderListReducer,
+  orderListEmp: orderListEmpReducer,
 
   employeeProfile: employeeProfileReducer,
   createEmployeeProfile: createEmployeeProfileReducer,
@@ -114,22 +116,22 @@ const reducer = combineReducers({
   allCompletedScheduleListByEmp: allCompletedScheduleListByEmpReducer,
   ongoingScheduleList: ongoingScheduleListReducer,
   assignEmpToSchedule: assignEmpToScheduleReducer,
-});
+})
 
 //get Cart items from localStorage
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
-  : [];
+  : []
 
 //get user info from localStorage
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
-  : null;
+  : null
 
 //get shippingAddress localStorage
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
-  : {};
+  : {}
 
 const initialState = {
   cart: {
@@ -137,14 +139,14 @@ const initialState = {
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
-};
+}
 
-const middleware = [thunk];
+const middleware = [thunk]
 
 const store = createStore(
   reducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
-);
+)
 
-export default store;
+export default store

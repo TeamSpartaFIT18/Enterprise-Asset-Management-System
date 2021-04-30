@@ -26,6 +26,9 @@ import {
   NOT_DELIVERED_ORDER_LIST_REQUEST,
   NOT_DELIVERED_ORDER_LIST_SUCCESS,
   NOT_DELIVERED_ORDER_LIST_FAIL,
+  ORDER_LIST_EMP_REQUEST,
+  ORDER_LIST_EMP_SUCCESS,
+  ORDER_LIST_EMP_FAIL,
 } from '../types/orderTypes'
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -145,6 +148,7 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
   }
 }
 
+//orderList reducer
 export const orderListReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_REQUEST:
@@ -206,6 +210,29 @@ export const notDeliveredOrderListReducer = (
         orders: action.payload,
       }
     case NOT_DELIVERED_ORDER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state
+  }
+}
+
+//orderList emp reducer
+export const orderListEmpReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDER_LIST_EMP_REQUEST:
+      return {
+        loading: true,
+      }
+    case ORDER_LIST_EMP_SUCCESS:
+      return {
+        loading: false,
+        orders: action.payload,
+      }
+    case ORDER_LIST_EMP_FAIL:
       return {
         loading: false,
         error: action.payload,

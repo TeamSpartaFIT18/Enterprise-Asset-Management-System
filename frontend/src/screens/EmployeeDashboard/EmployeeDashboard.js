@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { LinkContainer } from 'react-router-bootstrap'
+import { emplistOrders } from '../../actions/orderActions'
 import { listProducts } from '../../actions/productActions'
 import '../Screens.css'
 
@@ -15,6 +18,9 @@ const EmployeeDashboard = ({ history, match }) => {
   const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
 
+  const orderListEmp = useSelector((state) => state.orderListEmp)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListEmp
+
   useEffect(() => {
     if (!userInfo) {
       history.push('/signin')
@@ -22,6 +28,7 @@ const EmployeeDashboard = ({ history, match }) => {
 
     if (userInfo) {
       dispatch(listProducts('', pageNumber))
+      dispatch(emplistOrders())
     }
   }, [dispatch, history, userInfo, pageNumber])
 
@@ -40,8 +47,23 @@ const EmployeeDashboard = ({ history, match }) => {
       }
     }
   }
+  var availableSchedulesCount = 0
+  if (orders) {
+    for (var k = 0; k < orders.length; k++) {
+      if (orders[k].isDelivered && orders[k].isSchedulePicked == false) {
+        availableSchedulesCount++
+      }
+    }
+  }
 
-  console.log(notCompletedComplaintCount)
+  var pickedScheduleCount = 0
+  if (orders) {
+    for (var l = 0; l < orders.length; l++) {
+      if (orders[l].schedulePickedBy == userInfo._id) {
+        pickedScheduleCount++
+      }
+    }
+  }
 
   return (
     <div className="empDashboard">
@@ -49,6 +71,72 @@ const EmployeeDashboard = ({ history, match }) => {
       <p className="lead">
         <i className="fas fa-user" /> Welcome {userInfo.name}
       </p>
+
+      <Row>
+        <Col md={6}>
+          <Card bg="success">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Assigned Jobs
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-desktop"></i>
+                </Col>
+                <LinkContainer to="/employee/jobs/complaints">
+                  <Col className="colCount">
+                    <p>{notCompletedComplaintCount}</p>
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+      <hr></hr>
+      <Row>
+        <Col md={6}>
+          <Card bg="info">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Available Schedules
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-desktop"></i>
+                </Col>
+                <LinkContainer to="/employee/schedules">
+                  <Col className="colCount">
+                    <p>{availableSchedulesCount}</p>
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+      <hr></hr>
+      <Row>
+        <Col md={6}>
+          <Card bg="danger">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Picked Schedules
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-desktop"></i>
+                </Col>
+                <LinkContainer to="/employee/schedules/myschedules">
+                  <Col className="colCount">
+                    <p>{pickedScheduleCount}</p>
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
     </div>
   )
 }
