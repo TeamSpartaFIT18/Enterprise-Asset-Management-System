@@ -3,12 +3,14 @@ import User from '../models/userModel.js'
 
 import nodemailer from 'nodemailer'
 import sendgridTransport from 'nodemailer-sendgrid-transport'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
-      api_key:
-        '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',
+      api_key: process.env.SG_KEY,
     },
   })
 )
