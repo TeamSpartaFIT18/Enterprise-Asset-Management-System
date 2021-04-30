@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import {
   EMPLOYEE_ADD_EX_FAIL,
   EMPLOYEE_ADD_EX_REQUEST,
@@ -15,32 +15,32 @@ import {
   EMPLOYEE_PROFILE_FAIL,
   EMPLOYEE_PROFILE_REQUEST,
   EMPLOYEE_PROFILE_SUCCESS,
-} from '../types/profileTypes';
+} from '../types/profileTypes'
 
 //get employee profile
 export const getCurrentProfile = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: EMPLOYEE_PROFILE_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
-    const { data } = await axios.get('/api/emp-profiles/me', config);
+    const { data } = await axios.get('/api/emp-profiles/me', config)
 
     dispatch({
       type: EMPLOYEE_PROFILE_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_FAIL,
@@ -48,9 +48,9 @@ export const getCurrentProfile = () => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    });
+    })
   }
-};
+}
 
 //create profile employee
 export const employeeCreateProfile = (
@@ -58,34 +58,34 @@ export const employeeCreateProfile = (
   contact,
   address,
   bio,
-  experience
+  skills
 ) => async (dispatch, getState) => {
   try {
     dispatch({
       type: EMPLOYEE_PROFILE_CREATE_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
     const { data } = await axios.post(
       '/api/emp-profiles',
-      { status, contact, address, bio, experience },
+      { status, contact, address, bio, skills },
       config
-    );
+    )
 
     dispatch({
       type: EMPLOYEE_PROFILE_CREATE_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_CREATE_FAIL,
@@ -93,9 +93,9 @@ export const employeeCreateProfile = (
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    });
+    })
   }
-};
+}
 
 //employee edit profile
 export const employeeEditProfile = (status, contact, address, bio) => async (
@@ -105,29 +105,29 @@ export const employeeEditProfile = (status, contact, address, bio) => async (
   try {
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
     const { data } = await axios.post(
       '/api/emp-profiles',
       { status, contact, address, bio },
       config
-    );
+    )
 
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_EDIT_FAIL,
@@ -135,9 +135,9 @@ export const employeeEditProfile = (status, contact, address, bio) => async (
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    });
+    })
   }
-};
+}
 
 //employee add experience
 export const empExperienceAdd = (
@@ -151,29 +151,29 @@ export const empExperienceAdd = (
   try {
     dispatch({
       type: EMPLOYEE_ADD_EX_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
     const { data } = await axios.post(
       '/api/emp-profiles/experience',
       { title, company, jobLocation, fromDate, toDate, description },
       config
-    );
+    )
 
     dispatch({
       type: EMPLOYEE_ADD_EX_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
     dispatch({
       type: EMPLOYEE_ADD_EX_FAIL,
@@ -181,9 +181,9 @@ export const empExperienceAdd = (
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    });
+    })
   }
-};
+}
 
 //get employee profile by admin
 export const getEmpProfileAdmin = (employeeId) => async (
@@ -193,26 +193,26 @@ export const getEmpProfileAdmin = (employeeId) => async (
   try {
     dispatch({
       type: EMPLOYEE_PROFILE_ADMIN_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
-    const id = employeeId;
-    const { data } = await axios.get(`/api/emp-profiles/${id}`, config);
+    const id = employeeId
+    const { data } = await axios.get(`/api/emp-profiles/${id}`, config)
 
     dispatch({
       type: EMPLOYEE_PROFILE_ADMIN_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
     dispatch({
       type: EMPLOYEE_PROFILE_ADMIN_FAIL,
@@ -220,6 +220,6 @@ export const getEmpProfileAdmin = (employeeId) => async (
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
-    });
+    })
   }
-};
+}

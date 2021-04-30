@@ -1,44 +1,54 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import FormContainer from '../../components/FormContainer';
-import { employeeCreateProfile } from '../../actions/profileActions';
-import '../Screens.css';
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import FormContainer from '../../components/FormContainer'
+import { employeeCreateProfile } from '../../actions/profileActions'
+import '../Screens.css'
 
 const EmployeeCreateProfileScreen = ({ location, history }) => {
-  const [status, setStatus] = useState('');
-  const [contact, setContact] = useState('');
-  const [address, setAddress] = useState('');
-  const [bio, setBio] = useState('');
-  const [experience, setExperience] = useState([]);
+  const [status, setStatus] = useState('')
+  const [contact, setContact] = useState('')
+  const [address, setAddress] = useState('')
+  const [bio, setBio] = useState('')
+  const [skills, setSkills] = useState([])
+  const [message, setMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const createEmployeeProfile = useSelector(
     (state) => state.createEmployeeProfile
-  );
-  const { loading, error } = createEmployeeProfile;
+  )
+  const { loading, error, success } = createEmployeeProfile
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    if (userInfo) {
-      dispatch(
-        employeeCreateProfile(status, contact, address, bio, experience)
-      );
+    e.preventDefault()
+    if (!status || !contact || !address || !bio || !skills) {
+      setErrorMessage('All fields required!')
+    } else {
+      dispatch(employeeCreateProfile(status, contact, address, bio, skills))
+      if (success) {
+        setMessage('Succussfully created!')
+        setTimeout(function () {
+          window.location.href = '/employee/profile'
+        }, 3000)
+      } else setErrorMessage('Something went wrong!')
     }
-  };
+  }
 
   return (
     <FormContainer className="registerScreen">
-      <Meta title="EAMS | Register" />
-      <h1 className="registerScreen">Sign Up</h1>
+      <Meta title="EAMS | Create Profile" />
+      <h1 className="registerScreen">Create profile</h1>
       {error && <Message variant="danger">{error}</Message>}
+      {message && <Message variant="success">{message}</Message>}
+      {errorMessage && <Message variant="danger">{errorMessage}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="status">
@@ -81,13 +91,15 @@ const EmployeeCreateProfileScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="experience">
-          <Form.Label>Enter Experience</Form.Label>
+        <Form.Group controlId="skills">
+          <Form.Label>
+            Enter Skills (You can separate skills using , between two)
+          </Form.Label>
           <Form.Control
-            type="name"
-            placeholder="Enter experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
+            type="text"
+            placeholder="Enter Skills"
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -96,7 +108,7 @@ const EmployeeCreateProfileScreen = ({ location, history }) => {
         </Button>
       </Form>
     </FormContainer>
-  );
-};
+  )
+}
 
-export default EmployeeCreateProfileScreen;
+export default EmployeeCreateProfileScreen

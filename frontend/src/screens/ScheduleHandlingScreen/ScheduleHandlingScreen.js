@@ -1,85 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
-import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
-import { listEmployees } from '../../actions/userActions';
-import { getOrderDetails } from '../../actions/orderActions';
-import { scheduleAssign } from '../../actions/scheduleActions';
-import { SCHEDULE_EMP_ASSIGN_RESET } from '../../types/scheduleTypes';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../../components/Rating/Rating'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
+import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes'
+import { listEmployees } from '../../actions/userActions'
+import { getOrderDetails } from '../../actions/orderActions'
+import { scheduleAssign } from '../../actions/scheduleActions'
+import { SCHEDULE_EMP_ASSIGN_RESET } from '../../types/scheduleTypes'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const ScheduleHandlingScreen = ({ match }) => {
-  const orderId = match.params.scheduleId;
+  const orderId = match.params.scheduleId
 
-  const [employee, setEmployee] = useState(' ');
-  const [message, setMessage] = useState(null);
+  const [employee, setEmployee] = useState(' ')
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
+  const orderDetails = useSelector((state) => state.orderDetails)
+  const { order, loading, error } = orderDetails
 
-  const assignEmpToSchedule = useSelector((state) => state.assignEmpToSchedule);
+  const assignEmpToSchedule = useSelector((state) => state.assignEmpToSchedule)
   const {
     loading: assignLoading,
     success: assignSuccess,
     error: assignError,
-  } = assignEmpToSchedule;
+  } = assignEmpToSchedule
 
-  const employeeList = useSelector((state) => state.employeeList);
-  const {
-    loading: loadingEmployee,
-    error: errorEmployee,
-    users,
-  } = employeeList;
+  const employeeList = useSelector((state) => state.employeeList)
+  const { loading: loadingEmployee, error: errorEmployee, users } = employeeList
 
   useEffect(() => {
     if (orderId) {
-      dispatch(getOrderDetails(orderId));
-      dispatch(listEmployees());
+      dispatch(getOrderDetails(orderId))
+      dispatch(listEmployees())
     }
     if (assignSuccess) {
-      alert('Employee assigned!');
-      setEmployee('');
-      dispatch({ type: SCHEDULE_EMP_ASSIGN_RESET });
-      window.location = '/admin/complaints';
+      alert('Employee assigned!')
+      setEmployee('')
+      dispatch({ type: SCHEDULE_EMP_ASSIGN_RESET })
+      window.location = '/admin/schedules/ongoing'
     }
-  }, [dispatch, match, assignSuccess]);
+  }, [dispatch, match, assignSuccess])
 
-  var empEmail;
-  var employeeId;
+  var empEmail
+  var employeeId
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!employee || employee == ' ') {
-      setMessage('You need to select employee to submit');
+      setMessage('You need to select employee to submit')
     } else {
       for (var i = 0; i < users.length; i++) {
         if (users[i].name == employee) {
-          empEmail = users[i].email;
-          employeeId = users[i]._id;
+          empEmail = users[i].email
+          employeeId = users[i]._id
         }
       }
-      dispatch(scheduleAssign(employeeId, orderId, empEmail));
+      dispatch(scheduleAssign(employeeId, orderId, empEmail))
     }
-  };
+  }
 
   return (
     <div className="oneProductScreen">
@@ -199,7 +187,7 @@ const ScheduleHandlingScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ScheduleHandlingScreen;
+export default ScheduleHandlingScreen

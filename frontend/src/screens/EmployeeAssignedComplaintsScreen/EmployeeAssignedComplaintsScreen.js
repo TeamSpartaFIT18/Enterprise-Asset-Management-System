@@ -1,33 +1,33 @@
-import React, { useEffect } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Paginate from '../../components/Paginate';
-import { listProducts } from '../../actions/productActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Paginate from '../../components/Paginate'
+import { listProducts } from '../../actions/productActions'
+import '../Screens.css'
 
 const ComplaintListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1;
+  const pageNumber = match.params.pageNumber || 1
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, products, page, pages } = productList
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/signin');
+      history.push('/signin')
     }
 
     if (userInfo) {
-      dispatch(listProducts('', pageNumber));
+      dispatch(listProducts('', pageNumber))
     }
-  }, [dispatch, history, userInfo, pageNumber]);
+  }, [dispatch, history, userInfo, pageNumber])
 
   return (
     <div className="productListScreen">
@@ -51,7 +51,7 @@ const ComplaintListScreen = ({ history, match }) => {
                 <th>USER</th>
                 <th>COMPLAINT</th>
                 <th>DATE</th>
-                <th>HANDLED?</th>
+                <th>COMPLETED?</th>
               </tr>
             </thead>
             {products.map((product) => (
@@ -93,7 +93,7 @@ const ComplaintListScreen = ({ history, match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ComplaintListScreen;
+export default ComplaintListScreen

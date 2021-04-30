@@ -1,62 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
-import * as IoIcons from 'react-icons/io';
-import { scheduleComplete } from '../../actions/scheduleActions';
-import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes';
-import { getOrderDetails } from '../../actions/orderActions';
-import { getUserDetails } from '../../actions/userActions';
-import { getEmpProfileAdmin } from '../../actions/profileActions';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../../components/Rating/Rating'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
+import * as IoIcons from 'react-icons/io'
+import { scheduleComplete } from '../../actions/scheduleActions'
+import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes'
+import { getOrderDetails } from '../../actions/orderActions'
+import { getUserDetails } from '../../actions/userActions'
+import { getEmpProfileAdmin } from '../../actions/profileActions'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const ScheduleOngoingDetailsScreen = ({ match }) => {
-  const orderId = match.params.scheduleId;
-  const employeeId = match.params.employeeId;
+  const orderId = match.params.scheduleId
+  const employeeId = match.params.employeeId
 
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
+  const orderDetails = useSelector((state) => state.orderDetails)
+  const { order, loading, error } = orderDetails
 
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading: loadingUser, error: errorUser, user } = userDetails;
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading: loadingUser, error: errorUser, user } = userDetails
 
   const employeeProfileAdmin = useSelector(
     (state) => state.employeeProfileAdmin
-  );
+  )
   const {
     profile,
     loading: loadingEmpProf,
     experiences,
     skills,
-  } = employeeProfileAdmin;
+  } = employeeProfileAdmin
 
   useEffect(() => {
     if (userInfo.isAdmin) {
-      dispatch(getOrderDetails(orderId));
-      dispatch(getUserDetails(employeeId));
-      dispatch(getEmpProfileAdmin(employeeId));
+      dispatch(getOrderDetails(orderId))
+      dispatch(getUserDetails(employeeId))
+      dispatch(getEmpProfileAdmin(employeeId))
     }
-  }, [dispatch, match]);
+  }, [dispatch, match])
 
   return (
     <div className="oneProductScreen">
@@ -143,7 +135,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
                   </div>
                   <div>
                     <strong>Contact number: </strong>
-                    {profile.contact}
+                    {profile.contact && profile.contact}
                   </div>
                   <hr></hr>
                   <Row>
@@ -166,7 +158,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ScheduleOngoingDetailsScreen;
+export default ScheduleOngoingDetailsScreen
