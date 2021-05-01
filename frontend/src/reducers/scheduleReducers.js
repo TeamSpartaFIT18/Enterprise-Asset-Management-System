@@ -28,24 +28,27 @@ import {
   SCHEDULE_EMP_ASSIGN_SUCCESS,
   SCHEDULE_EMP_ASSIGN_FAIL,
   SCHEDULE_EMP_ASSIGN_RESET,
-} from '../types/scheduleTypes';
+  ALL_COMPLETED_SCHEDULES_FAIL,
+  ALL_COMPLETED_SCHEDULES_SUCCESS,
+  ALL_COMPLETED_SCHEDULES_REQUEST,
+} from '../types/scheduleTypes'
 
 //all schedule list
 export const allScheduleListReducer = (state = { schedules: [] }, action) => {
   switch (action.type) {
     case ALL_SCHEDULES_LIST_REQUEST:
-      return { loading: true, schedules: [] };
+      return { loading: true, schedules: [] }
     case ALL_SCHEDULES_LIST_SUCCESS:
       return {
         loading: false,
         schedules: action.payload,
-      };
+      }
     case ALL_SCHEDULES_LIST_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload }
     default:
-      return state;
+      return state
   }
-};
+}
 
 //pick a schedule by employee
 export const pickScheduleReducer = (state = {}, action) => {
@@ -53,23 +56,23 @@ export const pickScheduleReducer = (state = {}, action) => {
     case PICK_A_SCHEDULE_REQUEST:
       return {
         loading: true,
-      };
+      }
     case PICK_A_SCHEDULE_SUCCESS:
       return {
         loading: false,
         success: true,
-      };
+      }
     case PICK_A_SCHEDULE_FAIL:
       return {
         loading: false,
         error: action.payload,
-      };
+      }
     case PICK_A_SCHEDULE_RESET:
-      return {};
+      return {}
     default:
-      return state;
+      return state
   }
-};
+}
 
 //get all schedules picked by employee
 export const schedulesListMyReducer = (state = { schedules: [] }, action) => {
@@ -77,24 +80,24 @@ export const schedulesListMyReducer = (state = { schedules: [] }, action) => {
     case SCHEDULES_LIST_MY_REQUEST:
       return {
         loading: true,
-      };
+      }
     case SCHEDULES_LIST_MY_SUCCESS:
       return {
         loading: false,
         schedules: action.payload,
-      };
+      }
     case SCHEDULES_LIST_MY_FAIL:
       return {
         loading: false,
         error: action.payload,
-      };
+      }
     case SCHEDULES_LIST_MY_RESET:
-      return { schedules: [] };
+      return { schedules: [] }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
 //unpick a schedule by employee
 export const unpickScheduleReducer = (state = {}, action) => {
@@ -102,39 +105,39 @@ export const unpickScheduleReducer = (state = {}, action) => {
     case UNPICK_A_SCHEDULE_REQUEST:
       return {
         loading: true,
-      };
+      }
     case UNPICK_A_SCHEDULE_SUCCESS:
       return {
         loading: false,
         success: true,
-      };
+      }
     case UNPICK_A_SCHEDULE_FAIL:
       return {
         loading: false,
         error: action.payload,
-      };
+      }
     case UNPICK_A_SCHEDULE_RESET:
-      return {};
+      return {}
     default:
-      return state;
+      return state
   }
-};
+}
 
 //complete a schedule by employee
 export const completeScheduleReducer = (state = {}, action) => {
   switch (action.type) {
     case COMPLETE_SCHEDULE_REQUEST:
-      return { loading: true };
+      return { loading: true }
     case COMPLETE_SCHEDULE_SUCCESS:
-      return { loading: false, success: true };
+      return { loading: false, success: true }
     case COMPLETE_SCHEDULE_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload }
     case COMPLETE_SCHEDULE_RESET:
-      return {};
+      return {}
     default:
-      return state;
+      return state
   }
-};
+}
 
 //all completed schedule list by employee
 export const allCompletedScheduleListByEmpReducer = (
@@ -143,18 +146,18 @@ export const allCompletedScheduleListByEmpReducer = (
 ) => {
   switch (action.type) {
     case ALL_COMPLETED_SCHEDULES_BY_EMP_REQUEST:
-      return { loading: true, schedules: [] };
+      return { loading: true, schedules: [] }
     case ALL_COMPLETED_SCHEDULES_BY_EMP_SUCCESS:
       return {
         loading: false,
         schedules: action.payload,
-      };
+      }
     case ALL_COMPLETED_SCHEDULES_BY_EMP_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload }
     default:
-      return state;
+      return state
   }
-};
+}
 
 //all ongoing schedule list
 export const ongoingScheduleListReducer = (
@@ -163,18 +166,18 @@ export const ongoingScheduleListReducer = (
 ) => {
   switch (action.type) {
     case ALL_ONGOING_SCHEDULES_REQUEST:
-      return { loading: true, schedules: [] };
+      return { loading: true, schedules: [] }
     case ALL_ONGOING_SCHEDULES_SUCCESS:
       return {
         loading: false,
         schedules: action.payload,
-      };
+      }
     case ALL_ONGOING_SCHEDULES_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload }
     default:
-      return state;
+      return state
   }
-};
+}
 
 //assign an employee to a schedule
 export const assignEmpToScheduleReducer = (state = {}, action) => {
@@ -182,20 +185,40 @@ export const assignEmpToScheduleReducer = (state = {}, action) => {
     case SCHEDULE_EMP_ASSIGN_REQUEST:
       return {
         loading: true,
-      };
+      }
     case SCHEDULE_EMP_ASSIGN_SUCCESS:
       return {
         loading: false,
         success: true,
-      };
+      }
     case SCHEDULE_EMP_ASSIGN_FAIL:
       return {
         loading: false,
         error: action.payload,
-      };
+      }
     case SCHEDULE_EMP_ASSIGN_RESET:
-      return {};
+      return {}
     default:
-      return state;
+      return state
   }
-};
+}
+
+//all completed schedule list
+export const allCompletedScheduleListReducer = (
+  state = { schedules: [] },
+  action
+) => {
+  switch (action.type) {
+    case ALL_COMPLETED_SCHEDULES_REQUEST:
+      return { loading: true, schedules: [] }
+    case ALL_COMPLETED_SCHEDULES_SUCCESS:
+      return {
+        loading: false,
+        schedules: action.payload,
+      }
+    case ALL_COMPLETED_SCHEDULES_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}

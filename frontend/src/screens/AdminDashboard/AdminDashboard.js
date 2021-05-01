@@ -1,112 +1,112 @@
-import React, { useEffect } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { LinkContainer } from 'react-router-bootstrap';
+import React, { useEffect } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { LinkContainer } from 'react-router-bootstrap'
 import {
   listNotDeliveredOrders,
   listNotPaidOrders,
   listOrders,
-} from '../../actions/orderActions';
-import { listAllProducts } from '../../actions/productActions';
+} from '../../actions/orderActions'
+import { listAllProducts } from '../../actions/productActions'
 import {
   listUsers,
   listAdmins,
   listEmployees,
   listClients,
-} from '../../actions/userActions';
-import Loader from '../../components/Loader';
-import '../Screens.css';
-import './AdminDashboard.css';
+} from '../../actions/userActions'
+import Loader from '../../components/Loader'
+import '../Screens.css'
+import './AdminDashboard.css'
 
 const AdminDashboard = (history) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  var complaintCount = 0;
+  var complaintCount = 0
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   //products in the inventory
-  const allProductList = useSelector((state) => state.allProductList);
-  const { loading, error, products } = allProductList;
+  const allProductList = useSelector((state) => state.allProductList)
+  const { loading, error, products } = allProductList
 
   //users count
-  const userList = useSelector((state) => state.userList);
+  const userList = useSelector((state) => state.userList)
   const {
     loading: loadingUsers,
     error: errorUsers,
     users: ListUsers,
-  } = userList;
+  } = userList
 
   //admins count
-  const adminList = useSelector((state) => state.adminList);
+  const adminList = useSelector((state) => state.adminList)
   const {
     loading: loadingAdmins,
     error: errorAdmins,
     users: adminUsers,
-  } = adminList;
+  } = adminList
 
   //employees count
-  const employeeList = useSelector((state) => state.employeeList);
+  const employeeList = useSelector((state) => state.employeeList)
   const {
     loading: loadingEmployees,
     error: errorEmployees,
     users: employeeUsers,
-  } = employeeList;
+  } = employeeList
 
   //clients count
-  const clientList = useSelector((state) => state.clientList);
+  const clientList = useSelector((state) => state.clientList)
   const {
     loading: loadingClients,
     error: errorClients,
     users: clientUsers,
-  } = clientList;
+  } = clientList
 
   //orders Count
-  const orderList = useSelector((state) => state.orderList);
-  const { loading: loadingOrders, error: errorOrders, orders } = orderList;
+  const orderList = useSelector((state) => state.orderList)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderList
 
   //not paid orders
-  const notPaidOrderList = useSelector((state) => state.notPaidOrderList);
+  const notPaidOrderList = useSelector((state) => state.notPaidOrderList)
   const {
     loading: loadingNotPaid,
     error: errorNotPaid,
     orders: notPaidOrders,
-  } = notPaidOrderList;
+  } = notPaidOrderList
 
   //not delivered orders
   const notDeliveredOrderList = useSelector(
     (state) => state.notDeliveredOrderList
-  );
+  )
   const {
     loading: notDelOrdersLoading,
     error: notDelOrdersError,
     orders: notDelOrders,
-  } = notDeliveredOrderList;
+  } = notDeliveredOrderList
 
   //for getting not handled complaints count
   for (var i = 0; i < products.length; i++) {
     if (products[i].complaints.length != 0) {
       for (var j = 0; j < products[i].complaints.length; j++) {
-        if (products[i].complaints[j].isHandled == false) complaintCount++;
+        if (products[i].complaints[j].isHandled == false) complaintCount++
       }
     }
   }
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listNotDeliveredOrders());
-      dispatch(listAllProducts());
-      dispatch(listUsers());
-      dispatch(listAdmins());
-      dispatch(listEmployees());
-      dispatch(listClients());
-      dispatch(listOrders());
-      dispatch(listNotPaidOrders());
+      dispatch(listNotDeliveredOrders())
+      dispatch(listAllProducts())
+      dispatch(listUsers())
+      dispatch(listAdmins())
+      dispatch(listEmployees())
+      dispatch(listClients())
+      dispatch(listOrders())
+      dispatch(listNotPaidOrders())
     } else {
-      history.push('/signin');
+      history.push('/signin')
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo])
 
   return (
     <div className="adminDashboard">
@@ -164,6 +164,95 @@ const AdminDashboard = (history) => {
                 <LinkContainer to="/admin/complaints/nothandled">
                   <Col className="colCount">
                     <p>{complaintCount}</p>
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* ORDERS */}
+
+      <h2 className="topic mt-4">Orders</h2>
+      <Row className="mt-2">
+        <Col md={3}>
+          <Card className="ordCard">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Number of orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-shopping-cart"></i>
+                </Col>
+                <LinkContainer to="/admin/orderslist">
+                  <Col className="colCount">
+                    {orders && orders.length ? (
+                      loadingOrders ? (
+                        <Loader />
+                      ) : (
+                        <p>{orders.length}</p>
+                      )
+                    ) : (
+                      <p>No orders</p>
+                    )}
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={3}>
+          <Card className="notPaidOrdCard">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Not paid orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-credit-card"></i>
+                </Col>
+                <LinkContainer to="/admin/orders/notpaidorders">
+                  <Col className="colCount">
+                    {notPaidOrders && notPaidOrders.length ? (
+                      loadingNotPaid ? (
+                        <Loader />
+                      ) : (
+                        <p>{notPaidOrders.length}</p>
+                      )
+                    ) : (
+                      <p>0</p>
+                    )}
+                  </Col>
+                </LinkContainer>
+              </Row>
+            </Card.Text>
+          </Card>
+        </Col>
+
+        <Col md={6}>
+          <Card className="notDelOrdCard">
+            <Card.Title className="cardTitle ml-2 mt-2">
+              Not delivered orders
+            </Card.Title>
+            <Card.Text>
+              <Row>
+                <Col className="colDesc">
+                  <i className="dashboardIcons fas fa-truck"></i>
+                </Col>
+                <LinkContainer to="/admin/orders/notDeliveredorders">
+                  <Col className="colCount">
+                    {notDelOrders && notDelOrders.length ? (
+                      notDelOrdersLoading ? (
+                        <Loader />
+                      ) : (
+                        <p>{notDelOrders.length}</p>
+                      )
+                    ) : (
+                      <p>No orders</p>
+                    )}
                   </Col>
                 </LinkContainer>
               </Row>
@@ -288,97 +377,8 @@ const AdminDashboard = (history) => {
           </Card>
         </Col>
       </Row>
-
-      {/* ORDERS */}
-
-      <h2 className="topic mt-4">Orders</h2>
-      <Row className="mt-2">
-        <Col md={3}>
-          <Card className="ordCard">
-            <Card.Title className="cardTitle ml-2 mt-2">
-              Number of orders
-            </Card.Title>
-            <Card.Text>
-              <Row>
-                <Col className="colDesc">
-                  <i className="dashboardIcons fas fa-shopping-cart"></i>
-                </Col>
-                <LinkContainer to="/admin/orderslist">
-                  <Col className="colCount">
-                    {orders && orders.length ? (
-                      loadingOrders ? (
-                        <Loader />
-                      ) : (
-                        <p>{orders.length}</p>
-                      )
-                    ) : (
-                      <p>No orders</p>
-                    )}
-                  </Col>
-                </LinkContainer>
-              </Row>
-            </Card.Text>
-          </Card>
-        </Col>
-
-        <Col md={3}>
-          <Card className="notPaidOrdCard">
-            <Card.Title className="cardTitle ml-2 mt-2">
-              Not paid orders
-            </Card.Title>
-            <Card.Text>
-              <Row>
-                <Col className="colDesc">
-                  <i className="dashboardIcons fas fa-credit-card"></i>
-                </Col>
-                <LinkContainer to="/admin/orders/notpaidorders">
-                  <Col className="colCount">
-                    {notPaidOrders && notPaidOrders.length ? (
-                      loadingNotPaid ? (
-                        <Loader />
-                      ) : (
-                        <p>{notPaidOrders.length}</p>
-                      )
-                    ) : (
-                      <p>No orders</p>
-                    )}
-                  </Col>
-                </LinkContainer>
-              </Row>
-            </Card.Text>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card className="notDelOrdCard">
-            <Card.Title className="cardTitle ml-2 mt-2">
-              Not delivered orders
-            </Card.Title>
-            <Card.Text>
-              <Row>
-                <Col className="colDesc">
-                  <i className="dashboardIcons fas fa-truck"></i>
-                </Col>
-                <LinkContainer to="/admin/orders/notDeliveredorders">
-                  <Col className="colCount">
-                    {notDelOrders && notDelOrders.length ? (
-                      notDelOrdersLoading ? (
-                        <Loader />
-                      ) : (
-                        <p>{notDelOrders.length}</p>
-                      )
-                    ) : (
-                      <p>No orders</p>
-                    )}
-                  </Col>
-                </LinkContainer>
-              </Row>
-            </Card.Text>
-          </Card>
-        </Col>
-      </Row>
     </div>
-  );
-};
+  )
+}
 
-export default AdminDashboard;
+export default AdminDashboard

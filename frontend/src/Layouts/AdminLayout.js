@@ -1,45 +1,46 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   useHistory,
   useRouteMatch,
-} from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Row, Col } from 'react-bootstrap';
-import AdminRoute from '../components/Routing/AdminRoute';
-import AdminSideNav from '../components/AdminSideNav/AdminSideNav';
-import ProductListScreen from '../screens/ProductListScreen/ProductListScreen';
-import AdminDashboard from '../screens/AdminDashboard/AdminDashboard';
-import OrderListScreen from '../screens/OrderListScreen/OrderListScreen';
-import UserEditScreen from '../screens/UserEditScreen/UserEditScreen';
-import ProductEditScreen from '../screens/ProductEditScreen/ProductEditScreen';
-import UserListScreen from '../screens/UserListScreen/UserListScreen';
-import AdminListScreen from '../screens/AdminListScreen/AdminListScreen';
-import EmployeeListScreen from '../screens/EmployeeListScreen/EmployeeListScreen';
-import ClientListScreen from '../screens/ClientListScreen/ClientListScreen';
-import NotPaidOrderListScreen from '../screens/NotPaidOrderListScreen/NotPaidOrderListScreen';
-import OrderScreen from '../screens/OrderScreen/OrderScreen';
-import NotDeliveredOrderScreen from '../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen';
-import AdminMailboxToClients from '../screens/AdminMailboxToClients/AdminMailboxToClients';
-import AddAdminScreen from '../screens/AddAdminScreen/AddAdminScreen';
-import AddEmployeeScreen from '../screens/AddEmployeeScreen/AddEmployeeScreen';
-import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen';
-import ComplaintListScreen from '../screens/ComplaintListScreen/ComplaintListScreen';
-import ComplaintHandlingScreen from '../screens/ComplaintHandlingScreen/ComplaintHandlingScreen';
-import NotHandledComplaintsScreen from '../screens/NotHandledComplaintsScreen/NotHandledComplaintsScreen';
-import ScheduleOngoingListAdminScreen from '../screens/ScheduleOngoingListAdminScreen/ScheduleOngoingListAdminScreen';
-import ScheduleOngoingDetailsScreen from '../screens/ScheduleOngoingDetailsScreen/ScheduleOngoingDetailsScreen';
-import AdminMailToEmployeeScreen from '../screens/AdminMailToEmployeeScreen/AdminMailToEmployeeScreen';
-import ScheduleListScreen from '../screens/ScheduleListScreen/ScheduleListScreen';
-import ScheduleHandlingScreen from '../screens/ScheduleHandlingScreen/ScheduleHandlingScreen';
+} from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
+import AdminRoute from '../components/Routing/AdminRoute'
+import AdminSideNav from '../components/AdminSideNav/AdminSideNav'
+import ProductListScreen from '../screens/ProductListScreen/ProductListScreen'
+import AdminDashboard from '../screens/AdminDashboard/AdminDashboard'
+import OrderListScreen from '../screens/OrderListScreen/OrderListScreen'
+import UserEditScreen from '../screens/UserEditScreen/UserEditScreen'
+import ProductEditScreen from '../screens/ProductEditScreen/ProductEditScreen'
+import UserListScreen from '../screens/UserListScreen/UserListScreen'
+import AdminListScreen from '../screens/AdminListScreen/AdminListScreen'
+import EmployeeListScreen from '../screens/EmployeeListScreen/EmployeeListScreen'
+import ClientListScreen from '../screens/ClientListScreen/ClientListScreen'
+import NotPaidOrderListScreen from '../screens/NotPaidOrderListScreen/NotPaidOrderListScreen'
+import OrderScreen from '../screens/OrderScreen/OrderScreen'
+import NotDeliveredOrderScreen from '../screens/NotDeliveredOrderScreen/NotDeliveredOrderScreen'
+import AdminMailboxToClients from '../screens/AdminMailboxToClients/AdminMailboxToClients'
+import AddAdminScreen from '../screens/AddAdminScreen/AddAdminScreen'
+import AddEmployeeScreen from '../screens/AddEmployeeScreen/AddEmployeeScreen'
+import UpdateCredentialsScreen from '../screens/UpdateCredentialsScreen/UpdateCredentialsScreen'
+import ComplaintListScreen from '../screens/ComplaintListScreen/ComplaintListScreen'
+import ComplaintHandlingScreen from '../screens/ComplaintHandlingScreen/ComplaintHandlingScreen'
+import NotHandledComplaintsScreen from '../screens/NotHandledComplaintsScreen/NotHandledComplaintsScreen'
+import ScheduleOngoingListAdminScreen from '../screens/ScheduleOngoingListAdminScreen/ScheduleOngoingListAdminScreen'
+import ScheduleOngoingDetailsScreen from '../screens/ScheduleOngoingDetailsScreen/ScheduleOngoingDetailsScreen'
+import AdminMailToEmployeeScreen from '../screens/AdminMailToEmployeeScreen/AdminMailToEmployeeScreen'
+import ScheduleListScreen from '../screens/ScheduleListScreen/ScheduleListScreen'
+import ScheduleHandlingScreen from '../screens/ScheduleHandlingScreen/ScheduleHandlingScreen'
+import SchedulesCompletedListAdminScreen from '../screens/SchedulesCompletedListAdminScreen/SchedulesCompletedListAdminScreen'
 
 const AdminLayout = () => {
-  const { url, path } = useRouteMatch();
+  const { url, path } = useRouteMatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   return (
     <Row>
@@ -99,6 +100,15 @@ const AdminLayout = () => {
               exact
               path={`${url}/schedules`}
               component={ScheduleListScreen}
+            />
+          ) : (
+            (window.location = '/signin')
+          )}
+          {userInfo && userInfo.isAdmin ? (
+            <Route
+              exact
+              path={`${url}/schedules/completed`}
+              component={SchedulesCompletedListAdminScreen}
             />
           ) : (
             (window.location = '/signin')
@@ -195,7 +205,7 @@ const AdminLayout = () => {
         </Switch>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default AdminLayout;
+export default AdminLayout

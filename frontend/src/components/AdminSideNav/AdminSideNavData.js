@@ -1,6 +1,7 @@
-import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as RiIcons from 'react-icons/ri';
+import React from 'react'
+import * as FaIcons from 'react-icons/fa'
+import * as RiIcons from 'react-icons/ri'
+import * as AiIcons from 'react-icons/ai'
 
 export const AdminSideNavData = [
   {
@@ -79,7 +80,7 @@ export const AdminSideNavData = [
   {
     title: 'Schedules',
     path: '/admin/schedules',
-    icon: <RiIcons.RiErrorWarningFill />,
+    icon: <AiIcons.AiFillSchedule />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
@@ -89,6 +90,12 @@ export const AdminSideNavData = [
         icon: <FaIcons.FaArrowAltCircleRight />,
         cName: 'sub-nav',
       },
+      {
+        title: 'Completed Schedules',
+        path: '/admin/schedules/completed',
+        icon: <FaIcons.FaArrowAltCircleRight />,
+        cName: 'sub-nav',
+      },
     ],
   },
-];
+]
