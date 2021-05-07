@@ -32,6 +32,7 @@ import {
   sendMailToClientReducer,
   addAdminByAdminReducer,
   addEmployeeByAdminReducer,
+  sendMailToRemindReducer,
 } from './reducers/userReducers'
 import {
   orderCreateReducer,
@@ -92,6 +93,7 @@ const reducer = combineReducers({
   sendMailToClient: sendMailToClientReducer,
   addAdminByAdmin: addAdminByAdminReducer,
   addEmployeeByAdmin: addEmployeeByAdminReducer,
+  sendMailToRemind: sendMailToRemindReducer,
 
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,

@@ -26,7 +26,7 @@ const mailToClient = asyncHandler(async (req, res) => {
     res.json({ msg: 'Verification email sent' })
     transporter.sendMail({
       to: user.email,
-      from: 'teamsparta.eams@gmail.com',
+      from: 'eams.sparta@gmail.com',
       subject: subject,
       html: body,
     })
@@ -36,4 +36,34 @@ const mailToClient = asyncHandler(async (req, res) => {
   }
 })
 
-export { mailToClient }
+// Sent Mail to client to reminding, admin
+// send the mail
+const mailToRemind = asyncHandler(async (req, res) => {
+  const { clientId } = req.body
+
+  const user = await User.findById(clientId)
+
+  console.log(user)
+  if (user) {
+    res.json({ msg: 'Verification email sent' })
+    transporter.sendMail({
+      to: user.email,
+      from: 'eams.sparta@gmail.com',
+      subject: 'Reminding the payment of order',
+      html: `
+      <p>You placed a order from EAMS website and its payment is not completed yet.</p>
+      <p>We are really appreciate that if you can complete the payment for regarding order.</p>
+      <p>You can see it from your profile page.</p>
+      <br></br>
+      <p>Thank you!</p>
+      <p>Best regards</p>
+      <p><strong>EAMS</strong></p>
+      `,
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+export { mailToClient, mailToRemind }

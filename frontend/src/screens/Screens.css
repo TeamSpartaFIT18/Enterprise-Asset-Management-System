@@ -11,10 +11,10 @@
   margin-top: 50px;
 }
 .NotPaidOrderListScreen {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 .NotDeliveredOrderListScreen {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 .orderListScreen {
   margin-top: 50px;
@@ -347,4 +347,40 @@
   border-bottom-right-radius: 10px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+
+/* LOGIN SCREEN */
+.loginCard {
+  margin: 0 auto;
+  width: 850px;
+  margin-top: 100px;
+  box-shadow: 12px 12px 12px gray;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
+  border-radius: 20px;
+}
+.loginImage {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.loginInput {
+  width: 350px;
+  border-color: rgb(3, 64, 0);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.loginLable {
+  font-weight: bold;
+}
+.loginButton {
+  width: 350px;
 }

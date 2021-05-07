@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import { listNotPaidOrders } from '../../actions/orderActions'
+import * as IoIcons from 'react-icons/io'
 import '../Screens.css'
+import { mailToRemind } from '../../actions/userActions'
 
 const NotPaidOrderListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -25,19 +27,22 @@ const NotPaidOrderListScreen = ({ history }) => {
     }
   }, [dispatch, history, userInfo])
 
+  const emailHandler = (clientId) => {
+    if (window.confirm('Do you want to send payment remind email?')) {
+      dispatch(mailToRemind(clientId))
+    }
+  }
+
   return (
-    <div className='NotPaidOrderListScreen'>
-      <Link to='/admin/orderslist' className='btn btn-light my-3'>
-        <button className='btnback'>Back to orders list</button>
-      </Link>
+    <div className="NotPaidOrderListScreen">
       <h1>Payment pending orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead className='thead'>
+        <Table striped bordered hover responsive className="table-sm">
+          <thead className="thead">
             <tr>
               <th>ID</th>
               <th>CLIENT</th>
@@ -50,31 +55,39 @@ const NotPaidOrderListScreen = ({ history }) => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr className='trow' key={order._id}>
+              <tr className="trow" key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>Rs. {order.totalPrice}</td>
-                <td className='notPaid'>
+                <td className="notPaid">
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className='fa fa-times' style={{ color: 'red' }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td className='notDelivered'>
+                <td className="notDelivered">
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className='fa fa-times' style={{ color: 'red' }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td className='details'>
+                <td className="details">
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='info' className='btn-sm'>
-                      <i className='fa fa-info'></i>
+                    <Button variant="info" className="btn-sm">
+                      <i className="fa fa-info"></i>
                     </Button>
-                  </LinkContainer>
+                  </LinkContainer>{' '}
+                  <Button
+                    variant="success"
+                    className="btn-sm"
+                    onClick={() => emailHandler(order.user._id)}
+                  >
+                    <IoIcons.IoIosMail size={20} />
+                    <IoIcons.IoMdArrowRoundForward size={20} />
+                  </Button>
                 </td>
               </tr>
             ))}
