@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
+import Meta from '../../components/Meta'
 import { rpGetUserDetails, passwordReset } from '../../actions/userActions'
 import FormContainer from '../../components/FormContainer'
 import '../Screens.css'
@@ -34,36 +35,45 @@ const ResetPasswordScreen = ({ match }) => {
     }
   }
   return (
-    <div className='ResetPasswordScreen'>
+    <div className="ResetPasswordScreen">
+      <Meta title="EAMS | Reset password" />
       <FormContainer>
-        <div></div>
-        {message && <Message variant='danger'>{message}</Message>}
-        <h4>Your Name : {user.name}</h4>
-        <h4>Entered Email : {user.email}</h4>
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId='password'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Enter password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
+        <Card className="rpCard">
+          <h1>Reset password</h1>
+          {message && <Message variant="danger">{message}</Message>}
+          <h5>
+            <strong>Your Name : {user.name}</strong>
+          </h5>
+          <h5>
+            <strong>Entered Email : {user.email}</strong>
+          </h5>
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId="password">
+              <Form.Label className="rpLable">Password:</Form.Label>
+              <Form.Control
+                className="rpInput"
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group controlId='confirmPassword'>
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Confirm password'
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Button type='submit' variant='primary'>
-            Update
-          </Button>
-        </Form>
+            <Form.Group controlId="confirmPassword">
+              <Form.Label className="rpLable">Confirm Password:</Form.Label>
+              <Form.Control
+                className="rpInput"
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Button type="submit" variant="primary">
+              Reset
+            </Button>
+          </Form>
+        </Card>
       </FormContainer>
     </div>
   )
