@@ -384,3 +384,39 @@
 .loginButton {
   width: 350px;
 }
+
+/* Register SCREEN */
+.registerCard {
+  margin: 0 auto;
+  width: 1200px;
+  margin-top: 80px;
+  box-shadow: 12px 12px 12px gray;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
+  border-radius: 20px;
+}
+.registerImage {
+  width: 600px;
+  height: 100%;
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(50%);
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.registerInput {
+  width: 400px;
+  border-color: rgb(3, 64, 0);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.registerLable {
+  font-weight: bold;
+}
+.registerButton {
+  width: 400px;
+}

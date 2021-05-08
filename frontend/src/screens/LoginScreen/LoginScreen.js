@@ -46,11 +46,10 @@ const LoginScreen = ({ location, history }) => {
       <Meta title="EAMS | Login" />
       <Card className="loginCard">
         <Row>
-          <Col>
-            <Col md={6}>
-              <Image className="loginImage" src={loginImage} />
-            </Col>
+          <Col md={6}>
+            <Image className="loginImage" src={loginImage} />
           </Col>
+
           <Col>
             <div>
               <h1>Sign In</h1>
