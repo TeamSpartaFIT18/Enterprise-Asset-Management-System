@@ -19,9 +19,6 @@ const EmployeeCreateProfileScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
-
   const createEmployeeProfile = useSelector(
     (state) => state.createEmployeeProfile
   )

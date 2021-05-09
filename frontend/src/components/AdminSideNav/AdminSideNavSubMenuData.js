@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const SidebarLink = styled(Link)`
   display: flex;
@@ -22,11 +22,11 @@ const SidebarLink = styled(Link)`
     border-left: 5px solid #00e68a;
     cursor: pointer;
   }
-`;
+`
 
 const SidebarLabel = styled.span`
   margin-left: 16px;
-`;
+`
 
 const DropdownLink = styled(Link)`
   background: #262626;
@@ -49,17 +49,17 @@ const DropdownLink = styled(Link)`
     cursor: pointer;
     border-right: 5px solid #00e68a;
   }
-`;
+`
 
 const AdminSideNavSubMenuData = ({ item }) => {
-  const [subnav, setSubnav] = useState(false);
+  const [subnav, setSubnav] = useState(false)
 
-  const showSubnav = () => setSubnav(!subnav);
+  const showSubnav = () => setSubnav(!subnav)
 
   return (
     <>
       <SidebarLink
-        id={window.location.pathname == item.path ? 'NavActive' : ''}
+        id={window.location.pathname === item.path ? 'NavActive' : ''}
         to={item.path}
         onClick={item.subNav && showSubnav}
       >
@@ -79,17 +79,17 @@ const AdminSideNavSubMenuData = ({ item }) => {
         item.subNav.map((item, index) => {
           return (
             <DropdownLink
-              id={window.location.pathname == item.path ? 'SubNavActive' : ''}
+              id={window.location.pathname === item.path ? 'SubNavActive' : ''}
               to={item.path}
               key={index}
             >
               {item.icon}
               <SidebarLabel>{item.title}</SidebarLabel>
             </DropdownLink>
-          );
+          )
         })}
     </>
-  );
-};
+  )
+}
 
-export default AdminSideNavSubMenuData;
+export default AdminSideNavSubMenuData

@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Col, Row, Table } from 'react-bootstrap';
-import Loader from '../../components/Loader';
-import { getCurrentProfile } from '../../actions/profileActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Card, Col, Row, Table } from 'react-bootstrap'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import { getCurrentProfile } from '../../actions/profileActions'
+import '../Screens.css'
 
 const EmployeeProfileScreen = ({ history }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const employeeProfile = useSelector((state) => state.employeeProfile);
-  const { profile, loading, experiences, skills } = employeeProfile;
+  const employeeProfile = useSelector((state) => state.employeeProfile)
+  const { profile, loading, experiences, skills } = employeeProfile
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(getCurrentProfile());
+      dispatch(getCurrentProfile())
     } else {
-      history.push('/signin');
+      history.push('/signin')
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo])
+
+  const metaTag = `EAMS | ${userInfo.name} | Profile`
 
   return (
     <>
       <div className="empProfileScreen">
+        <Meta title={metaTag} />
         {loading ? (
           <Loader />
         ) : profile ? (
@@ -137,7 +141,7 @@ const EmployeeProfileScreen = ({ history }) => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default EmployeeProfileScreen;
+export default EmployeeProfileScreen

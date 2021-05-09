@@ -1,68 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../../components/Rating/Rating'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
 import {
   listProductDetails,
   createProductComplaint,
-} from '../../actions/productActions';
-import { PRODUCT_CREATE_COMPLAINT_RESET } from '../../types/productTypes';
+} from '../../actions/productActions'
+import { PRODUCT_CREATE_COMPLAINT_RESET } from '../../types/productTypes'
 
 const ComplaintScreen = ({ match }) => {
-  const productId = match.params.id;
+  const productId = match.params.id
 
-  const [complain, setComplain] = useState(' ');
-  const [message, setMessage] = useState(null);
+  const [complain, setComplain] = useState(' ')
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const productComplaintCreate = useSelector(
     (state) => state.productComplaintCreate
-  );
+  )
   const {
     success: successProductComplaint,
     error: errorProductComplaint,
-  } = productComplaintCreate;
+  } = productComplaintCreate
 
   useEffect(() => {
     if (productId) {
-      dispatch(listProductDetails(productId));
+      dispatch(listProductDetails(productId))
     }
     if (successProductComplaint) {
-      alert('Complaint Submitted!');
-      setComplain('');
-      dispatch({ type: PRODUCT_CREATE_COMPLAINT_RESET });
-      window.location = '/profile';
+      alert('Complaint Submitted!')
+      setComplain('')
+      dispatch({ type: PRODUCT_CREATE_COMPLAINT_RESET })
+      window.location = '/profile'
     }
-  }, [dispatch, match, successProductComplaint]);
+  }, [dispatch, match, productId, successProductComplaint])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    if (!complain || complain == ' ') {
-      setMessage('You need to write a complain before submit');
+    e.preventDefault()
+    if (!complain || complain === ' ') {
+      setMessage('You need to write a complain before submit')
     } else {
-      dispatch(createProductComplaint(match.params.id, { complain }));
+      dispatch(createProductComplaint(match.params.id, { complain }))
     }
-  };
+  }
+
+  const metaTag = `EAMS | Add Complaint  | ${product._id}`
 
   return (
     <div className="oneProductScreen">
@@ -72,7 +66,7 @@ const ComplaintScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
+          <Meta title={metaTag} />
           <Card className="complaintCreateCard">
             <Row>
               <Col md={3}>
@@ -137,7 +131,7 @@ const ComplaintScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ComplaintScreen;
+export default ComplaintScreen

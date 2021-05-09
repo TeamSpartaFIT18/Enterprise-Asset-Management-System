@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import { listNotDeliveredOrders } from '../../actions/orderActions'
 import '../Screens.css'
 
@@ -28,6 +28,7 @@ const NotDeliveredOrderScreen = ({ history }) => {
   }, [dispatch, history, userInfo])
   return (
     <div className="NotDeliveredOrderListScreen">
+      <Meta title="EAMS | Orders | Not delivered" />
       <h1>Not delivered orders</h1>
       {loading ? (
         <Loader />

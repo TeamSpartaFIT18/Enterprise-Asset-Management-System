@@ -4,6 +4,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import { listUsers, deleteUser } from '../../actions/userActions'
 import '../Screens.css'
 const UserListScreen = ({ history }) => {
@@ -33,15 +34,16 @@ const UserListScreen = ({ history }) => {
   }
 
   return (
-    <div className='userListScreen'>
+    <div className="userListScreen">
+      <Meta title="EAMS | Users" />
       <h1>Users</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead className='thead'>
+        <Table striped bordered hover responsive className="table-sm">
+          <thead className="thead">
             <tr>
               <th>ID</th>
               <th>NAME</th>
@@ -52,31 +54,31 @@ const UserListScreen = ({ history }) => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr className='trow' key={user._id}>
+              <tr className="trow" key={user._id}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>
                 </td>
-                <td className='isWho'>
+                <td className="isWho">
                   {user.isAdmin ? (
-                    <i className='fa fa-check' style={{ color: 'green' }}></i>
+                    <i className="fa fa-check" style={{ color: 'green' }}></i>
                   ) : (
-                    <i className='fa fa-times' style={{ color: 'red' }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td className='editOrDelete'>
+                <td className="editOrDelete">
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant='info' className='btn-sm'>
-                      <i className='fa fa-edit'></i>
+                    <Button variant="info" className="btn-sm">
+                      <i className="fa fa-edit"></i>
                     </Button>
                   </LinkContainer>
                   <Button
-                    variant='danger'
-                    className='btn-sm'
+                    variant="danger"
+                    className="btn-sm"
                     onClick={() => deleteHandler(user._id)}
                   >
-                    <i className='fa fa-trash'></i>
+                    <i className="fa fa-trash"></i>
                   </Button>
                 </td>
               </tr>

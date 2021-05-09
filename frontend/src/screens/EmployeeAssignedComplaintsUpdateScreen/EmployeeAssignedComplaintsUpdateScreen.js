@@ -1,71 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../../components/Rating/Rating'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
 import {
   listProductDetails,
   updateProductComplaintEmp,
-} from '../../actions/productActions';
-import { PRODUCT_EMP_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
+} from '../../actions/productActions'
+import { PRODUCT_EMP_UPDATE_COMPLAINT_RESET } from '../../types/productTypes'
 
 const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
-  const productId = match.params.productId;
-  const complaintId = match.params.complaintId;
+  const productId = match.params.productId
+  const complaintId = match.params.complaintId
 
-  const [jobDescription, setJobDescription] = useState(' ');
-  const [message, setMessage] = useState(null);
+  const [jobDescription, setJobDescription] = useState(' ')
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const productComplaintEmpUpdate = useSelector(
     (state) => state.productComplaintEmpUpdate
-  );
+  )
   const {
     success: successProductComplaint,
     error: errorProductComplaint,
-  } = productComplaintEmpUpdate;
+  } = productComplaintEmpUpdate
 
   useEffect(() => {
     if (productId) {
-      dispatch(listProductDetails(productId));
+      dispatch(listProductDetails(productId))
     }
     if (successProductComplaint) {
-      alert('Job Done!');
-      setJobDescription('');
-      dispatch({ type: PRODUCT_EMP_UPDATE_COMPLAINT_RESET });
-      window.location = '/employee/jobs/complaints';
+      alert('Job Done!')
+      setJobDescription('')
+      dispatch({ type: PRODUCT_EMP_UPDATE_COMPLAINT_RESET })
+      window.location = '/employee/jobs/complaints'
     }
-  }, [dispatch, match, successProductComplaint]);
+  }, [dispatch, match, productId, successProductComplaint])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    if (!jobDescription || jobDescription == ' ') {
-      setMessage('You need to enter description to submit');
+    e.preventDefault()
+    if (!jobDescription || jobDescription === ' ') {
+      setMessage('You need to enter description to submit')
     } else {
       dispatch(
         updateProductComplaintEmp(productId, complaintId, jobDescription)
-      );
+      )
     }
-  };
+  }
+
+  const metaTag = `EAMS | Dashboard | ${complaintId}  `
 
   return (
     <div className="oneProductScreen">
@@ -75,7 +69,7 @@ const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
+          <Meta title={metaTag} />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={3}>
@@ -117,33 +111,33 @@ const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
                           product.complaints.map((complaint) => (
                             <div>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint ID : ' + complaint._id
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'User : ' + complaint.name
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Address : ' + complaint.address
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Contact : ' + complaint.contact
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint date : ' +
                                     complaint.createdAt.substring(0, 10)
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint : ' + complaint.complain
                                   : ''}
                               </p>
@@ -183,7 +177,7 @@ const EmployeeAssignedComplaintsUpdateScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default EmployeeAssignedComplaintsUpdateScreen;
+export default EmployeeAssignedComplaintsUpdateScreen

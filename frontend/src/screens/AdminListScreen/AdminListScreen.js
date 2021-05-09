@@ -1,45 +1,45 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import { listAdmins, deleteUser } from '../../actions/userActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import { listAdmins, deleteUser } from '../../actions/userActions'
+import '../Screens.css'
 const AdminListScreen = ({ history }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const adminList = useSelector((state) => state.adminList);
-  const { loading, error, users } = adminList;
+  const adminList = useSelector((state) => state.adminList)
+  const { loading, error, users } = adminList
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
+  const userDelete = useSelector((state) => state.userDelete)
+  const { success: successDelete } = userDelete
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listAdmins());
+      dispatch(listAdmins())
     } else {
-      history.push('/signin');
+      history.push('/signin')
     }
-  }, [dispatch, history, successDelete, userInfo]);
+  }, [dispatch, history, successDelete, userInfo])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
-      dispatch(deleteUser(id));
+      dispatch(deleteUser(id))
     }
-  };
+  }
 
   return (
     <div className="userListScreen">
+      <Meta title="EAMS | Admins list" />
       <Row>
         <Col>
-          <Link to="/admin/userslist" className="btn btn-light my-3">
-            <button className="btnback">Back to users list</button>
-          </Link>
+          <h1>Admin users</h1>
         </Col>
         <Col className="text-right">
           <Link to="/admin/addadmin" className="btn btn-light">
@@ -50,7 +50,6 @@ const AdminListScreen = ({ history }) => {
         </Col>
       </Row>
 
-      <h1>Admin users</h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -101,7 +100,7 @@ const AdminListScreen = ({ history }) => {
         </Table>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AdminListScreen;
+export default AdminListScreen

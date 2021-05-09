@@ -1,43 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Row, Col, Image } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails, mailToClient } from '../../actions/userActions';
-import FormContainer from '../../components/FormContainer';
-import '../Screens.css';
-import mail from '../Images/mail.jpg';
-import Message from '../../components/Message';
+import React, { useState, useEffect } from 'react'
+import { Form, Button, Row, Col, Image } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserDetails, mailToClient } from '../../actions/userActions'
+import FormContainer from '../../components/FormContainer'
+import '../Screens.css'
+import Meta from '../../components/Meta'
+import mail from '../Images/mail.jpg'
+import Message from '../../components/Message'
 
 const AdminMailboxToClients = ({ match }) => {
-  const userId = match.params.id;
+  const userId = match.params.id
 
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
-  const [message, setMessage] = useState(null);
+  const [subject, setSubject] = useState('')
+  const [body, setBody] = useState('')
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
+  const userDetails = useSelector((state) => state.userDetails)
+  const { user } = userDetails
 
   useEffect(() => {
     if (userId) {
-      dispatch(getUserDetails(userId));
+      dispatch(getUserDetails(userId))
     }
-  }, [userId, dispatch]);
+  }, [userId, dispatch])
 
-  const email = user.email;
+  const email = user.email
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!user.email || !subject || !body) {
-      setMessage('All fields are required!');
+      setMessage('All fields are required!')
     } else {
-      dispatch(mailToClient({ email, subject, body }));
-      window.location = '/admin/clientlist';
+      dispatch(mailToClient({ email, subject, body }))
+      window.location = '/admin/clientlist'
     }
-  };
+  }
   return (
     <div className="container">
+      <Meta title="EAMS | Mailbox-Clients" />
       <div className="adminMailboxToClients">
         <Row className="mainRow no-gutters">
           <Col md={2}>
@@ -112,7 +114,7 @@ const AdminMailboxToClients = ({ match }) => {
         </Row>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminMailboxToClients;
+export default AdminMailboxToClients

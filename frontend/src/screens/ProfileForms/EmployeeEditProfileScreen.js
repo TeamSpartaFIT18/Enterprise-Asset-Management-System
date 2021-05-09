@@ -54,7 +54,7 @@ const EmployeeEditProfileScreen = ({ location, history }) => {
 
   return (
     <FormContainer className="registerScreen">
-      <Meta title="EAMS | Register" />
+      <Meta title="EAMS | Edit Profile" />
       <h1 className="registerScreen">Edit Profile</h1>
       {error && <Message variant="danger">{error}</Message>}
       {errorMessage && <Message variant="danger">{errorMessage}</Message>}

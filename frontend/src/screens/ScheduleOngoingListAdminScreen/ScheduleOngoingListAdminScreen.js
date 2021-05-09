@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import { listOngoingSchedules } from '../../actions/scheduleActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import { listOngoingSchedules } from '../../actions/scheduleActions'
+import '../Screens.css'
 
 const ScheduleOngoingListAdminScreen = ({ history }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const ongoingScheduleList = useSelector((state) => state.ongoingScheduleList);
-  const { loading, error, schedules } = ongoingScheduleList;
+  const ongoingScheduleList = useSelector((state) => state.ongoingScheduleList)
+  const { loading, error, schedules } = ongoingScheduleList
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listOngoingSchedules());
+      dispatch(listOngoingSchedules())
     } else {
-      history.push('/signin');
+      history.push('/signin')
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo])
 
   return (
     <div className="orderListScreen">
+      <Meta title="EAMS | Schedules | Ongoing" />
       <h1>Ongoing Schedules</h1>
       {loading ? (
         <Loader />
@@ -74,7 +76,7 @@ const ScheduleOngoingListAdminScreen = ({ history }) => {
         </Table>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ScheduleOngoingListAdminScreen;
+export default ScheduleOngoingListAdminScreen

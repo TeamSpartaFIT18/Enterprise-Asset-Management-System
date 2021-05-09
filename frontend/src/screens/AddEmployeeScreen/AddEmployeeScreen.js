@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Meta from '../../components/Meta';
-import FormContainer from '../../components/FormContainer';
-import { addEmployee } from '../../actions/userActions';
-import '../Screens.css';
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Meta from '../../components/Meta'
+import FormContainer from '../../components/FormContainer'
+import { addEmployee } from '../../actions/userActions'
+import '../Screens.css'
 const AddEmployeeScreen = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const password = 'employeeEams';
-  const [message, setMessage] = useState(null);
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const password = 'employeeEams'
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (userInfo && userInfo.isAdmin) {
       if (name === '' || email === '' || password === '') {
-        setMessage('All fields are required');
+        setMessage('All fields are required')
       } else {
-        dispatch(addEmployee(name, email, password));
-        window.location = '/admin/employeelist';
+        dispatch(addEmployee(name, email, password))
+        window.location = '/admin/employeelist'
       }
     }
-  };
+  }
 
   return (
     <FormContainer className="registerScreen">
-      <Meta title="EAMS | Register" />
+      <Meta title="EAMS | Add Employee" />
       <h1 className="registerScreen">Sign Up</h1>
       {message && <Message variant="danger">{message}</Message>}
       <Form onSubmit={submitHandler}>
@@ -59,7 +59,7 @@ const AddEmployeeScreen = () => {
         </Button>
       </Form>
     </FormContainer>
-  );
-};
+  )
+}
 
-export default AddEmployeeScreen;
+export default AddEmployeeScreen

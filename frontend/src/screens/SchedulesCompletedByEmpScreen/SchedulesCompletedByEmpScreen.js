@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import { completedSchedulesByEmp } from '../../actions/scheduleActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import { completedSchedulesByEmp } from '../../actions/scheduleActions'
+import '../Screens.css'
 
 const SchedulesCompletedByEmpScreen = ({ history }) => {
-  const [orderId, setOrderId] = useState(' ');
-
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const allCompletedScheduleListByEmp = useSelector(
     (state) => state.allCompletedScheduleListByEmp
-  );
-  const { loading, error, schedules } = allCompletedScheduleListByEmp;
+  )
+  const { loading, error, schedules } = allCompletedScheduleListByEmp
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     if (userInfo && userInfo.isEmployee) {
-      dispatch(completedSchedulesByEmp());
+      dispatch(completedSchedulesByEmp())
     } else {
-      history.push('/signin');
+      history.push('/signin')
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo])
 
-  const employeeId = userInfo._id;
   return (
     <div className="orderListScreen">
+      <Meta title="EAMS | Schedules | Completed" />
       <h1>Orders</h1>
       {loading ? (
         <Loader />
@@ -71,7 +69,7 @@ const SchedulesCompletedByEmpScreen = ({ history }) => {
         </Table>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SchedulesCompletedByEmpScreen;
+export default SchedulesCompletedByEmpScreen

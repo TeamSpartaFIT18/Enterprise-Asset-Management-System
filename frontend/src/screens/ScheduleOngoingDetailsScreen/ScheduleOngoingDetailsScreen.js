@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
-import Rating from '../../components/Rating/Rating'
+import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import Meta from '../../components/Meta'
 import '../Screens.css'
 import * as IoIcons from 'react-icons/io'
-import { scheduleComplete } from '../../actions/scheduleActions'
-import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes'
 import { getOrderDetails } from '../../actions/orderActions'
 import { getUserDetails } from '../../actions/userActions'
 import { getEmpProfileAdmin } from '../../actions/profileActions'
@@ -19,7 +16,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
   const orderId = match.params.scheduleId
   const employeeId = match.params.employeeId
 
-  const [message, setMessage] = useState(null)
+  const [message] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -30,17 +27,12 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
   const { order, loading, error } = orderDetails
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading: loadingUser, error: errorUser, user } = userDetails
+  const { error: errorUser, user } = userDetails
 
   const employeeProfileAdmin = useSelector(
     (state) => state.employeeProfileAdmin
   )
-  const {
-    profile,
-    loading: loadingEmpProf,
-    experiences,
-    skills,
-  } = employeeProfileAdmin
+  const { profile } = employeeProfileAdmin
 
   useEffect(() => {
     if (userInfo.isAdmin) {
@@ -48,7 +40,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
       dispatch(getUserDetails(employeeId))
       dispatch(getEmpProfileAdmin(employeeId))
     }
-  }, [dispatch, match])
+  }, [dispatch, employeeId, orderId, userInfo.isAdmin, match])
 
   return (
     <div className="oneProductScreen">
@@ -58,7 +50,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title="order" />
+          <Meta title="EAMS | Schedule" />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={4}>

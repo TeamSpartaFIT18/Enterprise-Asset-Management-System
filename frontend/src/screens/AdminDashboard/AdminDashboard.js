@@ -15,6 +15,7 @@ import {
   listClients,
 } from '../../actions/userActions'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import '../Screens.css'
 import './AdminDashboard.css'
 
@@ -28,51 +29,31 @@ const AdminDashboard = (history) => {
 
   //products in the inventory
   const allProductList = useSelector((state) => state.allProductList)
-  const { loading, error, products } = allProductList
+  const { loading, products } = allProductList
 
   //users count
   const userList = useSelector((state) => state.userList)
-  const {
-    loading: loadingUsers,
-    error: errorUsers,
-    users: ListUsers,
-  } = userList
+  const { loading: loadingUsers, users: ListUsers } = userList
 
   //admins count
   const adminList = useSelector((state) => state.adminList)
-  const {
-    loading: loadingAdmins,
-    error: errorAdmins,
-    users: adminUsers,
-  } = adminList
+  const { loading: loadingAdmins, users: adminUsers } = adminList
 
   //employees count
   const employeeList = useSelector((state) => state.employeeList)
-  const {
-    loading: loadingEmployees,
-    error: errorEmployees,
-    users: employeeUsers,
-  } = employeeList
+  const { loading: loadingEmployees, users: employeeUsers } = employeeList
 
   //clients count
   const clientList = useSelector((state) => state.clientList)
-  const {
-    loading: loadingClients,
-    error: errorClients,
-    users: clientUsers,
-  } = clientList
+  const { loading: loadingClients, users: clientUsers } = clientList
 
   //orders Count
   const orderList = useSelector((state) => state.orderList)
-  const { loading: loadingOrders, error: errorOrders, orders } = orderList
+  const { loading: loadingOrders, orders } = orderList
 
   //not paid orders
   const notPaidOrderList = useSelector((state) => state.notPaidOrderList)
-  const {
-    loading: loadingNotPaid,
-    error: errorNotPaid,
-    orders: notPaidOrders,
-  } = notPaidOrderList
+  const { loading: loadingNotPaid, orders: notPaidOrders } = notPaidOrderList
 
   //not delivered orders
   const notDeliveredOrderList = useSelector(
@@ -80,15 +61,14 @@ const AdminDashboard = (history) => {
   )
   const {
     loading: notDelOrdersLoading,
-    error: notDelOrdersError,
     orders: notDelOrders,
   } = notDeliveredOrderList
 
   //for getting not handled complaints count
   for (var i = 0; i < products.length; i++) {
-    if (products[i].complaints.length != 0) {
+    if (products[i].complaints.length !== 0) {
       for (var j = 0; j < products[i].complaints.length; j++) {
-        if (products[i].complaints[j].isHandled == false) complaintCount++
+        if (products[i].complaints[j].isHandled === false) complaintCount++
       }
     }
   }
@@ -106,10 +86,13 @@ const AdminDashboard = (history) => {
     } else {
       history.push('/signin')
     }
-  }, [dispatch, userInfo])
+  }, [dispatch, history, userInfo])
+
+  const metaTag = `EAMS | ${userInfo.name} | Dashboard `
 
   return (
     <div className="adminDashboard">
+      <Meta title={metaTag} />
       <Row>
         <h1 className="adminDashboardHeader">Admin Dashboard</h1>
 

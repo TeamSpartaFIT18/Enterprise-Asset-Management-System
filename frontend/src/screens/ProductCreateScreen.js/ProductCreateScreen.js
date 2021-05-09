@@ -1,55 +1,53 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import FormContainer from '../../components/FormContainer';
-import {
-  listProductDetails,
-  createProduct,
-} from '../../actions/productActions';
-import { PRODUCT_UPDATE_RESET } from '../../types/productTypes';
-import '../Screens.css';
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Meta from '../../components/Meta'
+import Loader from '../../components/Loader'
+import FormContainer from '../../components/FormContainer'
+import { listProductDetails, createProduct } from '../../actions/productActions'
+import { PRODUCT_UPDATE_RESET } from '../../types/productTypes'
+import '../Screens.css'
 
 const ProductCreateScreen = ({ history }) => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
-  const [brand, setBrand] = useState('');
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState('');
-  const [uploading, setUploading] = useState(false);
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState(0)
+  const [image, setImage] = useState('')
+  const [brand, setBrand] = useState('')
+  const [category, setCategory] = useState('')
+  const [countInStock, setCountInStock] = useState(0)
+  const [description, setDescription] = useState('')
+  const [uploading, setUploading] = useState(false)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
 
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      };
+      }
 
-      const { data } = await axios.post('/api/upload', formData, config);
+      const { data } = await axios.post('/api/upload', formData, config)
 
-      setImage(data);
-      setUploading(false);
+      setImage(data)
+      setUploading(false)
     } catch (error) {
-      console.error(error);
-      setUploading(false);
+      console.error(error)
+      setUploading(false)
     }
-  };
+  }
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch(
       createProduct({
         name,
@@ -60,10 +58,11 @@ const ProductCreateScreen = ({ history }) => {
         description,
         countInStock,
       })
-    );
-  };
+    )
+  }
   return (
     <div className="productEditScreen">
+      <Meta title="EAMS | Product" />
       <Link to="/admin/productslist" className="btn btn-light my-3">
         <button className="btnback">Back to products list</button>
       </Link>
@@ -153,7 +152,7 @@ const ProductCreateScreen = ({ history }) => {
         </Form>
       </FormContainer>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCreateScreen;
+export default ProductCreateScreen

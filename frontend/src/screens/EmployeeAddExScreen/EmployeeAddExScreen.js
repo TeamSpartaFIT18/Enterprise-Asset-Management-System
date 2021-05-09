@@ -27,12 +27,7 @@ const EmployeeAddExScreen = ({ location, history }) => {
   const { loading, error, userInfo } = userLogin
 
   const employeeProfile = useSelector((state) => state.employeeProfile)
-  const {
-    profile,
-    loading: profileLoading,
-    experiences,
-    skills,
-  } = employeeProfile
+  const { profile } = employeeProfile
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -40,7 +35,7 @@ const EmployeeAddExScreen = ({ location, history }) => {
     if (userInfo) {
       dispatch(getCurrentProfile())
     }
-  }, [history, userInfo, redirect])
+  }, [history, dispatch, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -76,7 +71,7 @@ const EmployeeAddExScreen = ({ location, history }) => {
   return (
     <div className="empAddExperience">
       <FormContainer>
-        <Meta title="EAMS | Register" />
+        <Meta title="EAMS | Add experience" />
         <h1 className="empAddExScreen">Add Experience</h1>
         {error && <Message variant="danger">{error}</Message>}
         {message && <Message variant="success">{message}</Message>}

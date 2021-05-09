@@ -4,6 +4,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import { listOrders } from '../../actions/orderActions'
 import '../Screens.css'
 
@@ -25,15 +26,16 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo])
 
   return (
-    <div className='orderListScreen'>
+    <div className="orderListScreen">
+      <Meta title="EAMS | Orders" />
       <h1>Orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead className='thead'>
+        <Table striped bordered hover responsive className="table-sm">
+          <thead className="thead">
             <tr>
               <th>ID</th>
               <th>CLIENT</th>
@@ -46,29 +48,29 @@ const OrderListScreen = ({ history }) => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr className='trow' key={order._id}>
+              <tr className="trow" key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>Rs. {order.totalPrice}</td>
-                <td className='isPaid'>
+                <td className="isPaid">
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className='fa fa-times' style={{ color: 'red' }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td className='isDelivered'>
+                <td className="isDelivered">
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className='fa fa-times' style={{ color: 'red' }}></i>
+                    <i className="fa fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
-                <td className='details'>
+                <td className="details">
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='info' className='btn-sm'>
-                      <i className='fa fa-info'></i>
+                    <Button variant="info" className="btn-sm">
+                      <i className="fa fa-info"></i>
                     </Button>
                   </LinkContainer>
                 </td>

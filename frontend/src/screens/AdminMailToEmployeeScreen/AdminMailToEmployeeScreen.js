@@ -1,69 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Row, Col, Image } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails, mailToClient } from '../../actions/userActions';
-import FormContainer from '../../components/FormContainer';
-import '../Screens.css';
-import mail from '../Images/mail.jpg';
-import Message from '../../components/Message';
-import { getOrderDetails } from '../../actions/orderActions';
+import React, { useState, useEffect } from 'react'
+import { Form, Button, Row, Col, Image } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserDetails, mailToClient } from '../../actions/userActions'
+import FormContainer from '../../components/FormContainer'
+import '../Screens.css'
+import mail from '../Images/mail.jpg'
+import Message from '../../components/Message'
+import Meta from '../../components/Meta'
+import { getOrderDetails } from '../../actions/orderActions'
 
 const AdminMailToEmployeeScreen = ({ match }) => {
-  const orderId = match.params.scheduleId;
-  const employeeId = match.params.employeeId;
+  const orderId = match.params.scheduleId
+  const employeeId = match.params.employeeId
 
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
-  const [message, setMessage] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [subject, setSubject] = useState('')
+  const [body, setBody] = useState('')
+  const [message, setMessage] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
+  const userDetails = useSelector((state) => state.userDetails)
+  const { user } = userDetails
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
-
-  const sendMailToClient = useSelector((state) => state.sendMailToClient);
-  const {
-    message: resMessage,
-    loading: loadingMessage,
-    error: errorMessage,
-  } = sendMailToClient;
+  const sendMailToClient = useSelector((state) => state.sendMailToClient)
+  const { message: resMessage } = sendMailToClient
 
   useEffect(() => {
     if (userInfo.isAdmin) {
-      dispatch(getUserDetails(employeeId));
-      dispatch(getOrderDetails(orderId));
+      dispatch(getUserDetails(employeeId))
+      dispatch(getOrderDetails(orderId))
     }
     if (orderId && employeeId) {
-      setSubject('Regarding schedule ' + orderId + ' you picked');
+      setSubject('Regarding schedule ' + orderId + ' you picked')
     }
-  }, [employeeId, orderId, dispatch]);
+  }, [employeeId, userInfo.isAdmin, orderId, dispatch])
 
-  const email = user.email;
+  const email = user.email
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!user.email || !subject || !body) {
-      setMessage('All fields are required!');
+      setMessage('All fields are required!')
     } else {
-      dispatch(mailToClient({ email, subject, body }));
+      dispatch(mailToClient({ email, subject, body }))
       if (resMessage) {
-        setSuccessMessage('Successfully sent');
+        setSuccessMessage('Successfully sent')
         setTimeout(function () {
-          window.location.href = '/admin/schedules/ongoing';
-        }, 3000);
+          window.location.href = '/admin/schedules/ongoing'
+        }, 3000)
       }
     }
-  };
+  }
 
   return (
     <div className="container">
+      <Meta title="EAMS | Mailbox-Employees" />
       <div className="adminMailboxToClients">
         <Row className="mainRow no-gutters">
           <Col md={2}>
@@ -129,7 +124,7 @@ const AdminMailToEmployeeScreen = ({ match }) => {
         </Row>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminMailToEmployeeScreen;
+export default AdminMailToEmployeeScreen

@@ -83,6 +83,8 @@ const OrderScreen = ({ match, history }) => {
     dispatch(deliverOrder(order))
   }
 
+  const metaTag = `EAMS | Order | ${order._id}`
+
   return loading ? (
     <Loader className="orderScreenLoader" />
   ) : error ? (
@@ -91,7 +93,7 @@ const OrderScreen = ({ match, history }) => {
     </Message>
   ) : (
     <>
-      <Meta title="EAMS | Order" />
+      <Meta title={metaTag} />
       <h1 className="orderScreenH1">Order {order._id}</h1>
       <Row>
         <Col md={8}>
@@ -209,7 +211,7 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <div>
-                  {order.user._id == userInfo._id && (
+                  {order.user._id === userInfo._id && (
                     <ListGroup.Item>
                       {loadingPay && <Loader />}
                       {!sdkReady ? (

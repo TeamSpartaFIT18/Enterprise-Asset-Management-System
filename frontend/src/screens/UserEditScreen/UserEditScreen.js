@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { Form, Button, Card, Row, Col, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import FormContainer from '../../components/FormContainer'
+import Meta from '../../components/Meta'
 import { getUserDetails, updateUser } from '../../actions/userActions'
 import { USER_UPDATE_RESET } from '../../types/userTypes'
 import '../Screens.css'
@@ -16,8 +15,6 @@ const UserEditScreen = ({ match, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-  const [message, setMessage] = useState(null)
-  const [errorMessage, setErrorMessage] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -53,6 +50,7 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <div className="userEditScreen">
+      <Meta title="EAMS | Edit" />
       <Card className="userEditCard">
         <Row>
           <Col md={6}>

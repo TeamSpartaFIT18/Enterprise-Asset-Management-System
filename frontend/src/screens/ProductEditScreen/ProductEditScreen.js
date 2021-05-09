@@ -1,105 +1,101 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import FormContainer from '../../components/FormContainer';
-import {
-  listProductDetails,
-  updateProduct,
-} from '../../actions/productActions';
-import { PRODUCT_UPDATE_RESET } from '../../types/productTypes';
-import '../Screens.css';
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Form, Button, Card, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Meta from '../../components/Meta'
+import Loader from '../../components/Loader'
+import { listProductDetails, updateProduct } from '../../actions/productActions'
+import { PRODUCT_UPDATE_RESET } from '../../types/productTypes'
+import '../Screens.css'
 const ProductEditScreen = ({ match, history }) => {
-  const productId = match.params.id;
+  const productId = match.params.id
 
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
-  const [brand, setBrand] = useState('');
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState('');
-  const [supplierName, setSupplierName] = useState('');
-  const [supplierAddress, setSupplierAddress] = useState('');
-  const [supplierContact, setSupplierContact] = useState('');
-  const [uploading, setUploading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState(0)
+  const [image, setImage] = useState('')
+  const [brand, setBrand] = useState('')
+  const [category, setCategory] = useState('')
+  const [countInStock, setCountInStock] = useState(0)
+  const [description, setDescription] = useState('')
+  const [supplierName, setSupplierName] = useState('')
+  const [supplierAddress, setSupplierAddress] = useState('')
+  const [supplierContact, setSupplierContact] = useState('')
+  const [uploading, setUploading] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
 
-  const productUpdate = useSelector((state) => state.productUpdate);
+  const productUpdate = useSelector((state) => state.productUpdate)
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = productUpdate;
+  } = productUpdate
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: PRODUCT_UPDATE_RESET });
-      history.push('/admin/productslist');
+      dispatch({ type: PRODUCT_UPDATE_RESET })
+      history.push('/admin/productslist')
     } else {
       if (!product.name || product._id !== productId) {
-        dispatch(listProductDetails(productId));
+        dispatch(listProductDetails(productId))
       } else {
-        setName(product.name);
-        setPrice(product.price);
-        setImage(product.image);
-        setBrand(product.brand);
-        setCategory(product.category);
-        setCountInStock(product.countInStock);
-        setDescription(product.description);
-        setSupplierName(product.supplierName);
-        setSupplierAddress(product.supplierAddress);
-        setSupplierContact(product.supplierContact);
+        setName(product.name)
+        setPrice(product.price)
+        setImage(product.image)
+        setBrand(product.brand)
+        setCategory(product.category)
+        setCountInStock(product.countInStock)
+        setDescription(product.description)
+        setSupplierName(product.supplierName)
+        setSupplierAddress(product.supplierAddress)
+        setSupplierContact(product.supplierContact)
       }
     }
-  }, [dispatch, history, productId, product, successUpdate]);
+  }, [dispatch, history, productId, product, successUpdate])
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
 
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      };
+      }
 
-      const { data } = await axios.post('/api/upload', formData, config);
+      const { data } = await axios.post('/api/upload', formData, config)
 
-      setImage(data);
-      setUploading(false);
+      setImage(data)
+      setUploading(false)
     } catch (error) {
-      console.error(error);
-      setUploading(false);
+      console.error(error)
+      setUploading(false)
     }
-  };
+  }
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (
-      name == '' ||
-      price == 0 ||
-      image == '' ||
-      brand == '' ||
-      category == '' ||
-      description == '' ||
-      countInStock == 0 ||
-      supplierName == '' ||
-      supplierAddress == '' ||
-      supplierContact == ''
+      name === '' ||
+      price === 0 ||
+      image === '' ||
+      brand === '' ||
+      category === '' ||
+      description === '' ||
+      countInStock === 0 ||
+      supplierName === '' ||
+      supplierAddress === '' ||
+      supplierContact === ''
     ) {
-      setMessage('All fields required');
+      setMessage('All fields required')
     } else {
       dispatch(
         updateProduct({
@@ -115,12 +111,13 @@ const ProductEditScreen = ({ match, history }) => {
           supplierAddress,
           supplierContact,
         })
-      );
+      )
     }
-  };
+  }
 
   return (
     <div className="productEditScreen">
+      <Meta title="EAMS | Product" />
       <Card className="editOrCreateFormCard">
         <Row>
           {product && product.price === 0 ? (
@@ -335,7 +332,7 @@ const ProductEditScreen = ({ match, history }) => {
         </Row>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default ProductEditScreen;
+export default ProductEditScreen

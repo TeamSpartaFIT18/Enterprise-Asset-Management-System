@@ -1,59 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
-import { scheduleComplete } from '../../actions/scheduleActions';
-import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes';
-import { getOrderDetails } from '../../actions/orderActions';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
+import { scheduleComplete } from '../../actions/scheduleActions'
+import { COMPLETE_SCHEDULE_RESET } from '../../types/scheduleTypes'
+import { getOrderDetails } from '../../actions/orderActions'
 
 const ScheduleCompleteScreen = ({ match }) => {
-  const orderId = match.params.id;
+  const orderId = match.params.id
 
-  const [message, setMessage] = useState(null);
+  const [message] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
+  const orderDetails = useSelector((state) => state.orderDetails)
+  const { order, loading, error } = orderDetails
 
-  const completeSchedule = useSelector((state) => state.completeSchedule);
+  const completeSchedule = useSelector((state) => state.completeSchedule)
   const {
     success: successCompleteSchedule,
     error: errorCompleteSchedule,
-  } = completeSchedule;
+  } = completeSchedule
 
   useEffect(() => {
     if (orderId) {
-      dispatch(getOrderDetails(orderId));
+      dispatch(getOrderDetails(orderId))
     }
     if (successCompleteSchedule) {
-      alert('Job Done!');
-      dispatch({ type: COMPLETE_SCHEDULE_RESET });
-      window.location = '/employee/schedules/myschedules';
+      alert('Job Done!')
+      dispatch({ type: COMPLETE_SCHEDULE_RESET })
+      window.location = '/employee/schedules/myschedules'
     }
-  }, [dispatch, match, successCompleteSchedule]);
+  }, [dispatch, match, orderId, successCompleteSchedule])
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    dispatch(scheduleComplete(orderId));
-  };
+    dispatch(scheduleComplete(orderId))
+  }
 
   return (
     <div className="oneProductScreen">
@@ -63,7 +54,7 @@ const ScheduleCompleteScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title="order" />
+          <Meta title="EAMS | Schedule" />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={4}>
@@ -140,7 +131,7 @@ const ScheduleCompleteScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ScheduleCompleteScreen;
+export default ScheduleCompleteScreen

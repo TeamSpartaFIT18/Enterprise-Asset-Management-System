@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import Meta from '../../components/Meta'
-import FormContainer from '../../components/FormContainer'
 import { register } from '../../actions/userActions'
 import '../Screens.css'
 import registerImage from '../Images/register.jpg'
@@ -36,7 +35,7 @@ const RegisterScreen = ({ location, history }) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Password do not match')
-    } else if (!address || address == '' || !contact || contact == '') {
+    } else if (!address || address === '' || !contact || contact === '') {
       setMessage('Address and contact number is required')
     } else {
       dispatch(register(name, email, address, contact, password))

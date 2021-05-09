@@ -3,6 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
+import Meta from '../../components/Meta'
 import Loader from '../../components/Loader'
 import Paginate from '../../components/Paginate'
 import { listProducts } from '../../actions/productActions'
@@ -31,6 +32,7 @@ const ComplaintListScreen = ({ history, match }) => {
 
   return (
     <div className="productListScreen">
+      <Meta title="EAMS | Assigned Jobs" />
       <Row className="align-items-center">
         <Col>
           <h1>Assigned Jobs</h1>
@@ -58,7 +60,7 @@ const ComplaintListScreen = ({ history, match }) => {
               <tbody>
                 {product.complaints.map((complaint) => (
                   <>
-                    {complaint.employee == userInfo.name ? (
+                    {complaint.employee === userInfo.name ? (
                       <tr className="trow">
                         <td>{complaint._id}</td>
                         <td>{product.name}</td>

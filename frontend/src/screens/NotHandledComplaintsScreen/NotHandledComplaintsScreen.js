@@ -1,36 +1,38 @@
-import React, { useEffect } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Paginate from '../../components/Paginate';
-import { listProducts } from '../../actions/productActions';
-import '../Screens.css';
+import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import Paginate from '../../components/Paginate'
+import { listProducts } from '../../actions/productActions'
+import '../Screens.css'
 
 const NotHandledComplaintsScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1;
+  const pageNumber = match.params.pageNumber || 1
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, products, page, pages } = productList
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     if (!userInfo || !userInfo.isAdmin) {
-      history.push('/signin');
+      history.push('/signin')
     }
 
     if (userInfo) {
-      dispatch(listProducts('', pageNumber));
+      dispatch(listProducts('', pageNumber))
     }
-  }, [dispatch, history, userInfo, pageNumber]);
+  }, [dispatch, history, userInfo, pageNumber])
 
   return (
     <div className="productListScreen">
+      <Meta title="EAMS | Complaints | Not handled" />
       <Row className="align-items-center">
         <Col>
           <h1>Not Handled Complaints</h1>
@@ -58,7 +60,7 @@ const NotHandledComplaintsScreen = ({ history, match }) => {
               <>
                 {product.complaints.map((complaint) => (
                   <tbody>
-                    {complaint && complaint.isHandled == false && (
+                    {complaint && complaint.isHandled === false && (
                       <tr className="trow">
                         <td>{complaint._id}</td>
                         <td>{product.name}</td>
@@ -92,7 +94,7 @@ const NotHandledComplaintsScreen = ({ history, match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default NotHandledComplaintsScreen;
+export default NotHandledComplaintsScreen

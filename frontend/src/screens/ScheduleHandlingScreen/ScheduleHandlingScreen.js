@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
-import Rating from '../../components/Rating/Rating'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import Meta from '../../components/Meta'
 import '../Screens.css'
-import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes'
 import { listEmployees } from '../../actions/userActions'
 import { getOrderDetails } from '../../actions/orderActions'
 import { scheduleAssign } from '../../actions/scheduleActions'
@@ -29,17 +27,13 @@ const ScheduleHandlingScreen = ({ match }) => {
   const { order, loading, error } = orderDetails
 
   const assignEmpToSchedule = useSelector((state) => state.assignEmpToSchedule)
-  const {
-    loading: assignLoading,
-    success: assignSuccess,
-    error: assignError,
-  } = assignEmpToSchedule
+  const { success: assignSuccess } = assignEmpToSchedule
 
   const employeeList = useSelector((state) => state.employeeList)
-  const { loading: loadingEmployee, error: errorEmployee, users } = employeeList
+  const { error: errorEmployee, users } = employeeList
 
   useEffect(() => {
-    if (orderId) {
+    if (userInfo && orderId) {
       dispatch(getOrderDetails(orderId))
       dispatch(listEmployees())
     }
@@ -49,18 +43,18 @@ const ScheduleHandlingScreen = ({ match }) => {
       dispatch({ type: SCHEDULE_EMP_ASSIGN_RESET })
       window.location = '/admin/schedules/ongoing'
     }
-  }, [dispatch, match, assignSuccess])
+  }, [dispatch, match, userInfo, orderId, assignSuccess])
 
   var empEmail
   var employeeId
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if (!employee || employee == ' ') {
+    if (!employee || employee === ' ') {
       setMessage('You need to select employee to submit')
     } else {
       for (var i = 0; i < users.length; i++) {
-        if (users[i].name == employee) {
+        if (users[i].name === employee) {
           empEmail = users[i].email
           employeeId = users[i]._id
         }
@@ -77,7 +71,7 @@ const ScheduleHandlingScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={order._id} />
+          <Meta title="EAMS | Schedule" />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={4}>
@@ -156,7 +150,7 @@ const ScheduleHandlingScreen = ({ match }) => {
                       </select>
                     </Form.Group>
                     <p>
-                      {employee && employee != ' '
+                      {employee && employee !== ' '
                         ? 'You selected ' +
                           employee +
                           ' to assign to this complaint!'

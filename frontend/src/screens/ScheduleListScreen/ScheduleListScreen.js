@@ -4,6 +4,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import { listSchedules, schedulePick } from '../../actions/scheduleActions'
 import '../Screens.css'
 import { getCurrentProfile } from '../../actions/profileActions'
@@ -22,12 +23,7 @@ const ScheduleListScreen = ({ history }) => {
   const { userInfo } = userLogin
 
   const employeeProfile = useSelector((state) => state.employeeProfile)
-  const {
-    profile,
-    loading: profileLoading,
-    experiences,
-    skills,
-  } = employeeProfile
+  const { profile } = employeeProfile
 
   useEffect(() => {
     if ((userInfo && userInfo.isEmployee) || (userInfo && userInfo.isAdmin)) {
@@ -53,6 +49,7 @@ const ScheduleListScreen = ({ history }) => {
 
   return (
     <div className="orderListScreen">
+      <Meta title="EAMS | Schedules" />
       <h1>Available Schedules</h1>{' '}
       {message && <Message variant="danger">{message}</Message>}
       {loading ? (
@@ -90,7 +87,7 @@ const ScheduleListScreen = ({ history }) => {
                 </td>
                 {userInfo.isEmployee && (
                   <td>
-                    {orderId && orderId == ' ' ? (
+                    {orderId && orderId === ' ' ? (
                       <Button
                         variant="info"
                         className="btn-sm"
@@ -102,7 +99,7 @@ const ScheduleListScreen = ({ history }) => {
                       </Button>
                     ) : (
                       <div>
-                        {orderId == schedule._id && (
+                        {orderId === schedule._id && (
                           <Button
                             variant="danger"
                             className="btn-sm"

@@ -1,86 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import Rating from '../../components/Rating/Rating';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Meta from '../../components/Meta';
-import '../Screens.css';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../../components/Rating/Rating'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import '../Screens.css'
 import {
   listProductDetails,
   updateProductComplaint,
-} from '../../actions/productActions';
-import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes';
-import { listEmployees } from '../../actions/userActions';
+} from '../../actions/productActions'
+import { PRODUCT_UPDATE_COMPLAINT_RESET } from '../../types/productTypes'
+import { listEmployees } from '../../actions/userActions'
 
 const ComplaintHandlingScreen = ({ match }) => {
-  const complaintId = match.params.complaintId;
-  const productId = match.params.productId;
+  const complaintId = match.params.complaintId
+  const productId = match.params.productId
 
-  const [employee, setEmployee] = useState(' ');
-  var empEmail;
-  const [message, setMessage] = useState(null);
+  const [employee, setEmployee] = useState(' ')
+  var empEmail
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const employeeList = useSelector((state) => state.employeeList);
-  const {
-    loading: loadingEmployee,
-    error: errorEmployee,
-    users,
-  } = employeeList;
+  const employeeList = useSelector((state) => state.employeeList)
+  const { users } = employeeList
 
   const productComplaintUpdate = useSelector(
     (state) => state.productComplaintUpdate
-  );
+  )
   const {
     success: successProductComplaint,
     error: errorProductComplaint,
-  } = productComplaintUpdate;
+  } = productComplaintUpdate
 
   useEffect(() => {
     if (productId) {
-      dispatch(listProductDetails(productId));
-      dispatch(listEmployees());
+      dispatch(listProductDetails(productId))
+      dispatch(listEmployees())
     }
     if (successProductComplaint) {
-      alert('Employee assigned!');
-      setEmployee('');
-      dispatch({ type: PRODUCT_UPDATE_COMPLAINT_RESET });
-      window.location = '/admin/complaints';
+      alert('Employee assigned!')
+      setEmployee('')
+      dispatch({ type: PRODUCT_UPDATE_COMPLAINT_RESET })
+      window.location = '/admin/complaints'
     }
-  }, [dispatch, match, successProductComplaint]);
+  }, [dispatch, match, productId, successProductComplaint])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    if (!employee || employee == ' ') {
-      setMessage('You need to select employee to submit');
+    e.preventDefault()
+    if (!employee || employee === ' ') {
+      setMessage('You need to select employee to submit')
     } else {
       for (var i = 0; i < users.length; i++) {
-        if (users[i].name == employee) {
-          empEmail = users[i].email;
+        if (users[i].name === employee) {
+          empEmail = users[i].email
         }
       }
       dispatch(
         updateProductComplaint(productId, complaintId, employee, empEmail)
-      );
+      )
     }
-  };
+  }
+
+  const metaTag = `EAMS | Complaint  | ${product._id}`
 
   return (
     <div className="oneProductScreen">
@@ -90,7 +80,7 @@ const ComplaintHandlingScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
+          <Meta title={metaTag} />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={3}>
@@ -132,23 +122,23 @@ const ComplaintHandlingScreen = ({ match }) => {
                           product.complaints.map((complaint) => (
                             <div>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint ID : ' + complaint._id
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'User : ' + complaint.name
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint date : ' +
                                     complaint.createdAt.substring(0, 10)
                                   : ''}
                               </p>
                               <p className="complaintDet">
-                                {complaintId == complaint._id
+                                {complaintId === complaint._id
                                   ? 'Complaint : ' + complaint.complain
                                   : ''}
                               </p>
@@ -182,7 +172,7 @@ const ComplaintHandlingScreen = ({ match }) => {
                         </select>
                       </Form.Group>
                       <p>
-                        {employee && employee != ' '
+                        {employee && employee !== ' '
                           ? 'You selected ' +
                             employee +
                             ' to assign to this complaint!'
@@ -204,7 +194,7 @@ const ComplaintHandlingScreen = ({ match }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ComplaintHandlingScreen;
+export default ComplaintHandlingScreen

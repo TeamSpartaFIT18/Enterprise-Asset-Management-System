@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-  useRouteMatch,
-} from 'react-router-dom'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import AdminRoute from '../components/Routing/AdminRoute'
@@ -37,7 +31,7 @@ import ScheduleHandlingScreen from '../screens/ScheduleHandlingScreen/ScheduleHa
 import SchedulesCompletedListAdminScreen from '../screens/SchedulesCompletedListAdminScreen/SchedulesCompletedListAdminScreen'
 
 const AdminLayout = () => {
-  const { url, path } = useRouteMatch()
+  const { url } = useRouteMatch()
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin

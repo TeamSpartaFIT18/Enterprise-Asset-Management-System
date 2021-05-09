@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
 import { listCompletedSchedules } from '../../actions/scheduleActions'
 import '../Screens.css'
 
@@ -28,6 +28,7 @@ const SchedulesCompletedListAdminScreen = ({ history }) => {
 
   return (
     <div className="orderListScreen">
+      <Meta title="EAMS | Schedules | Completed" />
       <h1>Completed scheules</h1>
       {loading ? (
         <Loader />

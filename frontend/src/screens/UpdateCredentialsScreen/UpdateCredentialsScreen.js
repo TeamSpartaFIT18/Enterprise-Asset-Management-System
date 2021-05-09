@@ -1,60 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Form, Button, Row, Col } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import * as MdIcons from 'react-icons/md';
-import { getUserDetails, updateUserProfile } from '../../actions/userActions';
-import { USER_UPDATE_PROFILE_RESET } from '../../types/userTypes';
-import '../Screens.css';
-import FormContainer from '../../components/FormContainer';
+import React, { useState, useEffect } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import Meta from '../../components/Meta'
+import { getUserDetails, updateUserProfile } from '../../actions/userActions'
+import { USER_UPDATE_PROFILE_RESET } from '../../types/userTypes'
+import '../Screens.css'
+import FormContainer from '../../components/FormContainer'
 
 const UpdateCredentialsScreen = ({ history }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState(null);
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [message, setMessage] = useState(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading, error, user } = userDetails
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/signin');
+      history.push('/signin')
     } else if (success) {
-      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+      dispatch({ type: USER_UPDATE_PROFILE_RESET })
     } else {
       if (!user || !user.name || success) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails('profile'));
+        dispatch({ type: USER_UPDATE_PROFILE_RESET })
+        dispatch(getUserDetails('profile'))
       } else {
-        setName(user.name);
-        setEmail(user.email);
+        setName(user.name)
+        setEmail(user.email)
       }
     }
-  }, [dispatch, history, userInfo, user, success]);
+  }, [dispatch, history, userInfo, user, success])
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
+      setMessage('Passwords do not match')
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     }
-  };
+  }
 
   return (
     <div className="updateCredentialsScreen">
+      <Meta title="EAMS | Update" />
       <FormContainer>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
@@ -113,7 +113,7 @@ const UpdateCredentialsScreen = ({ history }) => {
         )}
       </FormContainer>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateCredentialsScreen;
+export default UpdateCredentialsScreen
