@@ -537,7 +537,6 @@ export const mailToClient = ({ email, subject, body }) => async (
       { email, subject, body },
       config
     )
-    console.log(data)
     dispatch({
       type: MAIL_TO_CLIENT_SUCCESS,
       payload: data,
@@ -657,7 +656,6 @@ export const mailToRemind = (clientId) => async (dispatch, getState) => {
       { clientId },
       config
     )
-    console.log(data)
     dispatch({
       type: MAIL_TO_REMIND_SUCCESS,
       payload: data,

@@ -143,7 +143,6 @@ export const listMySchedules = () => async (dispatch, getState) => {
 //unpick a schedule by employee
 export const scheduleUnpick = (orderId) => async (dispatch, getState) => {
   try {
-    console.log(orderId)
     dispatch({
       type: UNPICK_A_SCHEDULE_REQUEST,
     })

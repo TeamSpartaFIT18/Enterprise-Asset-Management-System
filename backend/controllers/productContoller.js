@@ -274,8 +274,6 @@ const updateComplaintByEmp = asyncHandler(async (req, res) => {
 
   const complaints = product.complaints
 
-  console.log(req.body.jobDescription, product, req.body.complaintId)
-
   var desc = req.body.jobDescription
   var isJobDone = true
   for (var i = 0; i < complaints.length; i++) {

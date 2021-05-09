@@ -43,7 +43,6 @@ const mailToRemind = asyncHandler(async (req, res) => {
 
   const user = await User.findById(clientId)
 
-  console.log(user)
   if (user) {
     res.json({ msg: 'Verification email sent' })
     transporter.sendMail({

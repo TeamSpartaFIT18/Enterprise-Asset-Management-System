@@ -27,8 +27,6 @@ const ScheduleEmployeeScreen = ({ history }) => {
     }
   }, [dispatch, history, userInfo])
 
-  //console.log(orderId);
-
   function unpickScheduleHandler() {
     dispatch(scheduleUnpick(orderId))
 

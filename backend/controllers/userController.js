@@ -324,8 +324,6 @@ const addEmployee = asyncHandler(async (req, res) => {
 
   const userExists = await User.findOne({ email })
 
-  console.log(process.env.SG_KEY)
-
   if (userExists) {
     res.status(400)
     throw new Error('User already Exists')
