@@ -40,7 +40,7 @@ const getSchedules = asyncHandler(async (req, res) => {
       //     deliveredDate.setMonth(deliveredMonth + 6);
       // }
 
-      deliveredDate.setDate(22)
+      deliveredDate.setDate(2)
 
       if (deliveredDate < today) {
         availabeSchedules.push(item)

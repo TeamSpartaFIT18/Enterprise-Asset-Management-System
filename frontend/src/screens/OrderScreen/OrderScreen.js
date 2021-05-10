@@ -19,6 +19,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
   const [sdkReady, setSdkReady] = useState(false)
+  const [metaTag, setMetaTag] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -73,6 +74,10 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true)
       }
     }
+
+    if (!loading) {
+      setMetaTag(`EAMS | Order | ${orderId}`)
+    }
   }, [dispatch, history, userInfo, orderId, successPay, successDeliver, order])
 
   const successPaymentHandler = (paymentResult) => {
@@ -82,8 +87,6 @@ const OrderScreen = ({ match, history }) => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
   }
-
-  const metaTag = `EAMS | Order | ${order._id}`
 
   return loading ? (
     <Loader className="orderScreenLoader" />
