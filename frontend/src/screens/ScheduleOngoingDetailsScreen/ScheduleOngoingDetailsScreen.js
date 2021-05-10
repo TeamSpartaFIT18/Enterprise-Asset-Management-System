@@ -17,6 +17,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
   const employeeId = match.params.employeeId
 
   const [message] = useState(null)
+  const [metaTag, setMetaTag] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -40,6 +41,9 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
       dispatch(getUserDetails(employeeId))
       dispatch(getEmpProfileAdmin(employeeId))
     }
+    if (!loading) {
+      setMetaTag(`EAMS | Schedule | ${orderId}`)
+    }
   }, [dispatch, employeeId, orderId, userInfo.isAdmin, match])
 
   return (
@@ -50,7 +54,7 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title="EAMS | Schedule" />
+          <Meta title={metaTag} />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={4}>

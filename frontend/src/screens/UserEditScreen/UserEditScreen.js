@@ -15,6 +15,7 @@ const UserEditScreen = ({ match, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
+  const [metaTag, setMetaTag] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -41,6 +42,9 @@ const UserEditScreen = ({ match, history }) => {
         setIsAdmin(user.isAdmin)
       }
     }
+    if (!loading) {
+      setMetaTag(`EAMS | Users | ${user.name}`)
+    }
   }, [dispatch, history, userId, user, successUpdate])
 
   const submitHandler = (e) => {
@@ -50,7 +54,7 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <div className="userEditScreen">
-      <Meta title="EAMS | Edit" />
+      <Meta title={metaTag} />
       <Card className="userEditCard">
         <Row>
           <Col md={6}>

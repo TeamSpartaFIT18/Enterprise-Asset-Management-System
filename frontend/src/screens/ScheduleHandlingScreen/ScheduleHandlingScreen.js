@@ -18,6 +18,8 @@ const ScheduleHandlingScreen = ({ match }) => {
   const [employee, setEmployee] = useState(' ')
   const [message, setMessage] = useState(null)
 
+  const [metaTag, setMetaTag] = useState(null)
+
   const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin)
@@ -42,6 +44,9 @@ const ScheduleHandlingScreen = ({ match }) => {
       setEmployee('')
       dispatch({ type: SCHEDULE_EMP_ASSIGN_RESET })
       window.location = '/admin/schedules/ongoing'
+    }
+    if (!loading) {
+      setMetaTag(`EAMS | Schedule | ${orderId}`)
     }
   }, [dispatch, match, userInfo, orderId, assignSuccess])
 
@@ -71,7 +76,7 @@ const ScheduleHandlingScreen = ({ match }) => {
         <Message varient="danger">{error}</Message>
       ) : (
         <>
-          <Meta title="EAMS | Schedule" />
+          <Meta title={metaTag} />
           <Card className="complaintHandlingCard">
             <Row>
               <Col md={4}>
