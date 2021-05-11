@@ -55,7 +55,7 @@ npm run server
 Please make sure to update tests as appropriate.
 
 ## Contributors
-[Team_Sparta](https://github.com/TeamSpartaFIT18)
+[Team_Sparta/members](https://github.com/orgs/TeamSpartaFIT18/teams/team_sparta/members)
 ```bash
 Pasindu Premachandra
 Thisal Vindula
