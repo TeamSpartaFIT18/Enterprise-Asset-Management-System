@@ -5,21 +5,22 @@
 
 ## Features
 ```
--Shopping cart option
--Product reviews and ratings
--Top products retrieval via a carousel
--Pagination in product display
--Product search feature
--User profile with orders
--Admin product management
--Admin user management
--Admin Order details page
--Update orders' status
--Checkout process (shipping, payment method, etc.)
--PayPal / credit card integration
--Sample data seeding to database(products & users)
--Complaints and customer care
--Service schedule
+-Shopping Cart Option
+-Product Reviews and Ratings
+-Top Products Retrieval via a Carousel
+-Pagination in Product display
+-Product Search Feature
+-User Profile with Orders
+-Admin Product Management
+-Admin User Management
+-Admin Order Details page
+-Update Orders' Status
+-Checkout Process (Shipping, Payment method, etc.)
+-PayPal Checkout Integration
+-Sample data Seeding to database(products & users)
+-Complaints and Customer care
+-Schedule the Serveice Visits
+-Employee Profile Management
 ```
 ## Demo
 A demo of Enterprise Asset management system can found at [https://eamsapp.herokuapp.com/](https://eamsapp.herokuapp.com/)
