@@ -18,9 +18,10 @@
 -Checkout Process (Shipping, Payment method, etc.)
 -PayPal Checkout Integration
 -Sample data Seeding to database(products & users)
--Complaints and Customer care
+-Complaints Handle and Customer care
 -Schedule the Serveice Visits
 -Employee Profile Management
+-Email Alert System
 ```
 ## Demo
 A demo of Enterprise Asset management system can found at [https://eamsapp.herokuapp.com/](https://eamsapp.herokuapp.com/)
