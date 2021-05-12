@@ -1,4 +1,4 @@
-# [Enterprise Asset management system](https://eamsapp.herokuapp.com/)
+# Enterprise Asset management system
 
 ```An asset inventory management system developed for Eimsky Business Solutions (Pvt) Ltd. . ‘Enterprise Asset Management system’ is a web-based application to manage the asset inventory which supports automating the allocation of requested assets for the client including tracking the asset. And this system manages a service schedule to the maintenance of assets by keeping an age analysis.```
 
