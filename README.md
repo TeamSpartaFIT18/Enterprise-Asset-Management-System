@@ -36,6 +36,7 @@ PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = your password
 PAYPAL_CLIENT_ID = your paypal client id
+SG_KEY = your sendGrid email api key
 ```
 Install npm dependencies
 ```bash
