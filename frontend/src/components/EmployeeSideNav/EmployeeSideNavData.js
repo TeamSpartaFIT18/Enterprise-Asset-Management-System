@@ -1,8 +1,7 @@
-import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
+import React from 'react'
+import * as AiIcons from 'react-icons/ai'
+import * as IoIcons from 'react-icons/io'
+import * as RiIcons from 'react-icons/ri'
 
 export const EmployeeSideNavData = [
   {
@@ -13,22 +12,22 @@ export const EmployeeSideNavData = [
   {
     title: 'Profile',
     path: '/employee/profile',
-    icon: <IoIcons.IoIosPaper />,
+    icon: <AiIcons.AiOutlineUser />,
   },
   {
     title: 'Add Experience',
     path: '/employee/addexperience',
-    icon: <FaIcons.FaCartPlus />,
+    icon: <AiIcons.AiFillFileAdd />,
   },
   {
     title: 'Jobs',
     path: '/employee/jobs/complaints',
-    icon: <IoIcons.IoMdPeople />,
+    icon: <AiIcons.AiFillSchedule />,
   },
   {
     title: 'Schedules',
     path: '/employee/schedules',
-    icon: <IoIcons.IoMdPeople />,
+    icon: <AiIcons.AiFillSchedule />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
@@ -46,4 +45,4 @@ export const EmployeeSideNavData = [
       },
     ],
   },
-];
+]

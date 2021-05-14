@@ -456,3 +456,62 @@
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
+
+/* USER ADD BY ADMIN SCREEN */
+.userAddCard {
+  margin-top: 100px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-right: 20px;
+  box-shadow: 12px 12px 12px gray;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+}
+.userAddImage {
+  height: 300px;
+  padding-left: 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+.userAddInput {
+  max-width: 350px;
+  border-color: rgb(3, 64, 0);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+/* UPDATE CRED SCREEN */
+.updateCredCard {
+  margin-top: 100px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-right: 20px;
+  box-shadow: 12px 12px 12px gray;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+}
+.updateCredImage {
+  height: 300px;
+  margin-top: 50px;
+  padding-left: 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+.updateCredInput {
+  max-width: 350px;
+  border-color: rgb(3, 64, 0);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}

@@ -78,7 +78,16 @@ const OrderScreen = ({ match, history }) => {
     if (!loading) {
       setMetaTag(`EAMS | Order | ${orderId}`)
     }
-  }, [dispatch, history, userInfo, orderId, successPay, successDeliver, order])
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    orderId,
+    successPay,
+    successDeliver,
+    loading,
+    order,
+  ])
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))

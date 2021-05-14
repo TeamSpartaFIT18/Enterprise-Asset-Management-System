@@ -35,7 +35,7 @@ const EmployeeCreateProfileScreen = ({ location, history }) => {
         setTimeout(function () {
           window.location.href = '/employee/profile'
         }, 3000)
-      } else setErrorMessage('Something went wrong!')
+      }
     }
   }
 

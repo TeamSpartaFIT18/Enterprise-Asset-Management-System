@@ -48,7 +48,7 @@ const ScheduleHandlingScreen = ({ match }) => {
     if (!loading) {
       setMetaTag(`EAMS | Schedule | ${orderId}`)
     }
-  }, [dispatch, match, userInfo, orderId, assignSuccess])
+  }, [dispatch, match, userInfo, orderId, loading, assignSuccess])
 
   var empEmail
   var employeeId

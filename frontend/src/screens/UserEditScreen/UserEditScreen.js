@@ -45,7 +45,7 @@ const UserEditScreen = ({ match, history }) => {
     if (!loading) {
       setMetaTag(`EAMS | Users | ${user.name}`)
     }
-  }, [dispatch, history, userId, user, successUpdate])
+  }, [dispatch, history, userId, user, loading, successUpdate])
 
   const submitHandler = (e) => {
     e.preventDefault()

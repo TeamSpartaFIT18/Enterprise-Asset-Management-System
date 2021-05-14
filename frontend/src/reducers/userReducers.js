@@ -275,7 +275,7 @@ export const addAdminByAdminReducer = (state = {}, action) => {
     case ADD_ADMIN_BY_ADMIN_REQUEST:
       return { loading: true }
     case ADD_ADMIN_BY_ADMIN_SUCCESS:
-      return { loading: false, userInfo: action.payload }
+      return { loading: false, success: true, adminInfo: action.payload }
     case ADD_ADMIN_BY_ADMIN_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -289,7 +289,7 @@ export const addEmployeeByAdminReducer = (state = {}, action) => {
     case ADD_EMPLOYEE_BY_ADMIN_REQUEST:
       return { loading: true }
     case ADD_EMPLOYEE_BY_ADMIN_SUCCESS:
-      return { loading: false, userInfo: action.payload }
+      return { loading: false, success: true, employeeInfo: action.payload }
     case ADD_EMPLOYEE_BY_ADMIN_FAIL:
       return { loading: false, error: action.payload }
     default:

@@ -339,16 +339,6 @@ const addEmployee = asyncHandler(async (req, res) => {
   })
 
   if (user) {
-    // const message = {
-    //   to: user.email,
-    //   from: 'eams.sparta@gmail.com',
-    //   subject: 'Hello from sendgrid',
-    //   text: 'Hello from sendgrid',
-    //   html: '<h3>Hello from sendgrid</h3>',
-    // };
-
-    // sgMail.send(message);
-
     transporter.sendMail({
       to: user.email,
       from: 'eams.sparta@gmail.com',
