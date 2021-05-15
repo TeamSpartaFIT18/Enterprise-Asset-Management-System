@@ -37,7 +37,7 @@ const sendScheduledEmails = async () => {
       }
 
       var task = cron.schedule(
-        `0 6 ${date} ${scheduledMonth} *`,
+        `0 6 1 ${scheduledMonth} *`,
         async () => {
           employees.map((emp) => {
             // send email
