@@ -35,7 +35,7 @@ Create .env file
 CLIENT_URL = Server that app runs (ex:- https://eamsapp.herokuapp.com/)
 MONGO_URI = MongoDB Connection String
 JWT_SECRET = Secret key
-PAYPAL_CLIENT_ID = PayPal Client Id( for development envirnment click the sandbox tab)
+PAYPAL_CLIENT_ID = PayPal Client Id
 SG_KEY = SendGrid Email Api key
 ```
 Install npm dependencies
