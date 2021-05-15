@@ -41,10 +41,10 @@ const ScheduleOngoingDetailsScreen = ({ match }) => {
       dispatch(getUserDetails(employeeId))
       dispatch(getEmpProfileAdmin(employeeId))
     }
-    if (!loading) {
+    if (order) {
       setMetaTag(`EAMS | Schedule | ${orderId}`)
     }
-  }, [dispatch, employeeId, orderId, userInfo.isAdmin, loading, match])
+  }, [dispatch, employeeId, orderId, userInfo.isAdmin, match])
 
   return (
     <div className="oneProductScreen">

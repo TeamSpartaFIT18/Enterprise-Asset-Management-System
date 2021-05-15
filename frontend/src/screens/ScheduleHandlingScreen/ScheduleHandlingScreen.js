@@ -45,10 +45,10 @@ const ScheduleHandlingScreen = ({ match }) => {
       dispatch({ type: SCHEDULE_EMP_ASSIGN_RESET })
       window.location = '/admin/schedules/ongoing'
     }
-    if (!loading) {
+    if (order) {
       setMetaTag(`EAMS | Schedule | ${orderId}`)
     }
-  }, [dispatch, match, userInfo, orderId, loading, assignSuccess])
+  }, [dispatch, match, userInfo, orderId, assignSuccess])
 
   var empEmail
   var employeeId
