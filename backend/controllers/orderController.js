@@ -1,5 +1,17 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import User from '../models/userModel.js'
+import nodemailer from 'nodemailer'
+import sendgridTransport from 'nodemailer-sendgrid-transport'
+import dotenv from 'dotenv'
+
+const transporter = nodemailer.createTransport(
+	sendgridTransport({
+	  auth: {
+		api_key: process.env.SG_KEY,
+	  },
+	})
+  )
 
 // @desc    Create new Order
 // @route   POST /api/orders
@@ -58,18 +70,51 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @route   GET /api/orders/:id/deliver
 // @access  Private, Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-	const order = await Order.findById(req.params.id)
+
+	let employees = await User.find({ isEmployee: true });
+	try{
+	const order = await Order.findById(req.params.id);
+
+	var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 	if (order) {
-		order.isDelivered = true
-		order.deliveredAt = Date.now()
+		order.isDelivered = true;
+		order.deliveredAt = Date.now();
 
-		const updatedOrder = await order.save()
+		let date = order.deliveredAt.getDate()
+		let month = order.deliveredAt.getMonth()
+		let year = order.deliveredAt.getFullYear();
+
+		let scheduledMonth = month + 7 ;
+
+		if (scheduledMonth > 12) {
+			scheduledMonth = scheduledMonth - 12;
+			year++;
+		}
+
+		let monthText = months[scheduledMonth-1];
+
+
+		employees.map((emp) => {
+            // send email
+            transporter.sendMail({
+              to: emp.email,
+              from: 'eams.sparta@gmail.com',
+              subject: 'Service Schedule Available',
+              html: `<h2>New service schedule available for pick</h2>
+              <h3>Please visit EAMS web app and check service schedules for more details.</h3>`,
+            })
+          })
+		
+		  const updatedOrder = await order.save();
 
 		res.json(updatedOrder)
 	} else {
 		res.status(404)
 		throw new Error('Order not found')
+	}
+	}catch(ex){
+		console.log(ex.message);
 	}
 })
 
