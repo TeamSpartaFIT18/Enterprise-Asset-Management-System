@@ -46,7 +46,11 @@ const sendScheduledEmails = async () => {
               from: 'eams.sparta@gmail.com',
               subject: 'Service Schedule Available',
               html: `<h2>New service schedule available for pick</h2>
+            <h3>This created at ${scheduledMonth} and must complete soon.</h3>
             <h3>Please visit EAMS web app and check service schedules for more details.</h3>
+            <p>Thank you!</p>
+            <p>Best regards!</p>
+            <p><strong>EAMS</strong></p>
             `,
             })
           })
