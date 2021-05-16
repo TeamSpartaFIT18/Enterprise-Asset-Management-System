@@ -26,7 +26,7 @@ const mailToClient = asyncHandler(async (req, res) => {
     res.json({ msg: 'Verification email sent' })
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: subject,
       html: body,
     })
@@ -47,7 +47,7 @@ const mailToRemind = asyncHandler(async (req, res) => {
     res.json({ msg: 'Verification email sent' })
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: 'Reminding the payment of order',
       html: `
       <p>You placed a order from EAMS website and its payment is not completed yet.</p>

@@ -113,7 +113,7 @@ const pickSchedule = asyncHandler(async (req, res) => {
       if (req.body.empEmail) {
         transporter.sendMail({
           to: req.body.empEmail,
-          from: 'eams.sparta@gmail.com',
+          from: 'eams.sparta.fit@gmail.com',
           subject: 'Assigned to a new job',
           html: `<h2>Regarding schedule ${req.body.orderId}</h2>
       <p>We assigned you (${req.body.employeeId}) to complete this schedule.</p>

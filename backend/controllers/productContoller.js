@@ -224,7 +224,7 @@ const updateComplaint = asyncHandler(async (req, res) => {
         if (email) {
           transporter.sendMail({
             to: email,
-            from: 'eams.sparta@gmail.com',
+            from: 'eams.sparta.fit@gmail.com',
             subject: 'Complaint reviewed',
             html: `<h2>Complaint ${req.body.complaintId} about ${product.name}</h2>
       <p>We reviewed your complaint about ${product.name} and we assigned ${req.body.employee} to fix that issue.</p>
@@ -240,7 +240,7 @@ const updateComplaint = asyncHandler(async (req, res) => {
         if (req.body.empEmail) {
           transporter.sendMail({
             to: req.body.empEmail,
-            from: 'eams.sparta@gmail.com',
+            from: 'eams.sparta.fit@gmail.com',
             subject: 'Assigned to a new job',
             html: `<h2>Regarding complaint ${req.body.complaintId} about ${product.name}</h2>
       <p>We recently recieved a complaint about ${product.name} and we assigned you (${req.body.employee}) to fix that issue.</p>

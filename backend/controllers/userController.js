@@ -64,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: 'Successfully Sign Up',
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>Your account has been successfully created.</h3>
@@ -228,7 +228,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     res.json({ msg: 'Verification email sent' })
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: 'Reset Password',
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>Please Click on the given link to reset your password</h3>
@@ -292,7 +292,7 @@ const addAdmin = asyncHandler(async (req, res) => {
   if (user) {
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: 'Successfully added as Admin',
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>You are successfully added as admin to the EAMS!</h3>
@@ -341,7 +341,7 @@ const addEmployee = asyncHandler(async (req, res) => {
   if (user) {
     transporter.sendMail({
       to: user.email,
-      from: 'eams.sparta@gmail.com',
+      from: 'eams.sparta.fit@gmail.com',
       subject: 'Successfully added as Employee',
       html: `<h2>Welcome to Enterprise Asset Management System ${user.name}</h2>
       <h3>You are successfully added as employee to the EAMS!</h3>

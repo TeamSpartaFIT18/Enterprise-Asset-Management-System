@@ -43,7 +43,7 @@ const sendScheduledEmails = async () => {
             // send email
             transporter.sendMail({
               to: emp.email,
-              from: 'eams.sparta@gmail.com',
+              from: 'eams.sparta.fit@gmail.com',
               subject: 'Service Schedule Available',
               html: `<h2>New service schedule available for pick</h2>
             <h3>This created at ${scheduledMonth} and must complete soon.</h3>
