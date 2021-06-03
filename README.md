@@ -5,19 +5,19 @@ An asset inventory management system developed for Eimsky Business Solutions (Pv
 
 ## Screenshots
 
-![home-page](https://drive.google.com/file/d/1EAY7TB9QmDxTOHvQf34RHg1Eh_uoEJPh/view?usp=sharing)
-![sign-in](https://drive.google.com/file/d/19k6dHUF0sL6PfEZz2R4BIuEo5YdZ1h-D/view?usp=sharing)
-![product-page](https://drive.google.com/file/d/1DBggqgfv2PrcQan0NpCF3GEXYWju5dTg/view?usp=sharing)
-![search-box](https://drive.google.com/file/d/1UOKgw6wogyXQIWouvXTWaYtv--Bk2qyo/view?usp=sharing)
-![product-details-page](https://drive.google.com/file/d/1sjnQNbVdY75-hQ1Kc77TU0svdcnHpoMl/view?usp=sharing)
-![cart-screen](https://drive.google.com/file/d/1tSAUOAfyeuRA8Z90bIXOI9uV34gbD1sZ/view?usp=sharing)
-![checkout-screen-1](https://drive.google.com/file/d/1KOsztOHn_iAO-GCMPmzKv3dWlIVISeC4/view?usp=sharing)
-![checkout-screen-2](https://drive.google.com/file/d/1FqBUxlWTEDNaz9a_Fsfm60Qb2Ws0c40Y/view?usp=sharing)
-![checkout-screen-3](https://drive.google.com/file/d/1xE3ZYiMtjBx7qVecRoxf6Acpbn14OpzB/view?usp=sharing)
-![order-summary-screen](https://drive.google.com/file/d/1cJbT3UvPsvfw0Sy05G6KCUzTZAlmqjBE/view?usp=sharing)
-![admin-dashboard](https://drive.google.com/file/d/1-o3IUzyL-ZjdWT134B-yAJwY9YG9OSg-/view?usp=sharing)
-![employee-dashboard](https://drive.google.com/file/d/1p8R5aq7H4Dr9y6b1H3ivlEj3a1TPlbD7/view?usp=sharing)
-![client-dashboard](https://drive.google.com/file/d/1AhdYnoyjbzlz4K4Exdt-sElNBtEv212Z/view?usp=sharing)
+![home-page](https://user-images.githubusercontent.com/54570205/120716882-47231080-c4e4-11eb-86f3-8f2f022a0701.png)
+![sign-in](https://user-images.githubusercontent.com/54570205/120716936-5c983a80-c4e4-11eb-9d42-7a5e9c588c7c.png)
+![product-page](https://user-images.githubusercontent.com/54570205/120716968-6ae65680-c4e4-11eb-9eba-0afba815b506.png)
+![search box](https://user-images.githubusercontent.com/54570205/120717069-99643180-c4e4-11eb-9cc0-60a959f9eb28.png)
+![product-details-page](https://user-images.githubusercontent.com/54570205/120717040-8d786f80-c4e4-11eb-8835-374f5d01e332.png)
+![cart-screen](https://user-images.githubusercontent.com/54570205/120717120-a84ae400-c4e4-11eb-9e9b-524299a0ec66.png)
+![checkout-screen-1](https://user-images.githubusercontent.com/54570205/120717173-b6990000-c4e4-11eb-891f-b1a9772c3b9c.png)
+![checkout-screen-2](https://user-images.githubusercontent.com/54570205/120717194-c284c200-c4e4-11eb-8da3-51238a7a0f05.png)
+![checkout-screen-3](https://user-images.githubusercontent.com/54570205/120717214-cca6c080-c4e4-11eb-863d-f0aa0e28d3e5.png)
+![order-summary-screen](https://user-images.githubusercontent.com/54570205/120717249-d92b1900-c4e4-11eb-971a-190d400a1d14.png)
+![admin-dashboard](https://user-images.githubusercontent.com/54570205/120717276-e5af7180-c4e4-11eb-8f97-0a0713796e6f.png)
+![employee-dashboard](https://user-images.githubusercontent.com/54570205/120717298-ef38d980-c4e4-11eb-97b2-3b6166ba9fde.png)
+![client-dashboard](https://user-images.githubusercontent.com/54570205/120717321-f9f36e80-c4e4-11eb-8baf-e09445ec9810.png)
   
 ## Demo
 
