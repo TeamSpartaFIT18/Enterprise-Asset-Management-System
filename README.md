@@ -5,19 +5,7 @@ An asset inventory management system developed for Eimsky Business Solutions (Pv
 
 ## Screenshots
 
-![home-page](https://user-images.githubusercontent.com/54570205/120716882-47231080-c4e4-11eb-86f3-8f2f022a0701.png)
-![sign-in](https://user-images.githubusercontent.com/54570205/120716936-5c983a80-c4e4-11eb-9d42-7a5e9c588c7c.png)
-![product-page](https://user-images.githubusercontent.com/54570205/120716968-6ae65680-c4e4-11eb-9eba-0afba815b506.png)
-![search box](https://user-images.githubusercontent.com/54570205/120717069-99643180-c4e4-11eb-9cc0-60a959f9eb28.png)
-![product-details-page](https://user-images.githubusercontent.com/54570205/120717040-8d786f80-c4e4-11eb-8835-374f5d01e332.png)
-![cart-screen](https://user-images.githubusercontent.com/54570205/120717120-a84ae400-c4e4-11eb-9e9b-524299a0ec66.png)
-![checkout-screen-1](https://user-images.githubusercontent.com/54570205/120717173-b6990000-c4e4-11eb-891f-b1a9772c3b9c.png)
-![checkout-screen-2](https://user-images.githubusercontent.com/54570205/120717194-c284c200-c4e4-11eb-8da3-51238a7a0f05.png)
-![checkout-screen-3](https://user-images.githubusercontent.com/54570205/120717214-cca6c080-c4e4-11eb-863d-f0aa0e28d3e5.png)
-![order-summary-screen](https://user-images.githubusercontent.com/54570205/120717249-d92b1900-c4e4-11eb-971a-190d400a1d14.png)
-![admin-dashboard](https://user-images.githubusercontent.com/54570205/120717276-e5af7180-c4e4-11eb-8f97-0a0713796e6f.png)
-![employee-dashboard](https://user-images.githubusercontent.com/54570205/120717298-ef38d980-c4e4-11eb-97b2-3b6166ba9fde.png)
-![client-dashboard](https://user-images.githubusercontent.com/54570205/120717321-f9f36e80-c4e4-11eb-8baf-e09445ec9810.png)
+![eams](https://user-images.githubusercontent.com/54570205/132299004-5529a3dc-fbf5-4ae5-be81-f6b10253dd96.gif)
   
 ## Demo
 
